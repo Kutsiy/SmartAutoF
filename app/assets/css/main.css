@@ -1,0 +1,136 @@
+/* =========================================================
+   ⚫ BLACK + 🟡 YELLOW DESIGN SYSTEM
+   Main: Black
+   Accent: Yellow
+   Dark Modern UI
+========================================================= */
+
+:root {
+  /* =========================================================
+     ⚫ BLACK SCALE
+  ========================================================= */
+
+  --black-950: #000000;
+  --black-900: #0a0a0a;
+  --black-850: #111111;
+  --black-800: #171717;
+  --black-750: #1f1f1f;
+  --black-700: #262626;
+  --black-650: #2e2e2e;
+  --black-600: #363636;
+  --black-550: #404040;
+  --black-500: #4a4a4a;
+  --black-450: #555555;
+  --black-400: #666666;
+  --black-350: #777777;
+  --black-300: #888888;
+  --black-250: #999999;
+  --black-200: #b3b3b3;
+  --black-150: #cccccc;
+  --black-100: #e6e6e6;
+
+  /* =========================================================
+     🟡 YELLOW SCALE (Accent)
+  ========================================================= */
+
+  --yellow-950: #1a1400;
+  --yellow-900: #332800;
+  --yellow-850: #664f00;
+  --yellow-800: #997700;
+  --yellow-750: #cc9f00;
+  --yellow-700: #ffbf00;
+  --yellow-650: #ffc61a;
+  --yellow-600: #ffcc33;
+  --yellow-550: #ffd24d;
+  --yellow-500: #ffd966; /* Main Accent */
+  --yellow-450: #ffe080;
+  --yellow-400: #ffe699;
+  --yellow-350: #ffedb3;
+  --yellow-300: #fff3cc;
+  --yellow-250: #fff7d9;
+  --yellow-200: #fffbe6;
+
+  /* =========================================================
+     RGB VALUES (For Alpha Usage)
+  ========================================================= */
+
+  --black-rgb: 0, 0, 0;
+  --yellow-rgb: 255, 217, 102;
+
+  /* =========================================================
+     ⚫ BLACK ALPHA SCALE
+  ========================================================= */
+
+  --black-95: rgba(var(--black-rgb), 0.95);
+  --black-90: rgba(var(--black-rgb), 0.9);
+  --black-80: rgba(var(--black-rgb), 0.8);
+  --black-70: rgba(var(--black-rgb), 0.7);
+  --black-60: rgba(var(--black-rgb), 0.6);
+  --black-50: rgba(var(--black-rgb), 0.5);
+  --black-40: rgba(var(--black-rgb), 0.4);
+  --black-30: rgba(var(--black-rgb), 0.3);
+  --black-20: rgba(var(--black-rgb), 0.2);
+  --black-10: rgba(var(--black-rgb), 0.1);
+  --black-05: rgba(var(--black-rgb), 0.05);
+
+  /* =========================================================
+     🟡 YELLOW ALPHA SCALE
+  ========================================================= */
+
+  --yellow-95: rgba(var(--yellow-rgb), 0.95);
+  --yellow-90: rgba(var(--yellow-rgb), 0.9);
+  --yellow-80: rgba(var(--yellow-rgb), 0.8);
+  --yellow-70: rgba(var(--yellow-rgb), 0.7);
+  --yellow-60: rgba(var(--yellow-rgb), 0.6);
+  --yellow-50: rgba(var(--yellow-rgb), 0.5);
+  --yellow-40: rgba(var(--yellow-rgb), 0.4);
+  --yellow-30: rgba(var(--yellow-rgb), 0.3);
+  --yellow-20: rgba(var(--yellow-rgb), 0.2);
+  --yellow-10: rgba(var(--yellow-rgb), 0.1);
+  --yellow-05: rgba(var(--yellow-rgb), 0.05);
+
+  /* =========================================================
+     🌐 SEMANTIC VARIABLES
+  ========================================================= */
+
+  /* Background */
+  --bg-main: var(--black-900);
+  --bg-secondary: var(--black-850);
+  --bg-card: var(--black-800);
+  --bg-hover: var(--black-750);
+  --bg-overlay: var(--black-80);
+
+  /* Text */
+  --text-primary: var(--black-100);
+  --text-secondary: var(--black-300);
+  --text-muted: var(--black-400);
+  --text-disabled: var(--black-500);
+  --text-hover: var(--black-900);
+
+  /* Accent */
+  --accent-primary: var(--yellow-500);
+  --accent-hover: var(--yellow-600);
+  --accent-active: var(--yellow-700);
+  --accent-soft: var(--yellow-40);
+  --accent-glow: var(--yellow-30);
+
+  /* Borders */
+  --border-main: var(--black-700);
+  --border-light: var(--black-650);
+  --border-accent: var(--yellow-500);
+
+  /* States */
+  --state-focus: var(--yellow-450);
+  --state-active: var(--yellow-600);
+  --state-disabled: var(--black-600);
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px var(--black-40);
+  --shadow-strong: 0 10px 40px var(--black-60);
+  --shadow-glow: 0 0 25px var(--yellow-40);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}
