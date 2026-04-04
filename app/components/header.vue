@@ -3,7 +3,9 @@ const show = ref(false);
 </script>
 
 <template>
-  <div class="w-full h-[130px] border-b border-b-[var(--border-accent)]">
+  <div
+    class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 relative"
+  >
     <div class="w-full h-full container mx-auto px-12 relative">
       <div class="w-full h-full text-2xl flex items-center justify-between">
         <div

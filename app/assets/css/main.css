@@ -104,6 +104,7 @@
   --text-primary: var(--black-100);
   --text-secondary: var(--black-300);
   --text-black: var(--black-900);
+  --text-important: var(--yellow-700);
   --text-muted: var(--black-400);
   --text-disabled: var(--black-500);
   --text-hover: var(--black-900);
