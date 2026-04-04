@@ -31,12 +31,12 @@ const show = ref(false);
             </div>
             <div>Київська обл. с. Нижча Дубечня, вул. Шевченка 5.</div>
             <div
-              class="border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors"
+              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors"
             >
               Отримати консультацію
             </div>
           </div>
-          <nav class="flex items-center relative">
+          <nav class="flex items-center relative text-3xl">
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"

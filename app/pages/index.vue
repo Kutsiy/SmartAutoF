@@ -13,7 +13,7 @@
           class="w-[calc((100%/2)-50px)] h-[calc(100vh-130px)] pb-10 flex flex-col items-center justify-center gap-5"
         >
           <div
-            class="py-4 text-4xl font-bold flex flex-col items-center justify-center gap-5 border-b border-dashed border-b-white *:text-center"
+            class="py-4 text-5xl font-bold flex flex-col items-center justify-center gap-5 border-b border-dashed border-b-white *:text-center"
           >
             <div>
               Сучасний автосервіс
@@ -21,7 +21,7 @@
             </div>
             <div>- особливий підхід до кожного клієнта</div>
           </div>
-          <div class="text-2xl text-center">
+          <div class="text-3xl text-center">
             Довірте свій комфорт нашим фахівцям! Звертайтеся в наш автосервіс
             прямо зараз!
           </div>

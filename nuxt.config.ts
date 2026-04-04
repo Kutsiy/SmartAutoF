@@ -8,6 +8,10 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "reka-ui/nuxt",
     "@nuxt/icon",
+    "@nuxt/fonts",
   ],
   css: ["~/assets/css/main.css"],
+  fonts: {
+    families: [{ name: "Oswald", provider: "google" }],
+  },
 });
