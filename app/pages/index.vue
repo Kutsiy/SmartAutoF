@@ -23,7 +23,9 @@ import CarCanvas from "~/components/car-canvas.vue";
               Сучасний автосервіс
               <span class="text-[var(--text-important)]">SmartAuto</span>
             </div>
-            <div>- особливий підхід до кожного клієнта</div>
+            <div class="text-5xl/[60px]">
+              - особливий підхід до кожного клієнта
+            </div>
           </div>
           <div class="text-3xl text-center">
             Довірте свій комфорт нашим фахівцям! Звертайтеся в наш автосервіс

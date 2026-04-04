@@ -98,6 +98,7 @@
   --bg-secondary: var(--black-850);
   --bg-card: var(--black-800);
   --bg-hover: var(--black-750);
+  --bg-hover-alpha: rgba(31, 31, 31, 0.5);
   --bg-overlay: var(--black-80);
 
   /* Text */

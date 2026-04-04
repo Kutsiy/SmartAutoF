@@ -32,16 +32,16 @@ const show = ref(false);
             </div>
             <div>Київська обл. с. Нижча Дубечня, вул. Шевченка 5.</div>
             <div
-              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors"
+              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors rounded-sm"
             >
               Отримати консультацію
             </div>
           </div>
-          <nav class="flex items-center relative text-3xl">
+          <nav class="flex items-center gap-1 relative text-3xl">
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="rotate text-[28px] border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-hover)] font-bold transition-colors flex items-center relative"
+              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-hover)] font-bold transition-colors flex items-center relative rounded-sm"
             >
               Список послуг
               <Icon
@@ -49,36 +49,35 @@ const show = ref(false);
                 class="relative top-1"
                 :class="{ rotated: show }"
               />
-              <div class="absolute w-[245px] h-[58px] top-0 left-[-2px]"></div>
+              <div class="absolute w-[245px] h-[65px] top-0 left-[-2px]"></div>
             </div>
             <div
               v-if="show"
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-2 z-50"
+              class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-2 z-50 rounded-sm"
             ></div>
             <div
-              class="ml-[1px] cursor-pointer bg-[var(--bg-secondary)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover)] transition-colors"
+              class="ml-[1px] cursor-pointer bg-[var(--black-20)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
             >
               Дігностичні роботи
             </div>
             <div
-              class="cursor-pointer bg-[var(--bg-secondary)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover)] transition-colors"
+              class="cursor-pointer bg-[var(--black-30)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
             >
               Дизель сервіс
             </div>
             <div
-              class="cursor-pointer bg-[var(--bg-secondary)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover)] transition-colors"
+              class="cursor-pointer bg-[var(--black-40)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
             >
               Ремонт вантажівок
             </div>
             <div
-              class="cursor-pointer bg-[var(--bg-secondary)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover)] transition-colors"
+              class="cursor-pointer bg-[var(--black-50)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
             >
               Легковий сервіс
             </div>
           </nav>
-          <!-- <HeaderNav /> -->
         </div>
       </div>
     </div>
