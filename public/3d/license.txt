@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lowpoly Mustang Shelby GT-H
+* source:	https://sketchfab.com/3d-models/lowpoly-mustang-shelby-gt-h-6a6e08e515b543fca70ed2b6f597506f
+* author:	anxietybot (https://sketchfab.com/anxietybot)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lowpoly Mustang Shelby GT-H" (https://sketchfab.com/3d-models/lowpoly-mustang-shelby-gt-h-6a6e08e515b543fca70ed2b6f597506f) by anxietybot (https://sketchfab.com/anxietybot) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

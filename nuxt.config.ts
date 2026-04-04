@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "reka-ui/nuxt",
     "@nuxt/icon",
     "@nuxt/fonts",
+    "@tresjs/nuxt",
   ],
   css: ["~/assets/css/main.css"],
   fonts: {

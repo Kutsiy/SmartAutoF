@@ -3,8 +3,9 @@ const show = ref(false);
 </script>
 
 <template>
+  <div class="w-full h-[130px] relative"></div>
   <div
-    class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 relative"
+    class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 fixed top-0"
   >
     <div class="w-full h-full container mx-auto px-12 relative">
       <div class="w-full h-full text-2xl flex items-center justify-between">
@@ -20,7 +21,7 @@ const show = ref(false);
         </div>
 
         <div class="flex flex-col text-xl gap-4">
-          <div class="flex items-center justify-between text-sm">
+          <div class="flex items-center justify-between text-base">
             <div>
               <div>Консультація спеціаліста</div>
               <div>(066)-463-11-39</div>
@@ -48,7 +49,7 @@ const show = ref(false);
                 class="relative top-1"
                 :class="{ rotated: show }"
               />
-              <div class="absolute w-[245px] h-[70px] top-0 left-[-2px]"></div>
+              <div class="absolute w-[245px] h-[58px] top-0 left-[-2px]"></div>
             </div>
             <div
               v-if="show"
