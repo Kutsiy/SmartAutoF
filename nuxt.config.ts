@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxt/fonts",
     "@tresjs/nuxt",
+    "v-gsap-nuxt",
   ],
   css: ["~/assets/css/main.css"],
   fonts: {

@@ -1,11 +1,28 @@
 <script setup>
 const show = ref(false);
+const scrollY = ref(0);
+const isShow = ref(true);
+
+const showHeader = (event) => {
+  if (window.scrollY < scrollY.value) isShow.value = true;
+  else isShow.value = false;
+  scrollY.value = window.scrollY;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", showHeader);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", showHeader);
+});
 </script>
 
 <template>
   <div class="w-full h-[130px] relative"></div>
   <div
     class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 fixed top-0"
+    :class="{ isShow: isShow, isHidden: !isShow }"
   >
     <div class="w-full h-full container mx-auto px-12 relative">
       <div class="w-full h-full text-2xl flex items-center justify-between">
@@ -32,7 +49,7 @@ const show = ref(false);
             </div>
             <div>Київська обл. с. Нижча Дубечня, вул. Шевченка 5.</div>
             <div
-              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors rounded-sm"
+              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--yellow-10)] hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors rounded-sm"
             >
               Отримати консультацію
             </div>
@@ -95,5 +112,37 @@ const show = ref(false);
 
 .rotated {
   transform: rotate(180deg);
+}
+
+.isHidden {
+  height: 0;
+  transition: 0.5s;
+  animation: isHidden 0.5s;
+  overflow: hidden;
+}
+
+@keyframes isHidden {
+  from {
+    height: 130px;
+  }
+  to {
+    height: 0;
+  }
+}
+
+.isShow {
+  transition: 0.5s;
+  animation: isShow 0.5s;
+}
+
+@keyframes isShow {
+  from {
+    height: 0;
+    overflow: hidden;
+  }
+  to {
+    height: 130px;
+    overflow: hidden;
+  }
 }
 </style>

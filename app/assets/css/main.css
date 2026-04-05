@@ -137,4 +137,5 @@ body {
   background-color: var(--bg-main);
   color: var(--text-primary);
   font-family: "Oswald";
+  scroll-behavior: smooth;
 }
