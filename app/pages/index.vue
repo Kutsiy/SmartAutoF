@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MainHero from "~/components/pages/main-hero.vue";
+import MainPrices from "~/components/pages/main-prices.vue";
 import MainServices from "~/components/pages/main-services.vue";
 
 onMounted(() => {
@@ -73,10 +74,35 @@ onMounted(() => {
       },
       0.4,
     );
+
+  const tl2 = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".service-back",
+      start: "800 top",
+      end: "1000 800",
+      scrub: 1.2,
+      pin: true,
+      pinSpacing: true,
+      markers: true,
+    },
+  });
+
+  tl2
+    .to(".service-back", {
+      scale: 0,
+    })
+    .to(
+      ".service",
+      {
+        scale: 0,
+      },
+      0.5,
+    );
 });
 </script>
 
 <template>
   <MainHero />
   <MainServices />
+  <MainPrices />
 </template>

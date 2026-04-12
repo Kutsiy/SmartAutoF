@@ -1,6 +1,11 @@
-<script setup lang="ts">
+<script setup>
+const { data } = await useFetch("http://localhost:8000/category/all");
 const listIsOpen = ref(false);
-const listItem = "Оберіть зі списку";
+const listItem = ref("Оберіть зі списку");
+
+const changeListItem = (item) => {
+  listItem.value = item;
+};
 </script>
 
 <template>
@@ -14,7 +19,7 @@ const listItem = "Оберіть зі списку";
     <div class="container mx-auto px-12 z-10 service flex flex-col gap-16">
       <div class="mt-10 flex items-center justify-between">
         <div
-          class="w-[500px] h-[60px] bg-[var(--yellow-600)] text-[var(--text-black)] text-4xl flex justify-end items-center px-4 relative before:content-[''] before:bg-[var(--yellow-600)] before:absolute before:w-[55px] before:h-[60px] before:top-0 before:left-[-50px]"
+          class="w-[500px] h-[60px] bg-[var(--yellow-600)] text-[var(--text-black)] text-4xl flex justify-end items-center px-4 relative before:content-[''] before:bg-[var(--yellow-600)] before:absolute before:w-[55px] before:h-[60px] before:top-0 before:left-[-50px] font-bold"
         >
           Наші сервіси
         </div>
@@ -30,9 +35,13 @@ const listItem = "Оберіть зі списку";
             v-if="listIsOpen"
             class="flex flex-col w-full absolute gap-2 text-2xl top-[4rem] border border-[var(--yellow-600)] bg-[var(--yellow-10)] py-2 px-4 rounded-md *:pl-2 *:cursor-pointer z-30"
           >
-            <span class="hover:bg-[var(--yellow-20)]">TEXT ITEM</span>
-            <span>TEXT ITEM</span>
-            <span>TEXT ITEM</span>
+            <span
+              v-for="value in data"
+              class="hover:bg-[var(--yellow-20)] rounded-sm"
+              :class="{ 'bg-[var(--yellow-20)]': value.name === listItem }"
+              @click="changeListItem(value.name)"
+              >{{ value.name }}</span
+            >
           </div>
         </div>
       </div>
@@ -47,48 +56,14 @@ const listItem = "Оберіть зі списку";
           class="w-full h-full p-4 bg-[var(--black-50)] backdrop-blur-[5px] grid grid-cols-4 gap-4"
         >
           <div
+            v-for="value in data"
             class="p-4 text-3xl border border-dashed border-[var(--yellow-50)] flex items-center gap-4"
           >
             <NuxtImg
               src="/HeaderLogo.png"
               class="w-[70px] h-[70px] object-cover relative top-2"
             />
-            <span>BOB</span>
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
-          </div>
-          <div
-            class="p-4 text-3xl border border-dashed border-[var(--yellow-50)]"
-          >
-            BOB
+            <span>{{ value.name }}</span>
           </div>
         </div>
       </div>
