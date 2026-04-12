@@ -38,7 +38,7 @@ onUnmounted(() => {
         </div>
 
         <div class="flex flex-col text-xl gap-4">
-          <div class="flex items-center justify-between text-base">
+          <div class="flex items-center gap-4 text-base">
             <div>
               <div>Консультація спеціаліста</div>
               <div>(066)-463-11-39</div>
@@ -53,8 +53,18 @@ onUnmounted(() => {
             >
               Отримати консультацію
             </div>
+            <div
+              class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer"
+            >
+              <div class="text-[var(--yellow-90)] mx-4 my-1">увійти</div>
+              <div
+                class="border border-[var(--yellow-90)] rounded-sm px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
+              >
+                зарееструватись
+              </div>
+            </div>
           </div>
-          <nav class="flex items-center gap-1 relative text-3xl">
+          <nav class="flex items-center gap-1 relative text-2xl">
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"

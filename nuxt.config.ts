@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "@tresjs/nuxt",
     "v-gsap-nuxt",
+    "@pinia/nuxt",
   ],
   css: ["~/assets/css/main.css"],
   fonts: {
