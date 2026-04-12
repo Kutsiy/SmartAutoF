@@ -26,8 +26,9 @@ onUnmounted(() => {
   >
     <div class="w-full h-full container mx-auto px-12 relative">
       <div class="w-full h-full text-2xl flex items-center justify-between">
-        <div
+        <NuxtLink
           class="flex items-center justify-center w-[200px] h-[100px] relative"
+          to="/"
         >
           <NuxtImg
             src="/HeaderLogo.png"
@@ -35,7 +36,7 @@ onUnmounted(() => {
             width="200"
             class="absolute top-2"
           />
-        </div>
+        </NuxtLink>
 
         <div class="flex flex-col text-xl gap-4">
           <div class="flex items-center gap-4 text-base">
@@ -54,17 +55,23 @@ onUnmounted(() => {
               Отримати консультацію
             </div>
             <div
-              class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer"
+              class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer border-l-2 border-l-[var(--yellow-90)]"
             >
-              <div class="text-[var(--yellow-90)] mx-4 my-1">увійти</div>
-              <div
+              <NuxtLink
+                class="text-[var(--yellow-80)] hover:text-[var(--yellow-90)] transition-colors mx-4 my-1"
+                to="/login"
+              >
+                увійти
+              </NuxtLink>
+              <NuxtLink
                 class="border border-[var(--yellow-90)] rounded-sm px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
+                to="/signup"
               >
                 зарееструватись
-              </div>
+              </NuxtLink>
             </div>
           </div>
-          <nav class="flex items-center gap-1 relative text-2xl">
+          <nav class="flex items-center justify-between relative text-3xl">
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"
