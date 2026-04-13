@@ -78,23 +78,36 @@ onMounted(() => {
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".service-back",
-      start: "800 top",
-      end: "1000 800",
+      start: "360 top",
+      end: "400 top",
       scrub: 1.2,
-      pin: true,
+      pin: false,
       pinSpacing: true,
-      markers: true,
+      markers: false,
     },
   });
 
   tl2
-    .to(".service-back", {
-      scale: 0,
-    })
+    .fromTo(
+      ".prices",
+      { opacity: 0 },
+      {
+        opacity: 1,
+      },
+    )
+    .to(
+      ".service-back",
+      {
+        scale: 0,
+        opacity: 0,
+      },
+      0.5,
+    )
     .to(
       ".service",
       {
         scale: 0,
+        opacity: 0,
       },
       0.5,
     );

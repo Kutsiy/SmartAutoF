@@ -109,6 +109,7 @@
   --text-muted: var(--black-400);
   --text-disabled: var(--black-500);
   --text-hover: var(--black-900);
+  --text-error: rgba(255, 0, 0, 0.9);
 
   /* Accent */
   --accent-primary: var(--yellow-500);

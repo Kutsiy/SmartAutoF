@@ -19,7 +19,6 @@ onMounted(() => {
   innerType.value = type;
 });
 
-const value = ref("");
 const model = defineModel();
 
 const changePasswordType = (change) => {
@@ -30,10 +29,10 @@ const changePasswordType = (change) => {
 <template>
   <div class="flex flex-col gap-2">
     <div :class="{ 'flex gap-2 items-center': passwordType }">
-      <label v-if="label" :for="id" class="text-2xl">{{ label }}</label>
+      <label v-if="label" :for="id" class="text-xl">{{ label }}</label>
       <span
         v-if="passwordType"
-        class="text-2xl cursor-pointer relative top-[2px]"
+        class="text-3xl cursor-pointer relative top-[2px]"
         @mousedown="changePasswordType('text')"
         @mouseup="changePasswordType('password')"
         @mouseleave="changePasswordType('password')"
@@ -48,7 +47,7 @@ const changePasswordType = (change) => {
       :type="innerType"
       :placeholder="placeholder"
       :id="id"
-      v-model="value"
+      v-model="model"
       class="p-2 text-2xl text-[var(--text-black)] rounded-sm"
     />
   </div>
