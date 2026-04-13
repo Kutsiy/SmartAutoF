@@ -2,6 +2,10 @@
 import { useForm } from "vee-validate";
 import z from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
+import { useUserStore } from "~/store/user.store";
+
+const userStore = useUserStore();
+const mainError = ref("");
 
 const schema = toTypedSchema(
   z.object({
@@ -23,14 +27,27 @@ const { errors, handleSubmit, defineField } = useForm({
 const [email] = defineField("email");
 const [password] = defineField("password");
 
-const onSubmit = handleSubmit((value) => {
-  const { data } = useBodyFetch("/auth/login", {
-    method: "POST",
-    body: {
-      email: value.email,
-      password: value.password,
-    },
-  });
+const onSubmit = handleSubmit(async (value) => {
+  try {
+    const data = await useBodyFetch("/auth/login", {
+      method: "POST",
+      body: {
+        email: value.email,
+        password: value.password,
+      },
+    });
+
+    userStore.setAuth({ userName: data.name, userEmail: data.email });
+
+    if (data.isActivate) {
+      await navigateTo("/account");
+    } else {
+      await navigateTo("/activate");
+    }
+  } catch {
+    mainError.value =
+      "Щось пішло не так, можливо email або пароль не правильний";
+  }
 });
 </script>
 
@@ -38,6 +55,7 @@ const onSubmit = handleSubmit((value) => {
   <NuxtLayout name="register">
     <form class="flex flex-col gap-4" @submit="onSubmit">
       <div class="flex flex-col gap-1">
+        <UiInputError :text="mainError" />
         <UiInput
           placeholder="Email"
           label="Email:"

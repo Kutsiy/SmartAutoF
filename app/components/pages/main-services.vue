@@ -47,7 +47,7 @@ const changeListItem = (item) => {
       </div>
       <div class="border-2 border-[var(--yellow-50)] rounded-sm">
         <div
-          class="w-full h-5 p-4 bg-[var(--black-95)] rounded-tr-xl rounded-tl-xl flex items-center justify-end gap-2 *:cursor-pointer canvas-box-shadow"
+          class="w-full h-5 p-4 bg-[var(--black-90)] border-b-2 border-b-[var(--yellow-50)] rounded-tr-xl rounded-tl-xl flex items-center justify-end gap-2 *:cursor-pointer"
         >
           <Icon name="mingcute:minimize-fill" />
           <Icon name="mingcute:close-fill" />

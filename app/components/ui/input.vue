@@ -3,15 +3,18 @@ const {
   label,
   placeholder,
   type = "text",
+  bigText = false,
 } = defineProps({
   label: String,
   placeholder: String,
   type: String,
+  bigText: Boolean,
 });
 
 const id = ref("");
 const passwordType = ref(false);
 const innerType = ref("");
+const emit = defineEmits(["input"]);
 
 onMounted(() => {
   id.value = label + useId();
@@ -23,6 +26,10 @@ const model = defineModel();
 
 const changePasswordType = (change) => {
   innerType.value = change;
+};
+
+const onInput = (payload) => {
+  emit("input", payload);
 };
 </script>
 
@@ -49,6 +56,8 @@ const changePasswordType = (change) => {
       :id="id"
       v-model="model"
       class="p-2 text-2xl text-[var(--text-black)] rounded-sm"
+      :class="{ '!text-4xl': bigText }"
+      @input="onInput"
     />
   </div>
 </template>

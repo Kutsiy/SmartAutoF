@@ -11,7 +11,7 @@ type Store = {
   userInfo: User;
 };
 
-export const userStore = defineStore("userStoreID", {
+export const useUserStore = defineStore("userStoreID", {
   state: (): Store => {
     return {
       isRegistered: false,
@@ -34,6 +34,9 @@ export const userStore = defineStore("userStoreID", {
   getters: {
     getRegistered(): boolean {
       return this.isRegistered;
+    },
+    getUser(): User {
+      return this.userInfo;
     },
   },
 });

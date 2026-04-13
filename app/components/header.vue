@@ -9,6 +9,10 @@ const showHeader = (event) => {
   scrollY.value = window.scrollY;
 };
 
+const check = async () => {
+  const res = await useBodyFetch("/user/all");
+};
+
 onMounted(() => {
   window.addEventListener("scroll", showHeader);
 });
@@ -24,6 +28,19 @@ onUnmounted(() => {
     class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 fixed top-0"
     :class="{ isShow: isShow, isHidden: !isShow }"
   >
+    <div
+      class="w-[30px] h-[30px] flex items-center justify-center bg-[var(--yellow-90)] absolute bottom-0 right-0 text-2xl cursor-pointer z-50"
+      @click="showHeader"
+    >
+      <Icon
+        class="cursor-pointer"
+        :name="
+          isShow
+            ? 'material-symbols:keyboard-arrow-up'
+            : 'material-symbols:keyboard-arrow-down'
+        "
+      />
+    </div>
     <div class="w-full h-full container mx-auto px-12 relative">
       <div class="w-full h-full text-2xl flex items-center justify-between">
         <NuxtLink
@@ -71,7 +88,9 @@ onUnmounted(() => {
               </NuxtLink>
             </div>
           </div>
-          <nav class="flex items-center justify-between relative text-3xl">
+          <nav
+            class="flex items-center gap-4 relative text-3xl *:min-w-[150px] *:flex *:items-center *:justify-center"
+          >
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"
@@ -93,13 +112,14 @@ onUnmounted(() => {
             ></div>
             <div
               class="ml-[1px] cursor-pointer bg-[var(--black-20)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
+              @click="check()"
             >
               Дігностичні роботи
             </div>
             <div
               class="cursor-pointer bg-[var(--black-30)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
             >
-              Дизель сервіс
+              Про нас
             </div>
             <div
               class="cursor-pointer bg-[var(--black-40)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"

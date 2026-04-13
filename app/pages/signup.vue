@@ -2,6 +2,10 @@
 import { useForm } from "vee-validate";
 import { z } from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
+import { useUserStore } from "~/store/user.store";
+
+const userStore = useUserStore();
+const mainError = ref("");
 
 const schema = toTypedSchema(
   z
@@ -39,16 +43,21 @@ const [email, emailAttr] = defineField("email");
 const [password, passwordAttr] = defineField("password");
 const [confirm, confirmAttr] = defineField("confirm");
 
-const onSubmit = handleSubmit((value) => {
-  console.log(value);
-  const { data } = useBodyFetch("/auth/signup", {
-    method: "POST",
-    body: {
-      name: value.name,
-      email: value.email,
-      password: value.password,
-    },
-  });
+const onSubmit = handleSubmit(async (value) => {
+  try {
+    await useBodyFetch("/auth/signup", {
+      method: "POST",
+      body: {
+        name: value.name,
+        email: value.email,
+        password: value.password,
+      },
+    });
+    userStore.setAuth({ userName: value.name, userEmail: value.email });
+    await navigateTo("/activate");
+  } catch (error) {
+    mainError.value = error.data.detail;
+  }
 });
 </script>
 
@@ -56,6 +65,7 @@ const onSubmit = handleSubmit((value) => {
   <NuxtLayout name="register">
     <form class="flex flex-col gap-2" @submit="onSubmit">
       <div class="flex flex-col gap-1">
+        <UiInputError :text="mainError" :big-font-size="true" />
         <UiInput
           placeholder="Name"
           label="Name:"
