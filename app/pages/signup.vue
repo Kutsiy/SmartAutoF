@@ -45,7 +45,7 @@ const [confirm, confirmAttr] = defineField("confirm");
 
 const onSubmit = handleSubmit(async (value) => {
   try {
-    await useBodyFetch("/auth/signup", {
+    await useMyFetch("/auth/signup", {
       method: "POST",
       body: {
         name: value.name,

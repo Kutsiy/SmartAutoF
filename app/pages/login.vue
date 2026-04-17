@@ -29,7 +29,7 @@ const [password] = defineField("password");
 
 const onSubmit = handleSubmit(async (value) => {
   try {
-    const data = await useBodyFetch("/auth/login", {
+    const data = await useMyFetch("/auth/login", {
       method: "POST",
       body: {
         email: value.email,

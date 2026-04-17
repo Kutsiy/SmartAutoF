@@ -40,7 +40,7 @@ onMounted(() => {
         position: "fixed",
         top: 0,
       },
-      0,
+      0.2,
     )
 
     .fromTo(

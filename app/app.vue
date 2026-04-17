@@ -1,13 +1,27 @@
 <script setup>
 import { GSDevTools } from "gsap/GSDevTools";
+import { useUserStore } from "./store/user.store";
 
-onBeforeMount(() => {
+const userStore = useUserStore();
+
+const router = useRoute();
+
+onBeforeMount(async () => {
   useGSAP().registerPlugin(GSDevTools);
-  const { data } = useMyFetch("/auth/refresh");
+});
+
+onMounted(async () => {
+  try {
+    const data = await useMyFetch("/auth/refresh");
+    userStore.setAuth(
+      { userName: data.name, userEmail: data.email },
+      data.isActivate,
+    );
+  } catch {}
 });
 </script>
 
 <template>
-  <Header />
+  <Header v-if="!router.path.includes('/account')" />
   <NuxtPage></NuxtPage>
 </template>

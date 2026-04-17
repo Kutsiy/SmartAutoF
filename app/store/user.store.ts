@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-type User = {
+export type User = {
   userName: string;
   userEmail: string;
 };
@@ -23,9 +23,10 @@ export const useUserStore = defineStore("userStoreID", {
     };
   },
   actions: {
-    setAuth(user: User) {
+    setAuth(user: User, isActive?: boolean) {
       this.userInfo = user;
       this.isRegistered = true;
+      this.isActive = isActive ? isActive : this.isActive;
     },
     setActive() {
       this.isActive = true;
@@ -37,6 +38,9 @@ export const useUserStore = defineStore("userStoreID", {
     },
     getUser(): User {
       return this.userInfo;
+    },
+    getActive(): boolean {
+      return this.isActive;
     },
   },
 });

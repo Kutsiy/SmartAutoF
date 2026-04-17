@@ -2,8 +2,13 @@
 const value = ref();
 const mainError = ref("");
 
-const activateAccount = () => {
-  console.log(value.value);
+const activateAccount = async () => {
+  try {
+    await useMyFetch(`/mail/active/?code=${value.value}`);
+    await navigateTo("/account");
+  } catch (error) {
+    setError(error.data.detail);
+  }
 };
 
 const setError = (error) => {
@@ -12,8 +17,8 @@ const setError = (error) => {
 
 const moreThanSixError = (payload) => {
   setError(
-    payload.target.value.length > 6
-      ? "Код активації не може бути більше 6 символів"
+    payload.target.value.length > 8
+      ? "Код активації не може бути більше 8 символів"
       : "",
   );
 };

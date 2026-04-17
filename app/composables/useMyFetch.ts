@@ -1,4 +1,27 @@
-export const useMyFetch: typeof useFetch = (request, opts) => {
+export const useMyFetch = async (request: string, opts?: any) => {
   const baseURL = "http://localhost:8000";
-  return useFetch(request, { baseURL, credentials: "include", ...opts });
+  let data;
+  try {
+    data = await $fetch(request, {
+      baseURL,
+      credentials: "include",
+      ...opts,
+    });
+  } catch (err: any) {
+    if (err?.response?.status !== 401) {
+      throw err;
+    }
+
+    await $fetch("/auth/refresh", {
+      baseURL,
+      credentials: "include",
+    });
+
+    data = await $fetch(request, {
+      baseURL,
+      credentials: "include",
+      ...opts,
+    });
+  }
+  return data;
 };

@@ -1,4 +1,6 @@
 <script setup>
+import { useUserStore } from "~/store/user.store";
+
 const show = ref(false);
 const scrollY = ref(0);
 const isShow = ref(true);
@@ -9,9 +11,7 @@ const showHeader = (event) => {
   scrollY.value = window.scrollY;
 };
 
-const check = async () => {
-  const res = await useBodyFetch("/user/all");
-};
+const store = useUserStore();
 
 onMounted(() => {
   window.addEventListener("scroll", showHeader);
@@ -73,6 +73,7 @@ onUnmounted(() => {
             </div>
             <div
               class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer border-l-2 border-l-[var(--yellow-90)]"
+              v-if="!store.getRegistered"
             >
               <NuxtLink
                 class="text-[var(--yellow-80)] hover:text-[var(--yellow-90)] transition-colors mx-4 my-1"
@@ -85,6 +86,21 @@ onUnmounted(() => {
                 to="/signup"
               >
                 зарееструватись
+              </NuxtLink>
+            </div>
+            <div
+              v-else
+              class="flex-1 flex items-center justify-end gap-2 text-2xl *:font-bold *:cursor-pointer"
+            >
+              <NuxtLink
+                class="w-[90%] border border-[var(--yellow-90)] rounded-sm px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors flex items-center gap-4"
+                to="/account"
+              >
+                <Icon
+                  name="material-symbols:person"
+                  class="relative top-[1px]"
+                />
+                Акаунт
               </NuxtLink>
             </div>
           </div>
@@ -112,7 +128,6 @@ onUnmounted(() => {
             ></div>
             <div
               class="ml-[1px] cursor-pointer bg-[var(--black-20)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
-              @click="check()"
             >
               Дігностичні роботи
             </div>
