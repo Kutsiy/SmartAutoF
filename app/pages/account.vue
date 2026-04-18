@@ -30,7 +30,7 @@ const userStore = useUserStore();
         >
           Замовлення
         </NuxtLink>
-        <!-- <div>Адмін панель</div> -->
+        <NuxtLink to="/admin">Адмін панель</NuxtLink>
       </nav>
     </div>
   </div>

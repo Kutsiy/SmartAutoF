@@ -140,3 +140,9 @@ body {
   font-family: "Oswald";
   scroll-behavior: smooth;
 }
+
+html,
+body,
+#__nuxt {
+  height: 100%;
+}

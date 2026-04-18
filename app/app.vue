@@ -22,6 +22,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Header v-if="!router.path.includes('/account')" />
+  <Header
+    v-if="!router.path.includes('/account') && !router.path.includes('/admin')"
+  />
   <NuxtPage></NuxtPage>
 </template>
