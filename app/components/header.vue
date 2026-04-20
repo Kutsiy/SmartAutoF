@@ -67,12 +67,12 @@ onUnmounted(() => {
             </div>
             <div>Київська обл. с. Нижча Дубечня, вул. Шевченка 5.</div>
             <div
-              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--yellow-10)] hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors rounded-sm"
+              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors rounded-md"
             >
               Отримати консультацію
             </div>
             <div
-              class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer border-l-2 border-l-[var(--yellow-90)]"
+              class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer border-l-2 border-l-[var(--border-accent)]"
               v-if="!store.getRegistered"
             >
               <NuxtLink
@@ -82,7 +82,7 @@ onUnmounted(() => {
                 увійти
               </NuxtLink>
               <NuxtLink
-                class="border border-[var(--yellow-90)] rounded-sm px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
+                class="border-2 border-[var(--border-accent)] rounded-md px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
                 to="/signup"
               >
                 зарееструватись
@@ -93,7 +93,7 @@ onUnmounted(() => {
               class="flex-1 flex items-center justify-end gap-2 text-2xl *:font-bold *:cursor-pointer"
             >
               <NuxtLink
-                class="w-[90%] border border-[var(--yellow-90)] rounded-sm px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors flex items-center gap-4"
+                class="w-[90%] border-2 border-[var(--border-accent)] rounded-md px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors flex items-center gap-4"
                 to="/account"
               >
                 <Icon
@@ -110,7 +110,7 @@ onUnmounted(() => {
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-hover)] font-bold transition-colors flex items-center relative rounded-sm"
+              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-hover)] font-bold transition-colors flex items-center relative rounded-md"
             >
               Список послуг
               <Icon
@@ -118,7 +118,7 @@ onUnmounted(() => {
                 class="relative top-1"
                 :class="{ rotated: show }"
               />
-              <div class="absolute w-[245px] h-[65px] top-0 left-[-2px]"></div>
+              <div class="absolute w-full h-[65px] top-0 left-[-2px]"></div>
             </div>
             <div
               v-if="show"
@@ -126,26 +126,10 @@ onUnmounted(() => {
               @mouseleave="show = false"
               class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-2 z-50 rounded-sm"
             ></div>
-            <div
-              class="ml-[1px] cursor-pointer bg-[var(--black-20)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
-            >
-              Дігностичні роботи
-            </div>
-            <div
-              class="cursor-pointer bg-[var(--black-30)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
-            >
-              Про нас
-            </div>
-            <div
-              class="cursor-pointer bg-[var(--black-40)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
-            >
-              Ремонт вантажівок
-            </div>
-            <div
-              class="cursor-pointer bg-[var(--black-50)] px-2.5 py-2 border-r border-r-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors rounded-sm"
-            >
-              Легковий сервіс
-            </div>
+            <div class="nav__item">Дігностичні роботи</div>
+            <div class="nav__item">Про нас</div>
+            <div class="nav__item">Ремонт вантажівок</div>
+            <div class="nav__item">Легковий сервіс</div>
           </nav>
         </div>
       </div>
@@ -154,6 +138,10 @@ onUnmounted(() => {
 </template>
 
 <style>
+.nav__item {
+  @apply cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-md;
+}
+
 .rotate > span {
   transition: 0.5s;
 }

@@ -80,7 +80,7 @@ onMounted(() => {
     scrollTrigger: {
       trigger: ".service-back",
       start: "360 top",
-      end: "400 top",
+      end: "400 bottom",
       scrub: 1.2,
       pin: false,
       pinSpacing: true,

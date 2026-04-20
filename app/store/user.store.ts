@@ -31,6 +31,10 @@ export const useUserStore = defineStore("userStoreID", {
     setActive() {
       this.isActive = true;
     },
+    resetAuth() {
+      this.userInfo = { userName: "", userEmail: "" };
+      ((this.isRegistered = false), (this.isActive = false));
+    },
   },
   getters: {
     getRegistered(): boolean {

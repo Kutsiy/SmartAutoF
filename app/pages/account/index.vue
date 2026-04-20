@@ -1,10 +1,19 @@
 <script setup>
+import { useUserStore } from "~/store/user.store";
+
 const user = ref(null);
 const loading = ref(true);
 const isUpdating = ref(false);
+const userStore = useUserStore();
 
 const update = () => {
   isUpdating.value = !isUpdating.value;
+};
+
+const logout = async () => {
+  await useMyFetch("/auth/logout");
+  await navigateTo("/");
+  userStore.resetAuth();
 };
 
 onMounted(async () => {
@@ -40,7 +49,7 @@ onMounted(async () => {
       </form>
       <div class="flex gap-4">
         <button
-          @click="update()"
+          @click="update"
           class="px-4 py-2 rounded-lg border border-[var(--border-accent)] hover:bg-[var(--bg-hover)] transition"
         >
           {{ !isUpdating ? "Змінити ім`я" : "Назад" }}
@@ -58,6 +67,7 @@ onMounted(async () => {
     >
       <button
         class="w-fit px-4 py-2 border border-red-500 bg-red-600 rounded-md cursor-pointer hover:bg-red-500"
+        @click="logout"
       >
         Вийти з акаунту
       </button>
