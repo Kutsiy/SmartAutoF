@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-[100vh] container mx-auto px-12 flex justify-center prices"
+    class="w-full h-[100vh] mt-20 container mx-auto px-12 flex justify-center prices"
   >
     <div class="w-full p-4">
       <div

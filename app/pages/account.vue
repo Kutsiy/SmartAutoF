@@ -5,12 +5,27 @@ definePageMeta({
   middleware: ["auth"],
 });
 
+const userIsAdmin = ref(false);
+
+onMounted(async () => {
+  try {
+    const data = await useMyFetch("/user/isadmin", {
+      headers: useRequestHeaders(["cookie"]),
+    });
+    userIsAdmin.value = true;
+  } catch (e) {
+    userIsAdmin.value = false;
+  }
+});
+
 const userStore = useUserStore();
 </script>
 
 <template>
   <div class="container mx-auto px-12 py-6">
-    <div class="w-full h-14 border-2 border-[var(--yellow-90)] rounded-xl">
+    <div
+      class="w-full h-14 border-2 border-[var(--yellow-90)] rounded-xl bg-[var(--bg-secondary)]"
+    >
       <nav
         class="w-full h-full text-3xl flex gap-6 justify-center items-center *:cursor-pointer"
       >
@@ -30,6 +45,7 @@ const userStore = useUserStore();
         >
           Замовлення
         </NuxtLink>
+        <!-- <NuxtLink to="/admin" v-if="userIsAdmin">Адмін панель</NuxtLink> -->
         <NuxtLink to="/admin">Адмін панель</NuxtLink>
       </nav>
     </div>

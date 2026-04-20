@@ -26,7 +26,7 @@ const changeListItem = (item) => {
         <div class="relative">
           <div
             @click="listIsOpen = !listIsOpen"
-            class="text-3xl py-2 px-4 border border-[var(--yellow-600)] cursor-pointer rounded-sm hover:bg-[var(--yellow-20)] transition-colors"
+            class="text-3xl py-2 px-4 border border-[var(--yellow-600)] cursor-pointer rounded-sm hover:bg-[var(--bg-hover)] transition-colors"
           >
             <Icon name="radix-icons:caret-down" class="relative top-1" />
             {{ listItem }}

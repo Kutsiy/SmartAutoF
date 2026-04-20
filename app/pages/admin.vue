@@ -1,5 +1,17 @@
+<script setup>
+// onMounted(async () => {
+//   try {
+//     const data = await useMyFetch("/user/isadmin", {
+//       headers: useRequestHeaders(["cookie"]),
+//     });
+//   } catch (e) {
+//     await navigateTo("/");
+//   }
+// });
+</script>
+
 <template>
-  <div class="w-full h-full container m-auto p-12 flex gap-6">
+  <div class="min-w-full min-h-full container m-auto p-12 flex gap-6">
     <div
       class="w-[250px] border border-[var(--yellow-500)] rounded-md flex flex-col gap-4 items-center p-4 text-3xl *:cursor-pointer"
     >
@@ -20,6 +32,12 @@
         to="/admin"
       >
         Панель приладів
+      </NuxtLink>
+      <NuxtLink
+        class="hover:border-b-2 hover:border-b-[var(--yellow-90)]"
+        to="/admin/users"
+      >
+        Користувачі
       </NuxtLink>
     </div>
     <div class="flex-1 border border-[var(--yellow-500)] rounded-md p-4">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MainHero from "~/components/pages/main-hero.vue";
+import MainLocation from "~/components/pages/main-location.vue";
 import MainPrices from "~/components/pages/main-prices.vue";
 import MainServices from "~/components/pages/main-services.vue";
 
@@ -118,4 +119,5 @@ onMounted(() => {
   <MainHero />
   <MainServices />
   <MainPrices />
+  <MainLocation />
 </template>
