@@ -100,6 +100,7 @@
   --bg-hover: var(--black-750);
   --bg-hover-alpha: rgba(31, 31, 31, 0.5);
   --bg-overlay: var(--black-80);
+  --bg-accent: var(--yellow-600);
 
   /* Text */
   --text-primary: var(--black-100);
@@ -129,9 +130,9 @@
   --state-disabled: var(--black-600);
 
   /* Shadows */
-  --shadow-soft: 0 4px 20px var(--black-40);
-  --shadow-strong: 0 10px 40px var(--black-60);
-  --shadow-glow: 0 0 25px var(--yellow-40);
+  --shadow-soft: var(--black-40);
+  --shadow-strong: var(--black-60);
+  --shadow-glow: var(--yellow-40);
 }
 
 body {
@@ -139,6 +140,7 @@ body {
   color: var(--text-primary);
   font-family: "Oswald";
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 html,

@@ -8,6 +8,6 @@ import { TresCanvas } from "@tresjs/core";
 
     <TresAmbientLight :intensity="1" />
     <TresDirectionalLight :position="[5, 5, 5]" :intensity="1" />
-    <CarModel />
+    <UiCarModel />
   </TresCanvas>
 </template>

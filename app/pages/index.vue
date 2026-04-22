@@ -1,122 +1,124 @@
 <script setup lang="ts">
-import MainHero from "~/components/pages/main-hero.vue";
-import MainLocation from "~/components/pages/main-location.vue";
-import MainPrices from "~/components/pages/main-prices.vue";
-import MainServices from "~/components/pages/main-services.vue";
+import MainAbout from "~/components/pages/main/main-about.vue";
+import MainHero from "~/components/pages/main/main-hero.vue";
+import MainLocation from "~/components/pages/main/main-location.vue";
+import MainPrices from "~/components/pages/main/main-prices.vue";
+import MainServices from "~/components/pages/main/main-services.vue";
 
-onMounted(() => {
-  const gsap = useGSAP();
+// onMounted(() => {
+//   const gsap = useGSAP();
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".hero-back",
-      start: "top top",
-      end: "1000 800",
-      scrub: 1.2,
-      pin: true,
-      pinSpacing: true,
-      markers: false,
-    },
-  });
+//   const tl = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: ".hero-back",
+//       start: "top top",
+//       end: "1000 800",
+//       scrub: 1.2,
+//       pin: true,
+//       pinSpacing: true,
+//       markers: false,
+//     },
+//   });
 
-  tl.fromTo(
-    ".hero",
-    {},
-    {
-      scale: 0.2,
-      opacity: 0,
-      ease: "power1.out",
-      position: "fixed",
-    },
-    0.2,
-  )
+//   tl.fromTo(
+//     ".hero",
+//     {},
+//     {
+//       scale: 0.2,
+//       opacity: 0,
+//       ease: "power1.out",
+//       position: "fixed",
+//     },
+//     0.2,
+//   )
 
-    .fromTo(
-      ".hero-back",
-      { position: "absolute", top: 0, bottom: 0 },
-      {
-        opacity: 0,
-        scale: 0.3,
-        ease: "power1.out",
-        position: "fixed",
-        top: 0,
-      },
-      0.2,
-    )
+//     .fromTo(
+//       ".hero-back",
+//       { position: "absolute", top: 0, bottom: 0 },
+//       {
+//         opacity: 0,
+//         scale: 0.3,
+//         ease: "power1.out",
+//         position: "fixed",
+//         top: 0,
+//       },
+//       0.2,
+//     )
 
-    .fromTo(
-      ".service-back",
-      {
-        scale: 0.3,
-        opacity: 0,
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        ease: "power1.out",
-        top: 0,
-        position: "fixed",
-      },
-      0.3,
-    )
+//     .fromTo(
+//       ".service-back",
+//       {
+//         scale: 0.3,
+//         opacity: 0,
+//       },
+//       {
+//         scale: 1,
+//         opacity: 1,
+//         ease: "power1.out",
+//         top: 0,
+//         position: "fixed",
+//       },
+//       0.3,
+//     )
 
-    .fromTo(
-      ".service",
-      {
-        scale: 0.3,
-        opacity: 0,
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        ease: "power1.out",
-        top: 0,
-        position: "fixed",
-      },
-      0.4,
-    );
+//     .fromTo(
+//       ".service",
+//       {
+//         scale: 0.3,
+//         opacity: 0,
+//       },
+//       {
+//         scale: 1,
+//         opacity: 1,
+//         ease: "power1.out",
+//         top: 0,
+//         position: "fixed",
+//       },
+//       0.4,
+//     );
 
-  const tl2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".service-back",
-      start: "360 top",
-      end: "400 bottom",
-      scrub: 1.2,
-      pin: false,
-      pinSpacing: true,
-      markers: false,
-    },
-  });
+//   const tl2 = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: ".service-back",
+//       start: "360 top",
+//       end: "400 bottom",
+//       scrub: 1.2,
+//       pin: false,
+//       pinSpacing: true,
+//       markers: false,
+//     },
+//   });
 
-  tl2
-    .fromTo(
-      ".prices",
-      { opacity: 0 },
-      {
-        opacity: 1,
-      },
-    )
-    .to(
-      ".service-back",
-      {
-        scale: 0,
-        opacity: 0,
-      },
-      0.5,
-    )
-    .to(
-      ".service",
-      {
-        scale: 0,
-        opacity: 0,
-      },
-      0.5,
-    );
-});
+//   tl2
+//     .fromTo(
+//       ".prices",
+//       { opacity: 0 },
+//       {
+//         opacity: 1,
+//       },
+//     )
+//     .to(
+//       ".service-back",
+//       {
+//         scale: 0,
+//         opacity: 0,
+//       },
+//       0.5,
+//     )
+//     .to(
+//       ".service",
+//       {
+//         scale: 0,
+//         opacity: 0,
+//       },
+//       0.5,
+//     );
+// });
 </script>
 
 <template>
   <MainHero />
+  <MainAbout />
   <MainServices />
   <MainPrices />
   <MainLocation />

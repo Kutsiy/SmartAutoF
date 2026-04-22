@@ -1,5 +1,5 @@
 <script setup>
-import AdminUser from "~/components/ui/admin-user.vue";
+import User from "~/components/ui/user-row.vue";
 
 const users = ref();
 
@@ -24,7 +24,7 @@ onMounted(async () => {
     </div>
     <div class="pt-2">
       <NuxtLink v-for="user in users" :to="`/admin/user/${user.id}`"
-        ><AdminUser
+        ><User
           :name="user.name"
           :email="user.email"
           :roles="user.role"
