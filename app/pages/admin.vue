@@ -1,4 +1,6 @@
 <script setup>
+import { NavCol, NavColTitle } from "~/components/ui/nav-col";
+
 // onMounted(async () => {
 //   try {
 //     const data = await useMyFetch("/user/isadmin", {
@@ -11,34 +13,44 @@
 </script>
 
 <template>
-  <div class="min-w-full min-h-full container m-auto p-12 flex gap-6">
+  <div class="min-w-full min-h-full container m-auto p-1 flex gap-2">
     <div
-      class="w-[250px] border border-[var(--yellow-500)] rounded-md flex flex-col gap-4 items-center p-4 text-3xl *:cursor-pointer"
+      class="w-[180px] border border-[var(--yellow-500)] rounded-md flex flex-col gap-2 p-4 text-xl *:cursor-pointer *:w-fit"
     >
-      <NuxtLink
-        class="hover:border-b-2 hover:border-b-[var(--yellow-90)]"
-        to="/"
-      >
-        Головна
-      </NuxtLink>
-      <NuxtLink
-        class="hover:border-b-2 hover:border-b-[var(--yellow-90)]"
-        to="/account"
-      >
-        Аккаунт
-      </NuxtLink>
-      <NuxtLink
-        class="hover:border-b-2 hover:border-b-[var(--yellow-90)]"
-        to="/admin"
-      >
-        Панель приладів
-      </NuxtLink>
-      <NuxtLink
-        class="hover:border-b-2 hover:border-b-[var(--yellow-90)]"
-        to="/admin/users"
-      >
-        Користувачі
-      </NuxtLink>
+      <NavCol>
+        <NavColTitle name="material-symbols:person">Профіль</NavColTitle>
+        <NuxtLink
+          class="hover:text-[var(--text-hover)] transition-colors"
+          to="/"
+        >
+          Головна
+        </NuxtLink>
+        <NuxtLink
+          class="hover:text-[var(--text-hover)] transition-colors"
+          to="/account"
+        >
+          Аккаунт
+        </NuxtLink>
+      </NavCol>
+      <NavCol class="">
+        <NavColTitle
+          name="eos-icons:admin" class="relative top-1.5""
+        >
+           Адмін панель
+        </NavColTitle>
+        <NuxtLink
+          class="hover:text-[var(--text-hover)] transition-colors"
+          to="/admin"
+        >
+          Панель приладів
+        </NuxtLink>
+        <NuxtLink
+          class="hover:text-[var(--text-hover)] transition-colors"
+          to="/admin/users"
+        >
+          Користувачі
+        </NuxtLink>
+      </NavCol>
     </div>
     <div class="flex-1 border border-[var(--yellow-500)] rounded-md p-4">
       <NuxtPage></NuxtPage>

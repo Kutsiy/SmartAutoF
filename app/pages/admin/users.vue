@@ -12,7 +12,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="w-full h-full border-2 border-dashed border-[var(--yellow-50)] rounded-md p-3 text-2xl"
+    class="w-full h-full border-2 border-dashed border-[var(--yellow-50)] rounded-md p-3 text-sm"
   >
     <div
       class="grid grid-cols-4 auto-rows-min gap-4 p-2 border-b-2 border-dashed border-[var(--yellow-90)]"

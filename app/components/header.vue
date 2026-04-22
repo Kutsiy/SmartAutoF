@@ -112,7 +112,7 @@ onUnmounted(() => {
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-hover)] font-bold transition-colors flex items-center relative rounded-md"
+              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-black)] font-bold transition-colors flex items-center relative rounded-md"
             >
               Список послуг
               <Icon

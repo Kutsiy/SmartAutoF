@@ -32,13 +32,13 @@ const copyToClipboard = async () => {
 <template>
   <div
     v-if="loading"
-    class="flex justify-center items-center h-40 text-gray-400 animate-pulse text-4xl"
+    class="flex justify-center items-center h-40 text-gray-400 animate-pulse text-xl"
   >
     LOADING...
   </div>
   <div
     v-else
-    class="grid grid-cols-2 gap-8 text-3xl p-6 border-2 border-dashed border-[var(--yellow-500)] rounded-md"
+    class="grid grid-cols-2 gap-8 text-xl p-6 border-2 border-dashed border-[var(--yellow-500)] rounded-md"
   >
     <div class="flex flex-col gap-6">
       <div>Ім'я: {{ user?.name }}</div>
@@ -62,7 +62,7 @@ const copyToClipboard = async () => {
       <div>Ролі: {{ user?.role.map((v) => `[ ${v} ]`).join(", ") }}</div>
       <div>Номер телефону: +2113132131</div>
     </div>
-    <div class="flex flex-col gap-10 text-2xl">
+    <div class="flex flex-col gap-10 text-xl">
       <div>
         Статус активації акаунту:
         <span
