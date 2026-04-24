@@ -14,7 +14,7 @@ const openAccordion = () => {
 <template>
   <div class="w-full text-2xl flex flex-col gap-2">
     <div
-      class="w-full text-3xl cursor-pointer font-bold flex items-center justify-between border-2 border-dashed border-[var(--border-accent)] rounded-md px-2 py-1 hover:bg-[--bg-hover]"
+      class="w-full text-3xl cursor-pointer font-bold flex items-center justify-between border-2 border-dashed border-[var(--border-accent)] rounded-2xl px-2 py-1 hover:bg-[--bg-hover]"
       @click="openAccordion"
     >
       <span>{{ title }}</span
@@ -26,7 +26,7 @@ const openAccordion = () => {
     <div v-if="isOpen" class="flex flex-col gap-2">
       <span
         v-for="item in items"
-        class="flex items-center justify-between border-2 border-[var(--border-accent)] rounded-md p-2 bg-[var(--bg-secondary)]"
+        class="flex items-center justify-between border-2 border-[var(--border-accent)] rounded-2xl p-2 bg-[var(--bg-secondary)]"
       >
         <NuxtLink
           :to="item.link_name"
@@ -34,7 +34,7 @@ const openAccordion = () => {
           >{{ item.name }}</NuxtLink
         >
         <div
-          class="bg-[var(--yellow-600)] text-[var(--text-black)] p-2 rounded-md"
+          class="bg-[var(--yellow-600)] text-[var(--text-black)] p-2 rounded-2xl"
         >
           {{ item.price }} грн
         </div>

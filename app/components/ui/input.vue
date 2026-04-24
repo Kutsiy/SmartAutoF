@@ -4,11 +4,15 @@ const {
   placeholder,
   type = "text",
   bigText = false,
+  smallText = false,
+  iconName,
 } = defineProps({
   label: String,
   placeholder: String,
   type: String,
   bigText: Boolean,
+  smallText: Boolean,
+  iconName: String,
 });
 
 const id = ref("");
@@ -34,7 +38,7 @@ const onInput = (payload) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 text-3xl">
+  <div class="h-full flex flex-col gap-2 text-3xl">
     <label
       v-if="label"
       :for="id"
@@ -44,21 +48,27 @@ const onInput = (payload) => {
     </label>
 
     <div
-      class="flex items-center rounded-lg border border-[var(--border-main)] bg-[var(--bg-secondary)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
+      class="min-h-[20px] flex items-center rounded-lg border border-[var(--border-main)] bg-[var(--bg-secondary)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
     >
+      <span
+        v-if="iconName"
+        class="cursor-pointer p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition relative top-1"
+      >
+        <Icon :name="iconName" class="w-[30px] h-[30px]" />
+      </span>
       <input
         :type="innerType"
         :placeholder="placeholder"
         :id="id"
         v-model="model"
         class="w-full px-4 py-3 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
-        :class="bigText ? 'py-4' : ''"
+        :class="[bigText ? 'py-4' : '', smallText ? '!py-1' : '']"
         @input="onInput"
       />
 
       <span
         v-if="passwordType"
-        class="cursor-pointer p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition"
+        class="cursor-pointer p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition relative top-0.5"
         @mousedown="changePasswordType('text')"
         @mouseup="changePasswordType('password')"
         @mouseleave="changePasswordType('password')"

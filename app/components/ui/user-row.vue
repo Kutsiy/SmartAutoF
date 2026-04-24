@@ -9,7 +9,7 @@ const { name, email, roles, isActive } = defineProps({
 
 <template>
   <div
-    class="grid grid-cols-4 auto-rows-min gap-4 p-2 border-2 border-[var(--border-main)] rounded-md bg-[var(--bg-secondary)] hover:scale-[1.01] transition-transform"
+    class="grid grid-cols-4 auto-rows-min gap-4 p-2 border-2 border-[var(--border-main)] rounded-2xl bg-[var(--bg-secondary)] hover:scale-[1.01] transition-transform"
   >
     <div>{{ name }}</div>
     <div>{{ email }}</div>

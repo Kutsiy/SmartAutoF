@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AccountAppointment from "~/components/ui/account-appointment.vue";
+import Appointment from "~/components/ui/appointment.vue";
 </script>
 
 <template>
@@ -10,16 +10,16 @@ import AccountAppointment from "~/components/ui/account-appointment.vue";
       Ваші замовлення
     </div>
     <div
-      class="w-full h-[450px] overflow-y-auto flex flex-col gap-2 pr-2 scroll-bar"
+      class="w-full h-[450px] overflow-y-auto flex flex-col gap-4 pr-2 scroll-bar"
     >
-      <AccountAppointment />
-      <AccountAppointment />
-      <AccountAppointment />
-      <AccountAppointment />
-      <AccountAppointment />
-      <AccountAppointment />
-      <AccountAppointment />
-      <AccountAppointment />
+      <Appointment />
+      <Appointment />
+      <Appointment />
+      <Appointment />
+      <Appointment />
+      <Appointment />
+      <Appointment />
+      <Appointment />
     </div>
   </div>
 </template>

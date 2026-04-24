@@ -28,7 +28,6 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col gap-3">
-    <div class="text-4xl pb-2">Сторінка акаунту</div>
     <div
       v-if="loading"
       class="flex justify-center items-center h-40 text-4xl text-gray-400 animate-pulse"
@@ -37,7 +36,7 @@ onMounted(async () => {
     </div>
     <div
       v-else
-      class="flex flex-col gap-4 text-3xl border-2 pb-2 border-dashed border-[var(--yellow-90)] p-2 rounded-md bg-[var(--bg-secondary)]"
+      class="flex flex-col gap-4 text-3xl pb-2 p-2 rounded-2xl bg-[var(--bg-secondary)]"
     >
       <div v-if="!isUpdating" class="flex flex-col gap-4">
         <div>Name: {{ user?.name }}</div>
@@ -55,7 +54,7 @@ onMounted(async () => {
           {{ !isUpdating ? "Змінити ім`я" : "Назад" }}
         </button>
         <button
-          class="w-fit px-4 py-2 border border-[var(--yellow-90)] rounded-md cursor-pointer hover:bg-[var(--bg-hover)]"
+          class="w-fit px-4 py-2 border border-[var(--yellow-90)] rounded-2xl cursor-pointer hover:bg-[var(--bg-hover)]"
           v-if="isUpdating"
         >
           Зберегти
@@ -63,16 +62,16 @@ onMounted(async () => {
       </div>
     </div>
     <div
-      class="text-3xl flex flex-col gap-6 px-2 py-4 bg-[var(--bg-secondary)] border-2 border-[var(--border-accent)] rounded-md"
+      class="text-3xl flex flex-col gap-6 px-2 py-4 bg-[var(--bg-secondary)] rounded-2xl"
     >
       <button
-        class="w-fit px-4 py-2 border border-red-500 bg-red-600 rounded-md cursor-pointer hover:bg-red-500"
+        class="w-fit px-4 py-2 border border-red-500 bg-red-600 rounded-2xl cursor-pointer hover:bg-red-500"
         @click="logout"
       >
         Вийти з акаунту
       </button>
       <button
-        class="w-fit px-4 py-2 border border-red-500 bg-red-600 rounded-md cursor-pointer hover:bg-red-500"
+        class="w-fit px-4 py-2 border border-red-500 bg-red-600 rounded-2xl cursor-pointer hover:bg-red-500"
       >
         Видалити акаунт
       </button>

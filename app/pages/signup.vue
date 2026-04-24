@@ -99,7 +99,7 @@ const onSubmit = handleSubmit(async (value) => {
         <UiInputError :text="errors.confirm" />
       </div>
       <button
-        class="w-full p-2 font-bold flex items-center justify-center border-2 border-[var(--yellow-90)] rounded-md bg-[var(--yellow-500)] hover:bg-[var(--yellow-600)] transition-colors text-[var(--text-black)]"
+        class="w-full p-2 font-bold flex items-center justify-center border-2 border-[var(--yellow-90)] rounded-2xl bg-[var(--yellow-500)] hover:bg-[var(--yellow-600)] transition-colors text-[var(--text-black)]"
       >
         Sign Up
       </button>

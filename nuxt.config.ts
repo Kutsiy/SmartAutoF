@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "@tresjs/nuxt",
     "v-gsap-nuxt",
     "@pinia/nuxt",
+    "nuxt-charts",
   ],
   css: ["~/assets/css/main.css"],
   fonts: {

@@ -69,7 +69,7 @@ onUnmounted(() => {
               Київська обл. с. Нижча Дубечня, вул. Шевченка 5.
             </div>
             <div
-              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-hover)] font-bold transition-colors rounded-md"
+              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] font-bold transition-colors rounded-2xl"
             >
               Отримати консультацію
             </div>
@@ -84,7 +84,7 @@ onUnmounted(() => {
                 увійти
               </NuxtLink>
               <NuxtLink
-                class="border-2 border-[var(--border-accent)] rounded-md px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
+                class="border-2 border-[var(--border-accent)] rounded-2xl px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
                 to="/signup"
               >
                 зарееструватись
@@ -95,7 +95,7 @@ onUnmounted(() => {
               class="flex-1 flex items-center justify-end gap-2 text-2xl *:font-bold *:cursor-pointer"
             >
               <NuxtLink
-                class="w-full border-2 border-[var(--border-accent)] rounded-md px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors flex items-center gap-4"
+                class="w-full border-2 border-[var(--border-accent)] rounded-2xl px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors flex items-center gap-4"
                 to="/account"
               >
                 <Icon
@@ -107,12 +107,12 @@ onUnmounted(() => {
             </div>
           </div>
           <nav
-            class="flex items-center gap-4 relative text-3xl *:min-w-[150px] *:flex *:items-center *:justify-center"
+            class="flex items-center justify-between relative text-3xl *:min-w-[170px] *:flex *:items-center *:justify-center"
           >
             <div
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-black)] font-bold transition-colors flex items-center relative rounded-md"
+              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-black)] font-bold transition-colors flex items-center relative rounded-2xl"
             >
               Список послуг
               <Icon
@@ -143,7 +143,7 @@ onUnmounted(() => {
 
 <style>
 .nav__item {
-  @apply cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border-x border-x-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-md;
+  @apply cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border border-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-2xl;
 }
 
 .rotate > span {

@@ -12,7 +12,7 @@ const changeListItem = (item) => {
   <div class="container mx-auto px-12 py-12 flex flex-col gap-12">
     <div class="flex items-center justify-between">
       <div
-        class="w-[500px] h-[60px] bg-[var(--yellow-600)] text-[var(--text-black)] text-4xl flex justify-end items-center px-4 relative rounded-tr-md rounded-br-md before:content-[''] before:bg-[var(--yellow-600)] before:absolute before:w-[10055px] before:h-[60px] before:top-0 before:left-[-10055px] font-bold"
+        class="w-[500px] h-[60px] bg-[var(--yellow-600)] text-[var(--text-black)] text-4xl flex justify-end items-center px-4 relative rounded-r-2xl before:content-[''] before:bg-[var(--yellow-600)] before:absolute before:w-[10055px] before:h-[60px] before:top-0 before:left-[-10055px] font-bold"
       >
         Наші сервіси
       </div>
@@ -20,7 +20,7 @@ const changeListItem = (item) => {
       <div class="relative">
         <div
           @click="listIsOpen = !listIsOpen"
-          class="w-[320px] h-[60px] flex items-center gap-2 text-3xl px-4 py-2 border border-[var(--border-main)] rounded-md cursor-pointer hover:border-[var(--accent-primary)] hover:bg-[var(--accent-soft)] transition-all duration-200"
+          class="w-[320px] h-[60px] flex items-center gap-2 text-3xl px-4 py-2 border border-[var(--border-main)] rounded-2xl cursor-pointer hover:border-[var(--accent-primary)] hover:bg-[var(--accent-soft)] transition-all duration-200"
         >
           <Icon
             name="radix-icons:caret-down"
@@ -32,7 +32,7 @@ const changeListItem = (item) => {
 
         <div
           v-if="listIsOpen"
-          class="absolute top-[110%] w-full flex flex-col gap-1 bg-[var(--bg-card)] border border-[var(--border-main)] rounded-md p-1 shadow-[var(--shadow-soft)] z-50"
+          class="absolute top-[110%] w-full flex flex-col gap-1 bg-[var(--bg-card)] border border-[var(--border-main)] rounded-2xl p-1 shadow-[var(--shadow-soft)] z-50"
         >
           <span
             v-for="value in data"
@@ -49,7 +49,7 @@ const changeListItem = (item) => {
       </div>
     </div>
     <div
-      class="grid grid-cols-4 gap-4 border-2 border-dashed border-[var(--border-accent)] p-4 rounded-md bg-[var(--bg-secondary)]"
+      class="grid grid-cols-4 gap-4 border-2 border-dashed border-[var(--border-accent)] p-4 rounded-2xl bg-[var(--bg-secondary)]"
       v-gsap.whenVisible.from.once="{ opacity: 0, x: -32 }"
     >
       <div

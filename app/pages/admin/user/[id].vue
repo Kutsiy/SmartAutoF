@@ -38,7 +38,7 @@ const copyToClipboard = async () => {
   </div>
   <div
     v-else
-    class="grid grid-cols-2 gap-8 text-xl p-6 border-2 border-dashed border-[var(--yellow-500)] rounded-md"
+    class="grid grid-cols-2 gap-8 text-xl p-6 border-2 border-dashed border-[var(--yellow-500)] rounded-2xl"
   >
     <div class="flex flex-col gap-6">
       <div>Ім'я: {{ user?.name }}</div>
@@ -53,7 +53,7 @@ const copyToClipboard = async () => {
           Email скопійовано
         </div>
         <button
-          class="w-fit border-2 border-[var(--black-500)] px-2 py-1 rounded-md bg-[var(--black-700)] cursor-pointer hover:scale-105 transition-transform"
+          class="w-fit border-2 border-[var(--black-500)] px-2 py-1 rounded-2xl bg-[var(--black-700)] cursor-pointer hover:scale-105 transition-transform"
           @click="copyToClipboard"
         >
           Email: {{ user?.email }}
@@ -71,7 +71,7 @@ const copyToClipboard = async () => {
               ? 'bg-green-500/20 text-green-400'
               : 'bg-red-500/20 text-red-400'
           "
-          class="px-2 py-1 rounded-md"
+          class="px-2 py-1 rounded-2xl"
           >{{ user?.isActivate ? "Активований" : "Неактивований" }}</span
         >
       </div>
@@ -83,7 +83,7 @@ const copyToClipboard = async () => {
               ? 'bg-green-500/20 text-green-400'
               : 'bg-red-500/20 text-red-400'
           "
-          class="px-2 py-1 rounded-md"
+          class="px-2 py-1 rounded-2xl"
           >{{ !user?.isBanned ? "Активний" : "Заблокований" }}</span
         >
       </div>

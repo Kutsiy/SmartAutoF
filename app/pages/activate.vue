@@ -41,7 +41,7 @@ const moreThanSixError = (payload) => {
         <UiInputError :text="mainError" big-font-size="true" />
       </div>
       <button
-        class="border border-[var(--yellow-90)] py-4 px-8 text-2xl rounded-md hover:bg-[var(--yellow-50)] transition-colors"
+        class="border border-[var(--yellow-90)] py-4 px-8 text-2xl rounded-2xl hover:bg-[var(--yellow-50)] transition-colors"
         @click="activateAccount"
       >
         Активувати акаунт

@@ -96,6 +96,7 @@
   /* Background */
   --bg-main: var(--black-900);
   --bg-secondary: var(--black-850);
+  --bg-third: var(--black-700);
   --bg-card: var(--black-800);
   --bg-hover: var(--black-750);
   --bg-hover-alpha: rgba(31, 31, 31, 0.5);
@@ -133,6 +134,9 @@
   --shadow-soft: var(--black-40);
   --shadow-strong: var(--black-60);
   --shadow-glow: var(--yellow-40);
+
+  --vis-legend-spacing: 10px;
+  --vis-donut-background-color: transparent !important;
 }
 
 body {
