@@ -13,13 +13,13 @@
         v-gsap.whenVisible.once.from="{ opacity: 0, x: 62 }"
       >
         <div
-          class="w-full h-[40px] bg-[var(--bg-main)] border-b-2 border-b-[var(--border-accent)] flex items-center justify-end gap-2 *:cursor-pointer p-2 rounded-t-2xl"
+          class="w-full h-[40px] bg-[var(--bg-secondary)] border-b-2 border-b-[var(--border-accent)] flex items-center justify-end gap-2 *:cursor-pointer p-2 rounded-t-2xl"
         >
           <Icon name="mingcute:minimize-fill" />
           <Icon name="mingcute:close-fill" />
         </div>
         <div
-          class="p-4 bg-[var(--bg-main)] backdrop-blur-[5px] grid grid-cols-3 gap-6 rounded-b-2xl"
+          class="p-4 bg-[var(--bg-secondary)] backdrop-blur-[5px] grid grid-cols-3 gap-6 rounded-b-2xl"
         >
           <UiAccordion
             title="TITLE"

@@ -36,7 +36,7 @@ onMounted(async () => {
     </div>
     <div
       v-else
-      class="flex flex-col gap-4 text-3xl pb-2 p-2 rounded-2xl bg-[var(--bg-secondary)]"
+      class="flex flex-col gap-4 text-3xl pb-2 p-2 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-main)]"
     >
       <div v-if="!isUpdating" class="flex flex-col gap-4">
         <div>Name: {{ user?.name }}</div>
@@ -62,7 +62,7 @@ onMounted(async () => {
       </div>
     </div>
     <div
-      class="text-3xl flex flex-col gap-6 px-2 py-4 bg-[var(--bg-secondary)] rounded-2xl"
+      class="text-3xl flex flex-col gap-6 px-2 py-4 bg-[var(--bg-secondary)] border border-[var(--border-main)] rounded-2xl"
     >
       <button
         class="w-fit px-4 py-2 border border-red-500 bg-red-600 rounded-2xl cursor-pointer hover:bg-red-500"

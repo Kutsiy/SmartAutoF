@@ -40,7 +40,9 @@ const copyToClipboard = async () => {
     v-else
     class="grid grid-cols-2 gap-8 text-xl p-6 border-2 border-dashed border-[var(--yellow-500)] rounded-2xl"
   >
-    <div class="flex flex-col gap-6">
+    <div
+      class="flex flex-col text-2xl gap-6 bg-[var(--bg-secondary)] border border-[var(--border-main)] rounded-2xl p-4"
+    >
       <div>Ім'я: {{ user?.name }}</div>
       <div class="flex flex-col gap-2">
         <div
@@ -53,16 +55,23 @@ const copyToClipboard = async () => {
           Email скопійовано
         </div>
         <button
-          class="w-fit border-2 border-[var(--black-500)] px-2 py-1 rounded-2xl bg-[var(--black-700)] cursor-pointer hover:scale-105 transition-transform"
+          class="w-fit border-2 border-[var(--black-500)] px-2 py-1 rounded-md bg-[var(--black-700)] cursor-pointer hover:scale-105 transition-transform"
           @click="copyToClipboard"
         >
           Email: {{ user?.email }}
         </button>
       </div>
-      <div>Ролі: {{ user?.role.map((v) => `[ ${v} ]`).join(", ") }}</div>
+      <div>
+        Ролі:
+        <span class="text-[var(--text-important)] text-2xl">[ </span
+        >{{ user?.role.join(", ")
+        }}<span class="text-[var(--text-important)] text-2xl"> ]</span>
+      </div>
       <div>Номер телефону: +2113132131</div>
     </div>
-    <div class="flex flex-col gap-10 text-xl">
+    <div
+      class="flex flex-col gap-10 text-xl bg-[var(--bg-secondary)] border border-[var(--border-main)] rounded-2xl p-4"
+    >
       <div>
         Статус активації акаунту:
         <span

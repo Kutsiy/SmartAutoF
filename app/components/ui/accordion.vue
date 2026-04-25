@@ -14,7 +14,7 @@ const openAccordion = () => {
 <template>
   <div class="w-full text-2xl flex flex-col gap-2">
     <div
-      class="w-full text-3xl cursor-pointer font-bold flex items-center justify-between border-2 border-dashed border-[var(--border-accent)] rounded-2xl px-2 py-1 hover:bg-[--bg-hover]"
+      class="w-full text-3xl cursor-pointer font-bold flex items-center bg-[var(--bg-main)] justify-between border-2 border-dashed border-[var(--border-accent)] rounded-2xl px-3 py-2 hover:bg-[--bg-hover]"
       @click="openAccordion"
     >
       <span>{{ title }}</span

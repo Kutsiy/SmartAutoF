@@ -29,7 +29,7 @@ onMounted(async () => {
           </div>
         </div>
         <div
-          class="grid grid-cols-4 auto-rows-min gap-4 p-2 border-b-2 border-dashed border-[var(--yellow-90)] bg-[var(--bg-secondary)] rounded-t-lg"
+          class="grid grid-cols-4 auto-rows-min gap-4 p-2 border-b-2 border-dashed border-[var(--yellow-90)] bg-[var(--bg-secondary)] rounded-t-2xl"
         >
           <div>Ім'я</div>
           <div>Email</div>

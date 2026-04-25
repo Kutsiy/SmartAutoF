@@ -109,7 +109,8 @@ onUnmounted(() => {
           <nav
             class="flex items-center justify-between relative text-3xl *:min-w-[170px] *:flex *:items-center *:justify-center"
           >
-            <div
+            <NuxtLink
+              to="/services"
               @mouseenter="show = true"
               @mouseleave="show = false"
               class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-black)] font-bold transition-colors flex items-center relative rounded-2xl"
@@ -121,12 +122,12 @@ onUnmounted(() => {
                 :class="{ rotated: show }"
               />
               <div class="absolute w-full h-[65px] top-0 left-[-2px]"></div>
-            </div>
+            </NuxtLink>
             <div
               v-if="show"
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-2 z-50 rounded-sm"
+              class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-3 z-50 rounded-md"
             ></div>
             <NuxtLink class="nav__item" to="/diagnostic"
               >Дігностичні роботи</NuxtLink
