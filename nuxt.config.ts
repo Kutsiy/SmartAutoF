@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "v-gsap-nuxt",
     "@pinia/nuxt",
     "nuxt-charts",
+    "@nuxtjs/leaflet",
   ],
   css: ["~/assets/css/main.css"],
   fonts: {

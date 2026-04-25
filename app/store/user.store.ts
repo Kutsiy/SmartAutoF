@@ -28,6 +28,12 @@ export const useUserStore = defineStore("userStoreID", {
       this.isRegistered = true;
       this.isActive = isActive ? isActive : this.isActive;
     },
+    updateUser(user: User) {
+      this.userInfo = user;
+    },
+    updateUserName(userName: string) {
+      this.userInfo.userName = userName;
+    },
     setActive() {
       this.isActive = true;
     },

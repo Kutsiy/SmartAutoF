@@ -68,24 +68,25 @@ onUnmounted(() => {
             <div class="opacity-80">
               Київська обл. с. Нижча Дубечня, вул. Шевченка 5.
             </div>
-            <div
+            <NuxtLink
+              to="/consultation"
               class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] font-bold transition-colors rounded-2xl"
             >
               Отримати консультацію
-            </div>
+            </NuxtLink>
             <div
               class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer border-l-2 border-l-[var(--border-accent)]"
-              v-if="!store.getRegistered"
+              v-if="!store.getRegistered || !store.getActive"
             >
               <NuxtLink
                 class="text-[var(--yellow-80)] hover:text-[var(--yellow-90)] transition-colors mx-4 my-1"
-                to="/login"
+                to="/auth/login"
               >
                 увійти
               </NuxtLink>
               <NuxtLink
                 class="border-2 border-[var(--border-accent)] rounded-2xl px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
-                to="/signup"
+                to="/auth/signup"
               >
                 зарееструватись
               </NuxtLink>
@@ -107,13 +108,13 @@ onUnmounted(() => {
             </div>
           </div>
           <nav
-            class="flex items-center justify-between relative text-3xl *:min-w-[170px] *:flex *:items-center *:justify-center"
+            class="flex items-center justify-between relative text-3xl *:min-w-[165px] *:flex *:items-center *:justify-center"
           >
             <NuxtLink
               to="/services"
               @mouseenter="show = true"
               @mouseleave="show = false"
-              class="rotate text-[28px] text-4xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer bg-[var(--accent-hover)] text-[var(--text-black)] font-bold transition-colors flex items-center relative rounded-2xl"
+              class="rotate nav__item relative"
             >
               Список послуг
               <Icon
@@ -121,7 +122,7 @@ onUnmounted(() => {
                 class="relative top-1"
                 :class="{ rotated: show }"
               />
-              <div class="absolute w-full h-[65px] top-0 left-[-2px]"></div>
+              <div class="absolute h-[65px] w-full top-0 left-[-2px]"></div>
             </NuxtLink>
             <div
               v-if="show"
@@ -142,7 +143,11 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
+.nav__item.router-link-active {
+  @apply !border-2 !border-[var(--border-accent)] !bg-[var(--bg-accent)] !text-[var(--text-black)] font-bold;
+}
+
 .nav__item {
   @apply cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border border-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-2xl;
 }

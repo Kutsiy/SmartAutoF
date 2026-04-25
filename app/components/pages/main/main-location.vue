@@ -1,6 +1,13 @@
+<script setup>
+import UiMap from "~/components/ui/map.vue";
+</script>
+
 <template>
   <div class="bg-[var(--bg-accent)]">
-    <div class="w-full container mx-auto p-12">
+    <div
+      class="w-full container mx-auto p-12"
+      v-gsap.whenVisible.once.from="{ opacity: 0, y: 32 }"
+    >
       <div class="w-full grid grid-cols-2">
         <div class="flex flex-col text-2xl text-[var(--text-black)] gap-4">
           <div class="flex flex-col gap-2">
@@ -27,7 +34,9 @@
             </div>
           </div>
         </div>
-        <div></div>
+        <div>
+          <UiMap />
+        </div>
       </div>
     </div>
   </div>

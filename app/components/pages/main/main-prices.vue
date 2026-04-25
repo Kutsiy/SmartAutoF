@@ -9,7 +9,7 @@
     </div>
     <div class="w-full mb-10">
       <div
-        class="w-full rounded-2xl border border-[var(--border-main)]"
+        class="w-full rounded-2xl border border-[var(--border-main)] shadow-lg shadow-[var(--shadow-strong)]"
         v-gsap.whenVisible.once.from="{ opacity: 0, x: 62 }"
       >
         <div
@@ -29,13 +29,13 @@
               { name: 'ITEM', price: 1000 },
             ]"
           />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
-          <UiAccordion title="TITLE" :items="[`Item`]" />
+          <UiAccordion title="TITLE" />
+          <UiAccordion title="TITLE" />
+          <UiAccordion title="TITLE" />
+          <UiAccordion title="TITLE" />
+          <UiAccordion title="TITLE" />
+          <UiAccordion title="TITLE" />
+          <UiAccordion title="TITLE" />
         </div>
       </div>
     </div>

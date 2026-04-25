@@ -51,9 +51,9 @@ const userStore = useUserStore();
     </div>
   </div>
 
-  <div class="container mx-auto px-12 mt-2">
+  <div class="container mx-auto px-12 py-2">
     <div
-      class="w-full h-full border-2 border-[var(--yellow-90)] rounded-xl p-4"
+      class="w-full h-full border-2 border-[var(--yellow-90)] rounded-2xl p-4"
     >
       <NuxtPage></NuxtPage>
     </div>

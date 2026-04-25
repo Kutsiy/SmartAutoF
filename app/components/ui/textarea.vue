@@ -56,12 +56,12 @@ const onInput = (payload) => {
       >
         <Icon :name="iconName" class="w-[30px] h-[30px]" />
       </span>
-      <input
+      <textarea
         :type="innerType"
         :placeholder="placeholder"
         :id="id"
         v-model="model"
-        class="w-full px-4 py-3 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
+        class="scroll-bar resize-none h-[200px] w-full px-4 py-3 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
         :class="[bigText ? 'py-4' : '', smallText ? '!py-1' : '']"
         @input="onInput"
       />
@@ -79,3 +79,9 @@ const onInput = (payload) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.scroll-bar {
+  scrollbar-color: grey rgba(0, 0, 0, 0);
+}
+</style>

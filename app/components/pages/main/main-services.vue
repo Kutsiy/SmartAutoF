@@ -49,7 +49,7 @@ const changeListItem = (item) => {
       </div>
     </div>
     <div
-      class="grid grid-cols-4 gap-4 border-2 border-dashed border-[var(--border-accent)] p-4 rounded-2xl bg-[var(--bg-secondary)]"
+      class="grid grid-cols-4 gap-4 border-2 border-dashed border-[var(--border-accent)] p-4 rounded-2xl bg-[var(--bg-secondary)] shadow-lg shadow-[var(--shadow-strong)]"
       v-gsap.whenVisible.from.once="{ opacity: 0, x: -32 }"
     >
       <div

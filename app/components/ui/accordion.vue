@@ -25,6 +25,7 @@ const openAccordion = () => {
     </div>
     <div v-if="isOpen" class="flex flex-col gap-2">
       <span
+        v-if="items?.length"
         v-for="item in items"
         class="flex items-center justify-between border-2 border-[var(--border-accent)] rounded-2xl p-2 bg-[var(--bg-secondary)]"
       >
@@ -39,6 +40,11 @@ const openAccordion = () => {
           {{ item.price }} грн
         </div>
       </span>
+      <div
+        class="flex flex-col justify-between gap-4 *:border-2 *:border-[var(--border-accent)] *:rounded-2xl *:p-2 *:bg-[var(--bg-secondary)]"
+      >
+        <slot />
+      </div>
     </div>
   </div>
 </template>

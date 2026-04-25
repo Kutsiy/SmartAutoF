@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "vee-validate";
-import z from "zod";
+import { z } from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useUserStore } from "~/store/user.store";
 
@@ -10,13 +10,14 @@ const mainError = ref("");
 const schema = toTypedSchema(
   z.object({
     email: z
-      .email({ error: "Повинна бути email адреса" })
-      .nonempty({ error: "Повинно бути більше 2 символів" }),
+      .string()
+      .email({ message: "Повинна бути email адреса" })
+      .nonempty({ message: "Повинно бути більше 2 символів" }),
     password: z
       .string()
-      .nonempty({ error: "Повинно бути більше 6 символів" })
-      .min(6, { error: "Повинно бути більше 6 символів" })
-      .max(15, { error: "Повинно бути меньше 15 символів" }),
+      .nonempty({ message: "Повинно бути більше 6 символів" })
+      .min(6, { message: "Повинно бути більше 6 символів" })
+      .max(15, { message: "Повинно бути меньше 15 символів" }),
   }),
 );
 
@@ -37,12 +38,11 @@ const onSubmit = handleSubmit(async (value) => {
       },
     });
 
-    userStore.setAuth({ userName: data.name, userEmail: data.email });
-
     if (data.isActivate) {
       await navigateTo("/account");
+      userStore.setAuth({ userName: data.name, userEmail: data.email }, true);
     } else {
-      await navigateTo("/activate");
+      await navigateTo("/auth/activate");
     }
   } catch {
     mainError.value =

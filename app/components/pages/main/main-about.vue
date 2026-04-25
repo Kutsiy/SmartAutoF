@@ -19,12 +19,14 @@ const toggle = async () => {
 <template>
   <div class="container mx-auto px-12">
     <div
-      class="bg-[var(--bg-secondary)] rounded-2xl p-8 my-6 shadow-lg shadow-black/30 border border-[var(--border-main)]"
+      class="bg-[var(--bg-secondary)] rounded-2xl p-8 my-6 shadow-lg shadow-[var(--shadow-strong)] border border-[var(--border-main)]"
       v-gsap.whenVisible.from.once="{ opacity: 0, y: 64 }"
     >
       <div class="flex flex-col gap-6">
         <!-- TITLE -->
-        <div class="text-6xl">Про нас:</div>
+        <div class="text-6xl font-bold">
+          Про <span class="text-[var(--text-important)]">нас:</span>
+        </div>
 
         <!-- CONTENT -->
         <div

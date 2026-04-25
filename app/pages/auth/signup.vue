@@ -12,25 +12,26 @@ const schema = toTypedSchema(
     .object({
       name: z
         .string()
-        .nonempty({ error: "Повинно бути більше 2 символів" })
-        .min(2, { error: "Повинно бути більше 2 символів" }),
+        .nonempty({ message: "Повинно бути більше 2 символів" })
+        .min(2, { message: "Повинно бути більше 2 символів" }),
       email: z
-        .email({ error: "Повинна бути email адреса" })
-        .nonempty({ error: "Повинно бути більше 2 символів" }),
+        .string()
+        .email({ message: "Повинна бути email адреса" })
+        .nonempty({ message: "Повинно бути більше 2 символів" }),
       password: z
         .string()
-        .nonempty({ error: "Повинно бути більше 6 символів" })
-        .min(6, { error: "Повинно бути більше 6 символів" })
-        .max(15, { error: "Повинно бути меньше 15 символів" }),
+        .nonempty({ message: "Повинно бути більше 6 символів" })
+        .min(6, { message: "Повинно бути більше 6 символів" })
+        .max(15, { message: "Повинно бути меньше 15 символів" }),
       confirm: z
         .string()
-        .nonempty({ error: "Повинно бути більше 6 символів" })
-        .min(6, { error: "Повинно бути більше 6 символів" })
-        .max(15, { error: "Повинно бути меньше 15 символів" }),
+        .nonempty({ message: "Повинно бути більше 6 символів" })
+        .min(6, { message: "Повинно бути більше 6 символів" })
+        .max(15, { message: "Повинно бути меньше 15 символів" }),
     })
     .refine((data) => data.password === data.confirm, {
-      error: "Паролі на співпадають",
-      path: ["confirm"],
+      message: "Паролі на співпадають",
+      path: ["confirmpas"],
     }),
 );
 
@@ -53,8 +54,8 @@ const onSubmit = handleSubmit(async (value) => {
         password: value.password,
       },
     });
-    userStore.setAuth({ userName: value.name, userEmail: value.email });
-    await navigateTo("/activate");
+    userStore.setAuth({ userName: value?.name, userEmail: value?.email });
+    await navigateTo("/auth/activate");
   } catch (error) {
     mainError.value = error.data.detail;
   }
