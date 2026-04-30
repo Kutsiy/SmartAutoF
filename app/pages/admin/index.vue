@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { BarChart, DonutChart } from "~/components/ui/charts";
+
+const userCount = ref(0);
+
+onMounted(async () => {
+  const data = await useMyFetch("/statistic/user/count");
+  if (typeof data === "number") userCount.value = data;
+});
 </script>
 
 <template>
@@ -7,7 +14,11 @@ import { BarChart, DonutChart } from "~/components/ui/charts";
     <div class="flex flex-col col-span-2 gap-4">
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <UiCard title="Кількість користувачів" value="100" :bg="true" />
+          <UiCard
+            title="Кількість користувачів"
+            :value="`${userCount}`"
+            :bg="true"
+          />
         </div>
         <div>
           <UiCard title="Кількість активних замовлень" value="5" />

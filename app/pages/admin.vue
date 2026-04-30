@@ -14,8 +14,9 @@ import { NavCol, NavColTitle } from "~/components/ui/nav-col";
 
 <template>
   <div class="min-w-full min-h-full container m-auto p-2 flex gap-2">
-    <div
-      class="w-[180px] border border-[var(--yellow-500)] rounded-2xl flex flex-col gap-2 p-4 text-xl *:cursor-pointer *:w-fit"
+    <div class="min-h-full">
+        <div
+      class="w-[180px] sticky h-[98vh] top-2 border border-[var(--yellow-500)] rounded-2xl flex flex-col gap-2 p-4 text-xl *:cursor-pointer *:w-fit"
     >
       <NavCol>
         <NavColTitle name="material-symbols:person">Профіль</NavColTitle>
@@ -29,7 +30,7 @@ import { NavCol, NavColTitle } from "~/components/ui/nav-col";
           class="hover:text-[var(--text-hover)] transition-colors"
           to="/account"
         >
-          Аккаунт
+          Акаунт
         </NuxtLink>
       </NavCol>
       <NavCol >
@@ -65,13 +66,14 @@ import { NavCol, NavColTitle } from "~/components/ui/nav-col";
         </NavColTitle>
         <NuxtLink
           class="hover:text-[var(--text-hover)] transition-colors"
-          to="/admin/users"
+          to="/admin/create"
         >
           Створити
         </NuxtLink>
         </NavCol>
     </div>
-    <div class="flex-1 border border-[var(--yellow-500)] rounded-2xl p-4">
+    </div>
+    <div class="flex-1 border border-[var(--yellow-500)] rounded-2xl p-4 ">
       <NuxtPage></NuxtPage>
     </div>
   </div>

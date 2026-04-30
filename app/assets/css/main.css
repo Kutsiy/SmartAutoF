@@ -112,6 +112,8 @@
   --text-disabled: var(--black-500);
   --text-hover: var(--black-300);
   --text-error: rgba(255, 0, 0, 0.9);
+  --text-success: rgba(0, 255, 0, 0.9);
+  --text-red: rgba(255, 0, 0, 0.95);
 
   /* Accent */
   --accent-primary: var(--yellow-500);

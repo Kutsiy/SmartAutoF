@@ -108,7 +108,7 @@ onUnmounted(() => {
             </div>
           </div>
           <nav
-            class="flex items-center justify-between relative text-3xl *:min-w-[165px] *:flex *:items-center *:justify-center"
+            class="w-full flex items-center justify-between gap-2 relative text-3xl *:flex *:text-nowrap *:items-center *:justify-center"
           >
             <NuxtLink
               to="/services"
@@ -130,10 +130,6 @@ onUnmounted(() => {
               @mouseleave="show = false"
               class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-3 z-50 rounded-md"
             ></div>
-            <NuxtLink class="nav__item" to="/diagnostic"
-              >Дігностичні роботи</NuxtLink
-            >
-            <NuxtLink class="nav__item" to="/prices">Ціни</NuxtLink>
             <NuxtLink class="nav__item" to="/contacts">Контакти</NuxtLink>
             <NuxtLink class="nav__item" to="/reviews">Відгуки</NuxtLink>
           </nav>
@@ -149,7 +145,7 @@ onUnmounted(() => {
 }
 
 .nav__item {
-  @apply cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border border-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-2xl;
+  @apply w-full cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border border-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-2xl;
 }
 
 .rotate > span {

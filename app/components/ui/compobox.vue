@@ -10,29 +10,31 @@ import {
   ComboboxViewport,
 } from "reka-ui";
 
-const options = [
-  { name: "Apple" },
-  { name: "Banana" },
-  { name: "Orange" },
-  { name: "Honeydew" },
-  { name: "Grapes" },
-  { name: "Watermelon" },
-  { name: "Cantaloupe" },
-  { name: "Pear" },
-];
+const model = defineModel({ default: "" });
+
+const {
+  defaultValue,
+  options = [],
+  textSize = "text-3xl",
+} = defineProps<{
+  defaultValue?: string;
+  options?: any[];
+  textSize?: "text-xl" | "text-2xl" | "text-3xl" | "text-4xl";
+}>();
 </script>
 
 <template>
-  <ComboboxRoot class="relative">
+  <ComboboxRoot class="relative" :default-value="defaultValue" v-model="model">
     <ComboboxAnchor
-      class="w-full h-fit px-2 py-1 inline-flex items-center justify-between rounded-2xl text-xl leading-none gap-[5px] bg-[var(--bg-third)] shadow-sm outline-none"
+      :class="textSize"
+      class="w-full h-full border-2 border-[var(--border-light)] px-2 py-1 flex items-center justify-between rounded-2xl leading-none bg-[var(--bg-third)] shadow-sm outline-none"
     >
       <ComboboxInput
-        class="!bg-transparent outline-none h-full selection:bg-grass5"
+        class="!bg-transparent outline-none h-full selection:bg-grass5 w-full"
         placeholder="Placeholder..."
       />
       <ComboboxTrigger>
-        <Icon icon="radix-icons:chevron-down" class="h-4 w-4" />
+        <Icon icon="radix-icons:chevron-down" :class="textSize" />
       </ComboboxTrigger>
     </ComboboxAnchor>
 

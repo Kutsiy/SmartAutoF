@@ -6,6 +6,7 @@ import { useUserStore } from "~/store/user.store";
 
 const userStore = useUserStore();
 const mainError = ref("");
+const loading = ref(false);
 
 const schema = toTypedSchema(
   z.object({
@@ -30,6 +31,7 @@ const [password] = defineField("password");
 
 const onSubmit = handleSubmit(async (value) => {
   try {
+    loading.value = true;
     const data = await useMyFetch("/auth/login", {
       method: "POST",
       body: {
@@ -47,13 +49,15 @@ const onSubmit = handleSubmit(async (value) => {
   } catch {
     mainError.value =
       "Щось пішло не так, можливо email або пароль не правильний";
+  } finally {
+    loading.value = false;
   }
 });
 </script>
 
 <template>
   <NuxtLayout name="register">
-    <form class="flex flex-col gap-4" @submit="onSubmit">
+    <form v-if="!loading" class="flex flex-col gap-4" @submit="onSubmit">
       <div class="flex flex-col gap-1">
         <UiInputError :text="mainError" />
         <UiInput
@@ -77,5 +81,8 @@ const onSubmit = handleSubmit(async (value) => {
         Login
       </button>
     </form>
+    <div v-else class="flex items-center justify-center w-[650px] h-[550px]">
+      <span class="animate-pulse text-6xl">Завантаження...</span>
+    </div>
   </NuxtLayout>
 </template>

@@ -1,4 +1,10 @@
-export const useMyFetch = async (request: string, opts?: any) => {
+type Opts = {
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  body?: Record<any, any>;
+  headers?: Record<any, any>;
+};
+
+export const useMyFetch = async (request: string, opts?: Opts) => {
   const baseURL = "http://localhost:8000";
   let data;
   try {

@@ -19,7 +19,7 @@ const toggle = async () => {
 <template>
   <div class="container mx-auto px-12">
     <div
-      class="bg-[var(--bg-secondary)] rounded-2xl p-8 my-6 shadow-lg shadow-[var(--shadow-strong)] border border-[var(--border-main)]"
+      class="bg-[var(--bg-secondary)] rounded-2xl p-8 my-6 shadow-md shadow-[var(--shadow-glow)] border border-[var(--border-main)]"
       v-gsap.whenVisible.from.once="{ opacity: 0, y: 64 }"
     >
       <div class="flex flex-col gap-6">

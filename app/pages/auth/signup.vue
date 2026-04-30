@@ -6,6 +6,7 @@ import { useUserStore } from "~/store/user.store";
 
 const userStore = useUserStore();
 const mainError = ref("");
+const loading = ref(false);
 
 const schema = toTypedSchema(
   z
@@ -46,6 +47,7 @@ const [confirm, confirmAttr] = defineField("confirm");
 
 const onSubmit = handleSubmit(async (value) => {
   try {
+    loading.value = true;
     await useMyFetch("/auth/signup", {
       method: "POST",
       body: {
@@ -58,13 +60,15 @@ const onSubmit = handleSubmit(async (value) => {
     await navigateTo("/auth/activate");
   } catch (error) {
     mainError.value = error.data.detail;
+  } finally {
+    loading.value = false;
   }
 });
 </script>
 
 <template>
   <NuxtLayout name="register">
-    <form class="flex flex-col gap-2" @submit="onSubmit">
+    <form v-if="!loading" class="flex flex-col gap-2" @submit="onSubmit">
       <div class="flex flex-col gap-1">
         <UiInputError :text="mainError" :big-font-size="true" />
         <UiInput
@@ -105,5 +109,8 @@ const onSubmit = handleSubmit(async (value) => {
         Sign Up
       </button>
     </form>
+    <div v-else class="flex items-center justify-center w-[650px] h-[550px]">
+      <span class="animate-pulse text-6xl">Завантаження...</span>
+    </div>
   </NuxtLayout>
 </template>

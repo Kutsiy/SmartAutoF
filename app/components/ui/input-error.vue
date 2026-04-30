@@ -1,15 +1,16 @@
-<script setup>
-const { text, bigFontSize } = defineProps({
-  text: String,
-  bigFontSize: Boolean,
-});
+<script setup lang="ts">
+const { text, bigFontSize = false } = defineProps<{
+  text: String;
+  bigFontSize?: Boolean;
+  textSize?: "text-xl" | "text-2xl" | "text-3xl" | "text-4xl";
+}>();
 </script>
 
 <template>
   <div
     v-if="text"
     class="text-[18px] text-[var(--text-error)] font-bold text-center"
-    :class="{ '!text-3xl': bigFontSize }"
+    :class="[bigFontSize ? '!text-3xl' : '', `!${textSize}`]"
   >
     {{ text }}
   </div>

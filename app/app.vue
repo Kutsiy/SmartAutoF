@@ -27,3 +27,9 @@ onMounted(async () => {
   />
   <NuxtPage></NuxtPage>
 </template>
+
+<style>
+.basic-back {
+  @apply border border-[var(--border-main)] bg-[var(--bg-secondary)] p-2 shadow-lg shadow-[var(--shadow-strong)] rounded-2xl;
+}
+</style>
