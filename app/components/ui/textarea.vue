@@ -6,6 +6,7 @@ const {
   bigText = false,
   smallText = false,
   iconName,
+  blackBg = false,
 } = defineProps({
   label: String,
   placeholder: String,
@@ -13,6 +14,7 @@ const {
   bigText: Boolean,
   smallText: Boolean,
   iconName: String,
+  blackBg: Boolean,
 });
 
 const id = ref("");
@@ -48,7 +50,8 @@ const onInput = (payload) => {
     </label>
 
     <div
-      class="min-h-[20px] flex items-center rounded-2xl border border-[var(--border-main)] bg-[var(--bg-secondary)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
+      :class="{ '!bg-[var(--bg-main)]': blackBg }"
+      class="h-full flex items-center rounded-2xl border border-[var(--border-main)] bg-[var(--bg-secondary)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
     >
       <span
         v-if="iconName"
@@ -61,7 +64,7 @@ const onInput = (payload) => {
         :placeholder="placeholder"
         :id="id"
         v-model="model"
-        class="scroll-bar resize-none h-[200px] w-full px-4 py-3 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
+        class="scroll-bar resize-none h-full w-full px-4 py-3 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
         :class="[bigText ? 'py-4' : '', smallText ? '!py-1' : '']"
         @input="onInput"
       />

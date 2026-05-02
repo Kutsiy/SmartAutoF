@@ -7,6 +7,14 @@ const { updatingCategory } = defineProps<{
   updatingCategory?: Record<any, any> | null;
 }>();
 
+watch(
+  () => updatingCategory,
+  async (val) => {
+    preview.value = val?.image_link ? `${link.value}/${val?.image_link}` : "";
+    categoryName.value = val?.name ? val?.name : "";
+  },
+);
+
 const schema = toTypedSchema(
   z.object({
     categoryName: z
@@ -19,36 +27,52 @@ const { errors, handleSubmit, defineField } = useForm({
   validationSchema: schema,
 });
 
-const emit = defineEmits(["setValue"]);
+const emit = defineEmits(["setValue", "closeUpdate"]);
 const [categoryName] = defineField("categoryName");
 const isLoading = ref(false);
 const errorMessage = ref("");
 const isSuccess = ref(false);
 const file = ref();
+const preview = ref<string | null>(null);
 const link = ref("http://localhost:8000/uploads");
 
 const submitFunc = handleSubmit(async (value) => {
   isSuccess.value = false;
-  if (!file.value) {
+  if (!file.value && !preview.value) {
     errorMessage.value = "Зображення не може бути пустим";
     return;
   }
 
   try {
+    if (updatingCategory?.name === value.categoryName && !file.value) {
+      errorMessage.value = "Ви нічого не оновили.";
+      return;
+    }
     const formData = new FormData();
-    formData.append("name", value.categoryName);
-    formData.append("file", file.value);
-
+    formData.append(
+      "name",
+      value.categoryName.charAt(0).toUpperCase() + value.categoryName.slice(1),
+    );
+    if (file.value) formData.append("file", file.value);
     isLoading.value = true;
-    const data = await useMyFetch("/category/create", {
-      method: "POST",
-      body: formData,
-    });
+
+    let data;
+    if (updatingCategory) {
+      data = await useMyFetch(`/category/update/?id=${updatingCategory?.id}`, {
+        method: "PATCH",
+        body: formData,
+      });
+    } else {
+      data = await useMyFetch("/category/create", {
+        method: "POST",
+        body: formData,
+      });
+    }
     isSuccess.value = true;
     emit("setValue", data);
     errorMessage.value = "";
   } catch (e: any) {
-    errorMessage.value = e.data.detail;
+    errorMessage.value = e?.data?.detail;
   } finally {
     isLoading.value = false;
   }
@@ -88,7 +112,7 @@ const submitFunc = handleSubmit(async (value) => {
         v-if="isSuccess"
         class="text-center text-3xl font-bold text-[var(--text-success)] bg-[var(--bg-secondary)] border border-[var(--border-main)] rounded-2xl px-4 py-2"
       >
-        Категорія успішно створенна
+        Категорія успішно {{ updatingCategory ? "оновлена" : "створенна" }}
       </div>
       <UiInputError
         v-if="!(isSuccess || isLoading)"
@@ -96,7 +120,15 @@ const submitFunc = handleSubmit(async (value) => {
         text-size="text-3xl"
       />
     </div>
-    <UiFileInput @file-change="(value) => (file = value)" />
+    <UiFileInput
+      v-model="preview"
+      @file-change="(value) => (file = value)"
+      :placeholder="
+        updatingCategory
+          ? 'Завантажте оновлене зображення'
+          : 'Завантажте зображення'
+      "
+    />
     <UiInput
       :placeholder="
         updatingCategory
@@ -108,7 +140,10 @@ const submitFunc = handleSubmit(async (value) => {
     <UiButton text-size="text-4xl">{{
       updatingCategory ? "Оновити" : "Створити"
     }}</UiButton>
-    <UiButton text-size="text-4xl" v-if="updatingCategory"
+    <UiButton
+      text-size="text-4xl"
+      v-if="updatingCategory"
+      @click="$emit('closeUpdate')"
       >Відміна оновлення</UiButton
     >
   </form>

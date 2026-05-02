@@ -34,7 +34,7 @@ const copyToClipboard = async () => {
     v-if="loading"
     class="flex justify-center items-center h-40 text-gray-400 animate-pulse text-xl"
   >
-    LOADING...
+    Завантаження...
   </div>
   <div
     v-else

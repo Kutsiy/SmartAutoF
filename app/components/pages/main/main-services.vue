@@ -1,10 +1,22 @@
 <script setup>
-const { data } = await useFetch("http://localhost:8000/category/all");
 const listIsOpen = ref(false);
 const listItem = ref("Оберіть зі списку");
+const categories = ref();
+const service = ref([]);
+
+onMounted(async () => {
+  const data = await useMyFetch("/category/all");
+  categories.value = data;
+});
+
+watch(listItem, async (val) => {
+  const category = categories.value.find((value) => value.name === val);
+  service.value = await useMyFetch(`/service/category/?id=${category.id}`);
+});
 
 const changeListItem = (item) => {
-  listItem.value = item;
+  const category = categories.value.find((val) => val.name === item);
+  listItem.value = category.name;
 };
 </script>
 
@@ -35,7 +47,7 @@ const changeListItem = (item) => {
           class="absolute top-[110%] w-full flex flex-col gap-1 bg-[var(--bg-card)] border border-[var(--border-main)] rounded-2xl p-1 shadow-[var(--shadow-soft)] z-50"
         >
           <span
-            v-for="value in data"
+            v-for="value in categories"
             @click="changeListItem(value.name)"
             class="px-3 py-2 rounded cursor-pointer text-2xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--accent-soft)] transition-all"
             :class="{
@@ -52,21 +64,28 @@ const changeListItem = (item) => {
       class="grid grid-cols-4 gap-4 border-2 border-dashed border-[var(--border-accent)] p-4 rounded-2xl bg-[var(--bg-secondary)] shadow-lg shadow-[var(--shadow-strong)]"
       v-gsap.whenVisible.from.once="{ opacity: 0, x: -32 }"
     >
-      <div
-        v-for="value in data"
-        class="flex text-3xl items-center gap-4 p-4 bg-[var(--bg-card)] border border-[var(--border-main)] rounded-lg hover:border-[var(--accent-primary)] hover:shadow-[var(--shadow-soft)] hover:scale-105 transition-all duration-200 cursor-pointer group"
-      >
-        <NuxtImg
-          src="/HeaderLogo.png"
-          class="w-[76px] h-[76px] object-cover opacity-70 group-hover:opacity-100 transition relative top-1"
-        />
-
-        <span
-          class="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition"
+      <template v-if="service.length !== 0">
+        <div
+          v-for="value in service"
+          class="flex text-3xl items-center gap-4 p-4 bg-[var(--bg-card)] border border-[var(--border-main)] rounded-lg hover:border-[var(--accent-primary)] hover:shadow-[var(--shadow-soft)] hover:scale-105 transition-all duration-200 cursor-pointer group"
         >
-          {{ value.name }}
-        </span>
-      </div>
+          <NuxtImg
+            :src="`http://localhost:8000/uploads/${value.image_link}`"
+            class="w-[76px] h-[76px] object-cover opacity-70 group-hover:opacity-100 transition relative top-1 rounded-sm"
+          />
+
+          <span
+            class="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition"
+          >
+            {{ value.name }}
+          </span>
+        </div>
+      </template>
+      <template v-else>
+        <div class="flex items-center justify-center text-5xl col-span-4">
+          Ви нічого не вибрали
+        </div>
+      </template>
     </div>
   </div>
 </template>

@@ -1,11 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const file = ref(null);
-const preview = ref(null);
+const preview = defineModel<string | null>({ default: null });
 const emit = defineEmits(["fileChange"]);
+const { placeholder } = defineProps({
+  placeholder: String,
+});
 
-const onFileChange = (e) => {
+const onFileChange = (e: any) => {
   const selected = e.target.files[0];
   if (!selected) return;
 
@@ -34,7 +37,7 @@ const onFileChange = (e) => {
     </div>
 
     <div class="text-center">
-      <p class="text-[var(--text-primary)]">завантажте зображення</p>
+      <p class="text-[var(--text-primary)]">{{ placeholder }}</p>
     </div>
 
     <UiButton text-size="text-2xl" render-as="div"> Вибрати файл </UiButton>

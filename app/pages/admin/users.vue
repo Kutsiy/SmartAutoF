@@ -8,7 +8,6 @@ const users = ref();
 onMounted(async () => {
   const data = await useMyFetch("/user/all");
   users.value = data;
-  console.log(data);
 });
 </script>
 

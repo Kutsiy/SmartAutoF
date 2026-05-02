@@ -130,7 +130,13 @@ onUnmounted(() => {
               @mouseleave="show = false"
               class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-3 z-50 rounded-md"
             ></div>
-            <NuxtLink class="nav__item" to="/contacts">Контакти</NuxtLink>
+            <NuxtLink
+              class="nav__item"
+              :to="{ path: '/', hash: '#contact' }"
+              active-class="none"
+              exact-active-class=""
+              >Контакти</NuxtLink
+            >
             <NuxtLink class="nav__item" to="/reviews">Відгуки</NuxtLink>
           </nav>
         </div>

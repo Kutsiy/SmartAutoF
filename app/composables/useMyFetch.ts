@@ -1,6 +1,6 @@
 type Opts = {
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-  body?: Record<any, any>;
+  body?: any;
   headers?: Record<any, any>;
 };
 

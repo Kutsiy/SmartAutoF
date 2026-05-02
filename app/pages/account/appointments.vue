@@ -15,7 +15,9 @@ import Appointment from "~/components/ui/appointment.vue";
             icon-name="material-symbols:search-rounded"
           />
         </div>
-        <UiButton text-size="text-3xl"> Створити замовлення </UiButton>
+        <UiButton text-size="text-3xl" render-as="link" to="/account/create">
+          Створити замовлення
+        </UiButton>
       </div>
       <div
         class="flex flex-col gap-4 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-main)] p-4"

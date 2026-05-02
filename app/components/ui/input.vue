@@ -6,6 +6,7 @@ const {
   bigText = false,
   smallText = false,
   iconName,
+  blackBg = false,
 } = defineProps({
   label: String,
   placeholder: String,
@@ -13,6 +14,7 @@ const {
   bigText: Boolean,
   smallText: Boolean,
   iconName: String,
+  blackBg: Boolean,
 });
 
 const id = ref("");
@@ -48,6 +50,7 @@ const onInput = (payload) => {
     </label>
 
     <div
+      :class="{ '!bg-[var(--bg-main)]': blackBg }"
       class="min-h-[20px] flex items-center rounded-2xl border border-[var(--border-main)] bg-[var(--bg-secondary)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
     >
       <span

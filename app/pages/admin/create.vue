@@ -1,5 +1,7 @@
 <script setup lang="ts">
-onMounted(async () => await navigateTo("/admin/create/category"));
+definePageMeta({
+  redirect: "/admin/create/category",
+});
 </script>
 
 <template>
@@ -10,8 +12,10 @@ onMounted(async () => await navigateTo("/admin/create/category"));
       <UiButton render-as="link" to="/admin/create/category"
         >Категорії</UiButton
       >
-      <UiButton>Сервіси</UiButton>
-      <UiButton>Типи роботи</UiButton>
+      <UiButton render-as="link" to="/admin/create/service">Сервіси</UiButton>
+      <UiButton render-as="link" to="/admin/create/work-type"
+        >Типи роботи</UiButton
+      >
     </div>
 
     <NuxtPage></NuxtPage>

@@ -3,7 +3,7 @@ import UiMap from "~/components/ui/map.vue";
 </script>
 
 <template>
-  <div class="bg-[var(--bg-accent)]">
+  <div class="bg-[var(--bg-accent)]" id="contact">
     <div
       class="w-full container mx-auto p-12"
       v-gsap.whenVisible.once.from="{ opacity: 0, y: 32 }"

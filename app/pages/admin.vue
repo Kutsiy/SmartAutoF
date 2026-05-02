@@ -16,7 +16,7 @@ import { NavCol, NavColTitle } from "~/components/ui/nav-col";
   <div class="min-w-full min-h-full container m-auto p-2 flex gap-2">
     <div class="min-h-full">
         <div
-      class="w-[180px] sticky h-[98vh] top-2 border border-[var(--yellow-500)] rounded-2xl flex flex-col gap-2 p-4 text-xl *:cursor-pointer *:w-fit"
+      class="w-[180px] sticky h-[98vh] overflow-y-auto scroll-bar top-2 border border-[var(--yellow-500)] rounded-2xl flex flex-col gap-2 p-4 text-xl *:cursor-pointer *:w-fit"
     >
       <NavCol>
         <NavColTitle name="material-symbols:person">Профіль</NavColTitle>
@@ -78,3 +78,9 @@ import { NavCol, NavColTitle } from "~/components/ui/nav-col";
     </div>
   </div>
 </template>
+
+<style scoped>
+.scroll-bar {
+  scrollbar-color: grey rgba(0, 0, 0, 0);
+}
+</style>

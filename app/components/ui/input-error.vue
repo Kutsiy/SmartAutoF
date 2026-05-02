@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { text, bigFontSize = false } = defineProps<{
-  text: String;
-  bigFontSize?: Boolean;
+  text: string;
+  bigFontSize?: boolean;
   textSize?: "text-xl" | "text-2xl" | "text-3xl" | "text-4xl";
 }>();
 </script>

@@ -4,16 +4,39 @@ const idToDelete = ref();
 const dataLoading = ref(true);
 const link = ref("http://localhost:8000/uploads");
 const categoriesData = ref<any[]>([]);
+const searchString = ref("");
 
 const updatingCategory = ref<Record<any, any> | null>(null);
 
-onMounted(async () => {
+const getData = async () => {
   const data = await useMyFetch("/category/all");
   if (Array.isArray(data)) categoriesData.value = data;
+};
+
+const searchData = async () => {
+  dataLoading.value = true;
+  if (searchString.value) {
+    const data = await useMyFetch(
+      `/category/search/?search=${searchString.value}`,
+    );
+    console.log(data);
+    if (Array.isArray(data)) categoriesData.value = data;
+  } else {
+    getData();
+  }
+  dataLoading.value = false;
+};
+
+onMounted(async () => {
+  await getData();
   dataLoading.value = false;
 });
 
 const openAlert = (id: string) => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   document.body.classList.add("overflow-hidden");
   alertIsOpen.value = true;
   idToDelete.value = id;
@@ -36,11 +59,21 @@ const deleteById = async () => {
 };
 
 const setUpdate = (category: Record<any, any>) => {
-  updatingCategory.value = { ...category };
+  updatingCategory.value =
+    updatingCategory?.value?.id !== category.id ? { ...category } : null;
 };
 
+const closeUpdate = () => (updatingCategory.value = null);
+
 const setCategoryData = (data: Record<any, any>) => {
-  categoriesData.value.push(data);
+  const index = categoriesData.value.findIndex((item) => item.id === data.id);
+
+  if (index !== -1) {
+    categoriesData.value[index] = data;
+  } else {
+    categoriesData.value.push(data);
+  }
+  if (updatingCategory.value) closeUpdate();
 };
 </script>
 
@@ -68,8 +101,10 @@ const setCategoryData = (data: Record<any, any>) => {
     <div
       class="h-fit border border-[var(--border-main)] bg-[var(--bg-secondary)] p-2 rounded-2xl grid grid-cols-3 gap-4"
     >
-      <div class="col-span-2"><UiInput placeholder="Пошук..." /></div>
-      <UiButton text-size="text-3xl">Пошук</UiButton>
+      <div class="col-span-2">
+        <UiInput placeholder="Пошук..." v-model="searchString" />
+      </div>
+      <UiButton text-size="text-3xl" @click="searchData">Пошук</UiButton>
     </div>
     <div
       class="h-full border border-[var(--border-main)] bg-[var(--bg-secondary)] rounded-2xl row-span-2 p-4"
@@ -119,7 +154,11 @@ const setCategoryData = (data: Record<any, any>) => {
           v-else
           class="w-full h-full flex items-center justify-center text-4xl font-bold"
         >
-          Жодної категорії ще не створенно...
+          {{
+            searchString
+              ? `За запитом ${searchString} жодної категорії ще не знайдено`
+              : "Жодної категорії ще не створенно..."
+          }}
         </div>
       </template>
     </div>
@@ -127,6 +166,7 @@ const setCategoryData = (data: Record<any, any>) => {
       <FeatureAdminCreateCategory
         @set-value="setCategoryData"
         :updating-category="updatingCategory"
+        @close-update="closeUpdate"
       />
     </div>
   </div>

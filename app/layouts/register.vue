@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    class="absolute text-2xl m-2 p-1 cursor-pointer hover:border hover:border-[var(--yellow-50)] hover:rounded-2xl"
+    class="absolute text-2xl m-2 px-2 py-1 cursor-pointer hover:border hover:border-[var(--border-accent)] hover:rounded-2xl hover:scale-105 transition-transform"
     to="/"
   >
     <Icon name="material-symbols:arrow-left-alt" class="relative top-[3px]" />

@@ -42,7 +42,7 @@ onMounted(async () => {
       v-if="loading"
       class="flex justify-center items-center h-40 text-4xl text-gray-400 animate-pulse"
     >
-      LOADING...
+      Завантаження...
     </div>
     <div v-else class="grid grid-cols-2 gap-4">
       <div
