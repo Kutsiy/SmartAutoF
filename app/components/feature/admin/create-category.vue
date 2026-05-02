@@ -9,7 +9,7 @@ const { updatingCategory } = defineProps<{
 
 watch(
   () => updatingCategory,
-  async (val) => {
+  (val) => {
     preview.value = val?.image_link ? `${link.value}/${val?.image_link}` : "";
     categoryName.value = val?.name ? val?.name : "";
   },

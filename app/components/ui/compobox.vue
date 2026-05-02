@@ -22,11 +22,13 @@ const {
   options?: any[];
   textSize?: "text-xl" | "text-2xl" | "text-3xl" | "text-4xl";
   multiple?: boolean;
+  disable?: boolean;
 }>();
 </script>
 
 <template>
   <ComboboxRoot
+    :disabled="disable"
     class="relative"
     :default-value="defaultValue"
     v-model="model"
@@ -38,6 +40,7 @@ const {
     >
       <div class="flex flex-col" :class="{ 'gap-2': model.length !== 0 }">
         <ComboboxInput
+          :class="{ 'text-[var(--text-secondary)]': disable }"
           class="!bg-transparent outline-none h-full selection:bg-grass5 w-full"
           placeholder="Placeholder..."
         />
@@ -56,7 +59,14 @@ const {
         </div>
       </div>
       <ComboboxTrigger>
-        <Icon icon="radix-icons:chevron-down" :class="textSize" />
+        <Icon
+          :icon="
+            !disable
+              ? 'radix-icons:chevron-down'
+              : 'material-symbols:close-rounded'
+          "
+          :class="textSize"
+        />
       </ComboboxTrigger>
     </ComboboxAnchor>
 

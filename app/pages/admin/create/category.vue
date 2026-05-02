@@ -119,7 +119,7 @@ const setCategoryData = (data: Record<any, any>) => {
       <template v-else>
         <div
           v-if="categoriesData.length"
-          class="h-[380px] flex flex-col gap-4 scroll-bar pl-4 pr-4 py-1 overflow-y-auto"
+          class="h-[450px] flex flex-col gap-4 scroll-bar pl-4 pr-4 py-1 overflow-y-auto"
         >
           <div
             :class="{

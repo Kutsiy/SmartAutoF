@@ -21,8 +21,28 @@ const { errors, defineField, handleSubmit } = useForm({
   ),
 });
 
+const { updatingService } = defineProps<{
+  updatingService: Record<any, any> | null;
+}>();
+
+watch(
+  () => updatingService,
+  (value) => {
+    console.log(value);
+    serviceName.value = value?.name;
+    serviceText.value = value?.text;
+    preview.value = value?.image_link
+      ? `${link.value}/${value?.image_link}`
+      : "";
+    categoryName.value = value?.category?.name;
+  },
+);
+
 const options = ref();
 const rawData = ref<any[]>();
+
+const link = ref("http://localhost:8000/uploads");
+const preview = ref();
 
 const [serviceName] = defineField("serviceName");
 const [serviceText] = defineField("serviceText");
@@ -31,6 +51,11 @@ const imageFile = ref();
 
 const categoryError = ref(false);
 const imageError = ref(false);
+const serverError = ref("");
+
+const dataLoading = ref(false);
+
+const emit = defineEmits(["setData", "closeUpdate"]);
 
 onMounted(async () => {
   const data = await useMyFetch("/category/all");
@@ -43,10 +68,12 @@ onMounted(async () => {
 
 const onSubmit = handleSubmit(async (values) => {
   if (!categoryName.value) {
+    console.log("value");
     categoryError.value = true;
     return;
   }
-  if (!imageFile.value) {
+  if (!imageFile.value && !updatingService) {
+    console.log("value");
     imageError.value = true;
     return;
   }
@@ -56,39 +83,113 @@ const onSubmit = handleSubmit(async (values) => {
   const categoryId = rawData?.value?.find(
     (val) => val.name === categoryName.value,
   ).id;
+  if (!categoryId) return;
+
+  if (
+    updatingService?.name === values.serviceName &&
+    updatingService?.text === values.serviceText &&
+    !imageFile.value
+  ) {
+    serverError.value = "Ви нічого не оновили";
+    return;
+  }
 
   const formData = new FormData();
-  formData.append("name", values.serviceName);
+  formData.append(
+    "name",
+    values.serviceName.charAt(0).toUpperCase() + values.serviceName.slice(1),
+  );
   formData.append("text", values.serviceText);
-  formData.append("file", imageFile.value);
+  if (imageFile.value) formData.append("file", imageFile.value);
 
-  const data = await useMyFetch(`/service/create/?id=${categoryId}`, {
-    method: "POST",
-    body: formData,
-  });
-
-  console.log(data);
+  try {
+    dataLoading.value = true;
+    if (!updatingService) {
+      console.log("not up");
+      const data = await useMyFetch(`/service/create/?id=${categoryId}`, {
+        method: "POST",
+        body: formData,
+      });
+      emit("setData", data);
+    } else {
+      console.log("up");
+      const data = await useMyFetch(
+        `/service/update/?id=${updatingService.id}`,
+        {
+          method: "PATCH",
+          body: formData,
+        },
+      );
+      emit("setData", data);
+    }
+  } catch (e: any) {
+    serverError.value = e?.data?.detail;
+  } finally {
+    console.log("ffff");
+    dataLoading.value = false;
+  }
 });
 </script>
 
 <template>
   <div class="border border-[var(--border-main)] rounded-2xl p-2">
-    <div></div>
+    <div class="flex flex-col gap-4" v-if="updatingService">
+      <div class="text-3xl font-bold text-[var(--text-important)]">
+        Ви оновлюєте:
+      </div>
+      <div class="flex flex-col gap-2 basic-back">
+        <div class="text-3xl">
+          Категорія: {{ updatingService.category.name }}
+        </div>
+        <div class="grid grid-cols-[auto_1fr] gap-3 items-center">
+          <NuxtImg
+            :src="`${link}/${updatingService.image_link}`"
+            class="h-16 w-16 object-cover rounded-lg"
+          />
 
-    <form class="flex flex-col gap-4" @submit.prevent="onSubmit">
+          <div class="text-4xl flex gap-2">
+            Сервіс:
+            <div class="font-semibold leading-tight">
+              {{ updatingService?.name }}
+            </div>
+          </div>
+
+          <div class="col-span-2 text-3xl flex flex-col gap-2">
+            <div>Опис сервісу:</div>
+            <div>
+              {{ updatingService?.text }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="flex flex-col gap-4 mt-4" @submit.prevent="onSubmit">
       <div class="flex flex-col gap-2 text-3xl">
         <div>Виберіть категорію, з яким свяжеться сервіс</div>
         <UiInputError
           :text="categoryError ? 'Ви повинні вибрати категорію' : ''"
           text-size="text-3xl"
         />
-        <UiCompobox :options="options" v-model="categoryName" />
+        <UiCompobox
+          :disable="!!updatingService"
+          :options="options"
+          v-model="categoryName"
+        />
       </div>
       <UiInputError
         :text="imageError ? 'Ви повинні вибрати зображення' : ''"
         text-size="text-3xl"
       />
-      <UiFileInput @file-change="(value) => (imageFile = value)" />
+      <UiFileInput
+        v-model="preview"
+        @file-change="(value) => (imageFile = value)"
+        :placeholder="
+          updatingService
+            ? 'Завантажте оновлене зображення'
+            : 'Завантажте зображення'
+        "
+      />
       <UiInputError
         :text="errors.serviceName ? errors.serviceName : ''"
         text-size="text-3xl"
@@ -101,7 +202,26 @@ const onSubmit = handleSubmit(async (values) => {
       <div class="h-[200px]">
         <UiTextarea placeholder="Опис сервісу..." v-model="serviceText" />
       </div>
-      <UiButton text-size="text-3xl">Створити</UiButton>
+      <div class="flex items-center justify-center">
+        <div
+          class="basic-back text-3xl text-[var(--text-red)] font-bold"
+          v-if="serverError"
+        >
+          {{ serverError }}
+        </div>
+        <div v-if="dataLoading" class="basic-back text-3xl font-bold">
+          <span class="animate-pulse">Завантаження...</span>
+        </div>
+      </div>
+      <UiButton text-size="text-3xl">{{
+        updatingService ? "Оновити" : "Створити"
+      }}</UiButton>
+      <UiButton
+        v-if="updatingService"
+        text-size="text-3xl"
+        @click="emit('closeUpdate')"
+        >Відміна оновлення</UiButton
+      >
     </form>
   </div>
 </template>

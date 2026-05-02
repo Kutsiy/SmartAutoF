@@ -28,7 +28,7 @@ const onFileChange = (e: any) => {
       <NuxtImg
         v-if="preview"
         :src="preview"
-        class="w-48 h-48 p-2 object-cover"
+        class="w-48 h-48 p-2 object-cover rounded-sm"
       />
 
       <span v-else class="text-[var(--text-muted)] text-sm">

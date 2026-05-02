@@ -19,4 +19,9 @@ export default defineNuxtConfig({
   fonts: {
     families: [{ name: "Oswald", provider: "google" }],
   },
+  runtimeConfig: {
+    public: {
+      uploadFileLink: "http://localhost:8000/uploads",
+    },
+  },
 });
