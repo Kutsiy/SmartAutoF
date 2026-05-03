@@ -83,7 +83,7 @@ const changeListItem = (item) => {
       </template>
       <template v-else>
         <div class="flex items-center justify-center text-5xl col-span-4">
-          Ви нічого не вибрали
+          Ви нічого не обрали
         </div>
       </template>
     </div>

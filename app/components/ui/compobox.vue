@@ -38,7 +38,10 @@ const {
       :class="textSize"
       class="w-full h-full border-2 border-[var(--border-light)] px-2 py-1 flex items-center justify-between rounded-2xl leading-none bg-[var(--bg-third)] shadow-sm outline-none"
     >
-      <div class="flex flex-col" :class="{ 'gap-2': model.length !== 0 }">
+      <div
+        class="flex flex-col"
+        :class="{ 'gap-2': model && model.length !== 0 }"
+      >
         <ComboboxInput
           :class="{ 'text-[var(--text-secondary)]': disable }"
           class="!bg-transparent outline-none h-full selection:bg-grass5 w-full"
@@ -86,9 +89,10 @@ const {
           :value="option"
           class="text-xl hover:bg-[var(--bg-hover)] cursor-pointer leading-none rounded-[3px] flex items-center h-[25px] pr-[35px] pl-[25px] py-5 relative select-none"
         >
-          <span>
+          <span v-if="option">
             {{ option }}
           </span>
+          <span v-else> Пусте заначення </span>
         </ComboboxItem>
       </ComboboxViewport>
     </ComboboxContent>

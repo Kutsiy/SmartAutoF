@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const config = useRuntimeConfig();
 const serviceData = ref<any[]>([]);
+const categoriesData = ref<any[]>([]);
 const mainLink = config.public.uploadFileLink;
 
 const deleteServiceId = ref("");
@@ -10,6 +11,7 @@ const alertIsOpen = ref(false);
 const dataLoading = ref(true);
 
 const searchString = ref();
+const searchCategory = ref();
 
 const updatingService = ref<Record<any, any> | null>(null);
 
@@ -20,15 +22,29 @@ const setUpdatingService = (service: any) => {
 
 const getData = async () => {
   const data = await useMyFetch("/service/all");
-  if (Array.isArray(data)) serviceData.value = data;
+  if (Array.isArray(data)) {
+    serviceData.value = data;
+    categoriesData.value = [
+      null,
+      ...new Set(data.map((value) => value.category.name)),
+    ];
+  }
 };
 
 const search = async () => {
   dataLoading.value = true;
-  if (searchString.value) {
-    const data = await useMyFetch(
-      `/service/search/?search=${searchString.value}`,
-    );
+  if (searchString.value || searchCategory.value) {
+    const params = new URLSearchParams();
+
+    if (searchString.value) {
+      params.append("search", searchString.value);
+    }
+
+    if (searchCategory.value) {
+      params.append("category", searchCategory.value);
+    }
+
+    const data = await useMyFetch(`/service/search/?${params.toString()}`);
     if (Array.isArray(data)) serviceData.value = data;
   } else {
     getData();
@@ -103,10 +119,11 @@ const deleteData = async () => {
   </Teleport>
 
   <div class="flex flex-col gap-4">
-    <div class="basic-back grid grid-cols-3 gap-4">
+    <div class="basic-back grid grid-cols-4 gap-4">
       <div class="col-span-2">
         <UiInput placeholder="Пошук..." v-model="searchString" />
       </div>
+      <UiCompobox v-model="searchCategory" :options="categoriesData" />
       <UiButton text-size="text-3xl" @click="search">Пошук</UiButton>
     </div>
 
@@ -121,7 +138,7 @@ const deleteData = async () => {
 
       <template v-else>
         <div
-          class="h-[380px] flex flex-col gap-4 scroll-bar pl-4 pr-4 py-1 overflow-y-auto"
+          class="h-[460px] flex flex-col gap-4 scroll-bar pl-4 pr-4 py-1 overflow-y-auto"
           v-if="serviceData.length"
         >
           <div
