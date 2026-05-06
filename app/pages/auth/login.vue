@@ -11,11 +11,11 @@ const loading = ref(false);
 const schema = toTypedSchema(
   z.object({
     email: z
-      .string()
+      .string({ message: "Це поле обов'язкове" })
       .email({ message: "Повинна бути email адреса" })
       .nonempty({ message: "Повинно бути більше 2 символів" }),
     password: z
-      .string()
+      .string({ message: "Це поле обов'язкове" })
       .nonempty({ message: "Повинно бути більше 6 символів" })
       .min(6, { message: "Повинно бути більше 6 символів" })
       .max(15, { message: "Повинно бути меньше 15 символів" }),
@@ -42,7 +42,14 @@ const onSubmit = handleSubmit(async (value) => {
 
     if (data.isActivate) {
       await navigateTo("/account");
-      userStore.setAuth({ userName: data.name, userEmail: data.email }, true);
+      userStore.setAuth(
+        {
+          userName: data.name,
+          userEmail: data.email,
+          userPhoneNumber: data.phoneNumber,
+        },
+        true,
+      );
     } else {
       await navigateTo("/auth/activate");
     }

@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export type User = {
   userName: string;
   userEmail: string;
+  userPhoneNumber: string;
 };
 
 type Store = {
@@ -19,6 +20,7 @@ export const useUserStore = defineStore("userStoreID", {
       userInfo: {
         userName: "",
         userEmail: "",
+        userPhoneNumber: "",
       },
     };
   },
@@ -38,7 +40,7 @@ export const useUserStore = defineStore("userStoreID", {
       this.isActive = true;
     },
     resetAuth() {
-      this.userInfo = { userName: "", userEmail: "" };
+      this.userInfo = { userName: "", userEmail: "", userPhoneNumber: "" };
       ((this.isRegistered = false), (this.isActive = false));
     },
   },

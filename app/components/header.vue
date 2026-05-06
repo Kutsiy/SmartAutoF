@@ -11,6 +11,10 @@ const showHeader = (event) => {
   scrollY.value = window.scrollY;
 };
 
+const showHeaderButton = () => {
+  isShow.value = !isShow.value;
+};
+
 const store = useUserStore();
 
 onMounted(() => {
@@ -25,21 +29,21 @@ onUnmounted(() => {
 <template>
   <div class="w-full h-[130px] relative"></div>
   <div
+    v-if="!isShow"
+    class="w-[30px] h-[30px] flex items-center justify-center bg-[var(--yellow-90)] fixed top-0 right-0 text-2xl cursor-pointer z-50"
+    @click="showHeaderButton"
+  >
+    <Icon class="cursor-pointer" name="material-symbols:keyboard-arrow-down" />
+  </div>
+  <div
     class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 fixed top-0"
     :class="{ isShow: isShow, isHidden: !isShow }"
   >
     <div
       class="w-[30px] h-[30px] flex items-center justify-center bg-[var(--yellow-90)] absolute bottom-0 right-0 text-2xl cursor-pointer z-50"
-      @click="showHeader"
+      @click="showHeaderButton"
     >
-      <Icon
-        class="cursor-pointer"
-        :name="
-          isShow
-            ? 'material-symbols:keyboard-arrow-up'
-            : 'material-symbols:keyboard-arrow-down'
-        "
-      />
+      <Icon class="cursor-pointer" name="material-symbols:keyboard-arrow-up" />
     </div>
     <div class="w-full h-full container mx-auto px-12 relative">
       <div class="w-full h-full text-2xl flex items-center justify-between">
@@ -122,7 +126,7 @@ onUnmounted(() => {
                 class="relative top-1"
                 :class="{ rotated: show }"
               />
-              <div class="absolute h-[65px] w-full top-0 left-[-2px]"></div>
+              <div class="absolute h-[65px] w-full top-0"></div>
             </NuxtLink>
             <div
               v-if="show"
@@ -167,7 +171,7 @@ onUnmounted(() => {
 }
 
 .isHidden {
-  height: 0;
+  transform: translateY(-140px);
   transition: 0.5s;
   animation: isHidden 0.5s;
   overflow: hidden;

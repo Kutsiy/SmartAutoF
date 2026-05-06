@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const data = ref<any[]>([]);
+const dataIsLoading = ref(true);
+
+onMounted(async () => {
+  const fetchedData = await useMyFetch("/service/all");
+  if (Array.isArray(fetchedData)) data.value = fetchedData;
+  dataIsLoading.value = false;
+});
+</script>
+
 <template>
   <div
     class="w-full container mx-auto px-12 flex flex-col justify-center prices gap-12"
@@ -19,25 +30,28 @@
           <Icon name="mingcute:close-fill" />
         </div>
         <div
-          class="p-4 bg-[var(--bg-secondary)] backdrop-blur-[5px] grid grid-cols-3 gap-6 rounded-b-2xl"
+          class="p-4 bg-[var(--bg-secondary)] min-h-[350px] max-h-[350px] scroll-bar overflow-y-auto backdrop-blur-[5px] grid grid-cols-3 gap-6 rounded-b-2xl"
         >
-          <UiAccordion
-            title="TITLE"
-            :items="[
-              { name: 'ITEM', price: 1000 },
-              { name: 'ITEM', price: 1000 },
-              { name: 'ITEM', price: 1000 },
-            ]"
-          />
-          <UiAccordion title="TITLE" />
-          <UiAccordion title="TITLE" />
-          <UiAccordion title="TITLE" />
-          <UiAccordion title="TITLE" />
-          <UiAccordion title="TITLE" />
-          <UiAccordion title="TITLE" />
-          <UiAccordion title="TITLE" />
+          <template v-if="dataIsLoading">
+            <div class="text-center text-5xl animate-pulse col-span-3">
+              Завантаження...
+            </div>
+          </template>
+          <template v-else>
+            <UiAccordion
+              v-for="service in data"
+              :title="service.name"
+              :items="service.work_types"
+            />
+          </template>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.scroll-bar {
+  scrollbar-color: grey rgba(0, 0, 0, 0);
+}
+</style>

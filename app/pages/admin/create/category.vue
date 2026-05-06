@@ -129,12 +129,17 @@ const setCategoryData = (data: Record<any, any>) => {
             }"
             v-for="category in categoriesData"
           >
-            <div class="flex gap-4">
+            <div class="flex gap-4 items-center">
               <NuxtImg
                 :src="`${link}/${category?.image_link}`"
-                class="h-10 w-10 object-cover rounded-md"
+                class="h-20 w-20 object-cover rounded-md border-2 border-[var(--border-accent)]"
               />
-              <div>{{ category?.name }}</div>
+              <div>
+                <span class="text-[var(--text-secondary)] flex items-center"
+                  >Назва категорії:</span
+                >
+                {{ category?.name }}
+              </div>
             </div>
             <div class="flex gap-4 *:transition-transform">
               <Icon

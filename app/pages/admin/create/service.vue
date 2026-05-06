@@ -156,10 +156,12 @@ const deleteData = async () => {
               <div class="grid grid-cols-[auto_1fr] gap-3 items-center">
                 <NuxtImg
                   :src="`${mainLink}/${service.image_link}`"
-                  class="h-16 w-16 object-cover rounded-lg"
+                  class="h-20 w-20 object-cover rounded-lg border-2 border-[var(--border-accent)]"
                 />
 
-                <div class="text-4xl flex gap-2 text-[var(--text-secondary)]">
+                <div
+                  class="text-4xl flex gap-2 text-[var(--text-secondary)] items-center"
+                >
                   Сервіс:
                   <div
                     class="font-semibold leading-tight text-[var(--text-primary)]"

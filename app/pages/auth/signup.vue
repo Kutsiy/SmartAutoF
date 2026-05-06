@@ -8,24 +8,32 @@ const userStore = useUserStore();
 const mainError = ref("");
 const loading = ref(false);
 
+const phoneRegex = new RegExp(
+  /^([+]?[\\s0-9]+)?(\\d{3}|[(]?[0-9]+[)])?([-]?[\\s]?[0-9])+$/,
+);
+
 const schema = toTypedSchema(
   z
     .object({
       name: z
-        .string()
+        .string({ message: "Це поле обов'язкове" })
         .nonempty({ message: "Повинно бути більше 2 символів" })
         .min(2, { message: "Повинно бути більше 2 символів" }),
       email: z
-        .string()
+        .string({ message: "Це поле обов'язкове" })
         .email({ message: "Повинна бути email адреса" })
         .nonempty({ message: "Повинно бути більше 2 символів" }),
+      phoneNumber: z
+        .string({ message: "Це поле обов'язкове" })
+        .regex(phoneRegex, "Не вірний номер")
+        .nonempty({ message: "Це поле не може бути пустим" }),
       password: z
-        .string()
+        .string({ message: "Це поле обов'язкове" })
         .nonempty({ message: "Повинно бути більше 6 символів" })
         .min(6, { message: "Повинно бути більше 6 символів" })
         .max(15, { message: "Повинно бути меньше 15 символів" }),
       confirm: z
-        .string()
+        .string({ message: "Це поле обов'язкове" })
         .nonempty({ message: "Повинно бути більше 6 символів" })
         .min(6, { message: "Повинно бути більше 6 символів" })
         .max(15, { message: "Повинно бути меньше 15 символів" }),
@@ -42,6 +50,7 @@ const { defineField, handleSubmit, errors } = useForm({
 
 const [name, nameAttr] = defineField("name");
 const [email, emailAttr] = defineField("email");
+const [phoneNumber] = defineField("phoneNumber");
 const [password, passwordAttr] = defineField("password");
 const [confirm, confirmAttr] = defineField("confirm");
 
@@ -54,9 +63,14 @@ const onSubmit = handleSubmit(async (value) => {
         name: value.name,
         email: value.email,
         password: value.password,
+        phone_number: value.phoneNumber,
       },
     });
-    userStore.setAuth({ userName: value?.name, userEmail: value?.email });
+    userStore.setAuth({
+      userName: value?.name,
+      userEmail: value?.email,
+      userPhoneNumber: value?.phoneNumber,
+    });
     await navigateTo("/auth/activate");
   } catch (error) {
     mainError.value = error.data.detail;
@@ -72,14 +86,14 @@ const onSubmit = handleSubmit(async (value) => {
       <div class="flex flex-col gap-1">
         <UiInputError :text="mainError" :big-font-size="true" />
         <UiInput
-          placeholder="Name"
+          placeholder="Name..."
           label="Name:"
           v-model:model-value="name"
           v-bind="nameAttr"
         />
         <UiInputError :text="errors.name" />
         <UiInput
-          placeholder="Email"
+          placeholder="Email..."
           label="Email:"
           type="email"
           v-model:model-value="email"
@@ -87,7 +101,14 @@ const onSubmit = handleSubmit(async (value) => {
         />
         <UiInputError :text="errors.email" />
         <UiInput
-          placeholder="Password"
+          placeholder="Номер телефону..."
+          label="Номер телефону:"
+          type="phoneNumber"
+          v-model="phoneNumber"
+        />
+        <UiInputError :text="errors.phoneNumber" />
+        <UiInput
+          placeholder="Password..."
           label="Password:"
           type="password"
           v-model:model-value="password"
@@ -95,7 +116,7 @@ const onSubmit = handleSubmit(async (value) => {
         />
         <UiInputError :text="errors.password" />
         <UiInput
-          placeholder="Confirm password"
+          placeholder="Confirm password..."
           label="Confirm password:"
           type="password"
           v-model:model-value="confirm"

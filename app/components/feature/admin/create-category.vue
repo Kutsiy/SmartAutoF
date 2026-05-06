@@ -58,7 +58,7 @@ const submitFunc = handleSubmit(async (value) => {
 
     let data;
     if (updatingCategory) {
-      data = await useMyFetch(`/category/update/?id=${updatingCategory?.id}`, {
+      data = await useMyFetch(`/category/update?id=${updatingCategory?.id}`, {
         method: "PATCH",
         body: formData,
       });
@@ -89,12 +89,17 @@ const submitFunc = handleSubmit(async (value) => {
             'bg-[var(--bg-main)] p-4 text-3xl rounded-2xl flex items-center justify-between',
           ]"
         >
-          <div class="flex gap-4">
+          <div class="flex gap-4 items-center">
             <NuxtImg
               :src="`${link}/${updatingCategory?.image_link}`"
-              class="h-10 w-10 object-cover rounded-md"
+              class="h-20 w-20 object-cover rounded-md border-2 border-[var(--border-accent)]"
             />
-            <div>{{ updatingCategory?.name }}</div>
+            <div>
+              <span class="text-[var(--text-secondary)] flex items-center"
+                >Назва категорії:</span
+              >
+              {{ updatingCategory?.name }}
+            </div>
           </div>
         </div>
       </div>

@@ -106,7 +106,7 @@ const onSubmit = handleSubmit(async (values) => {
     dataLoading.value = true;
     if (!updatingService) {
       console.log("not up");
-      const data = await useMyFetch(`/service/create/?id=${categoryId}`, {
+      const data = await useMyFetch(`/service/create?id=${categoryId}`, {
         method: "POST",
         body: formData,
       });
@@ -114,7 +114,7 @@ const onSubmit = handleSubmit(async (values) => {
     } else {
       console.log("up");
       const data = await useMyFetch(
-        `/service/update/?id=${updatingService.id}`,
+        `/service/update?id=${updatingService.id}`,
         {
           method: "PATCH",
           body: formData,
@@ -138,24 +138,26 @@ const onSubmit = handleSubmit(async (values) => {
         Ви оновлюєте:
       </div>
       <div class="flex flex-col gap-2 basic-back">
-        <div class="text-3xl">
+        <div class="text-3xl text-[var(--text-important)]">
           Категорія: {{ updatingService.category.name }}
         </div>
         <div class="grid grid-cols-[auto_1fr] gap-3 items-center">
           <NuxtImg
             :src="`${link}/${updatingService.image_link}`"
-            class="h-16 w-16 object-cover rounded-lg"
+            class="h-20 w-20 object-cover rounded-lg border-2 border-[var(--border-accent)]"
           />
 
-          <div class="text-4xl flex gap-2">
+          <div
+            class="text-4xl flex gap-2 text-[var(--text-secondary)] items-center"
+          >
             Сервіс:
-            <div class="font-semibold leading-tight">
+            <div class="font-semibold leading-tight text-[var(--text-primary)]">
               {{ updatingService?.name }}
             </div>
           </div>
 
           <div class="col-span-2 text-3xl flex flex-col gap-2">
-            <div>Опис сервісу:</div>
+            <div class="text-[var(--text-secondary)]">Опис сервісу:</div>
             <div>
               {{ updatingService?.text }}
             </div>

@@ -29,7 +29,11 @@ const logout = async () => {
 onMounted(async () => {
   try {
     const data = await useMyFetch("/user/my");
-    userStore.updateUser({ userName: data.name, userEmail: data.email });
+    userStore.updateUser({
+      userName: data.name,
+      userEmail: data.email,
+      userPhoneNumber: data.phoneNumber,
+    });
   } finally {
     loading.value = false;
   }
@@ -50,7 +54,7 @@ onMounted(async () => {
       >
         <div v-if="!isUpdating" class="flex flex-col gap-4">
           <div>Name: {{ userStore?.userInfo.userName }}</div>
-          <div>Phone:</div>
+          <div>Phone: {{ userStore.userInfo.userPhoneNumber }}</div>
           <div>Email: {{ userStore.userInfo.userEmail }}</div>
         </div>
         <form v-else class="w-[380px]">
