@@ -7,12 +7,14 @@ const {
   renderAs = "button",
   isActive = false,
   to,
+  className,
 } = defineProps<{
   isGlass?: boolean;
   textSize?: "text-xl" | "text-2xl" | "text-3xl" | "text-4xl";
   renderAs?: "button" | "div" | "link";
   isActive?: boolean;
   to?: string;
+  className?: string;
 }>();
 
 const componentClass = computed(() => [
@@ -23,6 +25,7 @@ const componentClass = computed(() => [
   isActive
     ? "text-[var(--text-black)] bg-[var(--bg-accent)]"
     : "hover:text-[var(--text-black)] hover:bg-[var(--bg-accent)]",
+  className,
 ]);
 </script>
 
@@ -53,6 +56,7 @@ const componentClass = computed(() => [
         ? 'border-[var(--border-main)] bg-[var(--black-20)]'
         : 'border-[var(--border-accent)]',
       textSize,
+      className,
     ]"
   >
     <slot />

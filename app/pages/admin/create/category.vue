@@ -99,7 +99,7 @@ const setCategoryData = (data: Record<any, any>) => {
 
   <div class="h-full rounded-2xl grid gap-4 flex-1">
     <div
-      class="h-fit border border-[var(--border-main)] bg-[var(--bg-secondary)] p-2 rounded-2xl grid grid-cols-3 gap-4"
+      class="h-fit border border-[var(--border-main)] !bg-[var(--bg-main)] !p-4 rounded-2xl grid grid-cols-3 gap-4"
     >
       <div class="col-span-2">
         <UiInput placeholder="Пошук..." v-model="searchString" />
@@ -107,7 +107,7 @@ const setCategoryData = (data: Record<any, any>) => {
       <UiButton text-size="text-3xl" @click="searchData">Пошук</UiButton>
     </div>
     <div
-      class="h-full border border-[var(--border-main)] bg-[var(--bg-secondary)] rounded-2xl row-span-2 p-4"
+      class="h-full border border-[var(--border-main)] !bg-[var(--bg-main)] rounded-2xl row-span-2 p-4"
     >
       <template v-if="dataLoading">
         <div
@@ -123,7 +123,7 @@ const setCategoryData = (data: Record<any, any>) => {
         >
           <div
             :class="{
-              'bg-[var(--bg-main)] p-4 text-3xl rounded-2xl flex items-center justify-between hover:scale-[1.005] transition-transform': true,
+              'bg-[var(--bg-secondary)] p-4 text-3xl rounded-2xl flex items-center justify-between hover:scale-[1.005] transition-transform': true,
               'border-2 border-[var(--border-accent)]':
                 updatingCategory?.id === category.id,
             }"
@@ -167,12 +167,11 @@ const setCategoryData = (data: Record<any, any>) => {
         </div>
       </template>
     </div>
-    <div class="border border-[var(--border-main)] rounded-2xl p-2">
-      <FeatureAdminCreateCategory
-        @set-value="setCategoryData"
-        :updating-category="updatingCategory"
-        @close-update="closeUpdate"
-      />
-    </div>
+
+    <FeatureAdminCreateCategory
+      @set-value="setCategoryData"
+      :updating-category="updatingCategory"
+      @close-update="closeUpdate"
+    />
   </div>
 </template>

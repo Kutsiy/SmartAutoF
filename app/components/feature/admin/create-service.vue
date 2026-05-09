@@ -132,7 +132,9 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <div class="border border-[var(--border-main)] rounded-2xl p-2">
+  <div
+    class="border border-[var(--border-main)] rounded-2xl !bg-[var(--bg-main)] !p-4"
+  >
     <div class="flex flex-col gap-4" v-if="updatingService">
       <div class="text-3xl font-bold text-[var(--text-important)]">
         Ви оновлюєте:

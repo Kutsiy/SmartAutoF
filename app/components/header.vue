@@ -1,7 +1,6 @@
 <script setup>
 import { useUserStore } from "~/store/user.store";
 
-const show = ref(false);
 const scrollY = ref(0);
 const isShow = ref(true);
 
@@ -9,10 +8,6 @@ const showHeader = (event) => {
   if (window.scrollY < scrollY.value) isShow.value = true;
   else isShow.value = false;
   scrollY.value = window.scrollY;
-};
-
-const showHeaderButton = () => {
-  isShow.value = !isShow.value;
 };
 
 const store = useUserStore();
@@ -27,178 +22,192 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full h-[130px] relative"></div>
-  <div
-    v-if="!isShow"
-    class="w-[30px] h-[30px] flex items-center justify-center bg-[var(--yellow-90)] fixed top-0 right-0 text-2xl cursor-pointer z-50"
-    @click="showHeaderButton"
+  <div class="h-[168px] w-full"></div>
+
+  <header
+    class="fixed z-[100000] top-0 left-0 w-full border-b border-[var(--border-main)] backdrop-blur-2xl bg-[rgba(10,10,10,0.82)] transition-transform duration-500"
+    :class="{ '-translate-y-full': !isShow }"
   >
-    <Icon class="cursor-pointer" name="material-symbols:keyboard-arrow-down" />
-  </div>
-  <div
-    class="w-full h-[130px] border-b border-b-[var(--border-accent)] backdrop-blur-[10px] z-20 fixed top-0"
-    :class="{ isShow: isShow, isHidden: !isShow }"
-  >
-    <div
-      class="w-[30px] h-[30px] flex items-center justify-center bg-[var(--yellow-90)] absolute bottom-0 right-0 text-2xl cursor-pointer z-50"
-      @click="showHeaderButton"
-    >
-      <Icon class="cursor-pointer" name="material-symbols:keyboard-arrow-up" />
-    </div>
-    <div class="w-full h-full container mx-auto px-12 relative">
-      <div class="w-full h-full text-2xl flex items-center justify-between">
+    <div class="container mx-auto px-6 lg:px-12">
+      <div class="h-[96px] flex items-center justify-between gap-6">
         <NuxtLink
-          class="flex items-center justify-center w-[200px] h-[100px] relative"
           to="/"
+          class="shrink-0 flex items-center justify-center h-full hover:scale-[1.02] transition-transform"
         >
-          <NuxtImg
-            src="/HeaderLogo.png"
-            height="120"
-            width="200"
-            class="absolute top-2"
-          />
+          <span class="text-6xl text-[var(--text-important)] tracking-wider"
+            >SmartAuto</span
+          >
         </NuxtLink>
 
-        <div class="flex flex-col text-xl gap-4">
-          <div class="flex items-center gap-4 text-base">
-            <div class="opacity-80">
-              <div>Консультація спеціаліста</div>
-              <div>(066)-463-11-39</div>
-            </div>
-            <div class="opacity-80">
-              <div>Графік роботи</div>
-              <div>Пн - Сб: 09:00 - 18:00</div>
-            </div>
-            <div class="opacity-80">
-              Київська обл. с. Нижча Дубечня, вул. Шевченка 5.
-            </div>
-            <NuxtLink
-              to="/consultation"
-              class="text-xl border-2 border-[var(--border-accent)] px-2 py-1.5 cursor-pointer hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] font-bold transition-colors rounded-2xl"
-            >
-              Отримати консультацію
-            </NuxtLink>
-            <div
-              class="flex items-center gap-2 text-2xl *:font-bold *:cursor-pointer border-l-2 border-l-[var(--border-accent)]"
-              v-if="!store.getRegistered || !store.getActive"
-            >
-              <NuxtLink
-                class="text-[var(--yellow-80)] hover:text-[var(--yellow-90)] transition-colors mx-4 my-1"
-                to="/auth/login"
-              >
-                увійти
-              </NuxtLink>
-              <NuxtLink
-                class="border-2 border-[var(--border-accent)] rounded-2xl px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors"
-                to="/auth/signup"
-              >
-                зарееструватись
-              </NuxtLink>
-            </div>
-            <div
-              v-else
-              class="flex-1 flex items-center justify-end gap-2 text-2xl *:font-bold *:cursor-pointer"
-            >
-              <NuxtLink
-                class="w-full border-2 border-[var(--border-accent)] rounded-2xl px-4 py-1 hover:bg-[var(--accent-hover)] hover:text-[var(--text-black)] transition-colors flex items-center gap-4"
-                to="/account"
-              >
-                <Icon
-                  name="material-symbols:person"
-                  class="relative top-[1px]"
-                />
-                Акаунт
-              </NuxtLink>
+        <div
+          class="hidden xl:flex items-center gap-5 text-sm text-[var(--text-secondary)]"
+        >
+          <div class="info-pill">
+            <Icon name="material-symbols:call-outline" class="info-icon" />
+            <div class="flex flex-col leading-tight">
+              <span class="font-bold text-white">Консультація</span>
+              <span>(066)-463-11-39</span>
             </div>
           </div>
-          <nav
-            class="w-full flex items-center justify-between gap-2 relative text-3xl *:flex *:text-nowrap *:items-center *:justify-center"
+
+          <div class="info-pill">
+            <Icon name="material-symbols:schedule-rounded" class="info-icon" />
+            <div class="flex flex-col leading-tight">
+              <span class="font-bold text-white">Графік</span>
+              <span>Пн - Сб: 09:00 - 18:00</span>
+            </div>
+          </div>
+
+          <div class="info-pill max-w-[300px]">
+            <Icon
+              name="material-symbols:location-on-rounded"
+              class="info-icon"
+            />
+            <span class="leading-tight"> Київська обл. с. Нижча Дубечня </span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <NuxtLink
+            to="/consultation"
+            class="flex items-center justify-center px-5 h-[48px] rounded-2xl bg-[var(--accent-primary)] text-black font-black text-lg shadow-[0_0_24px_var(--accent-glow)] hover:scale-[1.03] hover:bg-[var(--accent-hover)] transition-all"
           >
-            <NuxtLink
-              to="/services"
-              @mouseenter="show = true"
-              @mouseleave="show = false"
-              class="rotate nav__item relative"
-            >
-              Список послуг
-              <Icon
-                name="radix-icons:caret-down"
-                class="relative top-1"
-                :class="{ rotated: show }"
-              />
-              <div class="absolute h-[65px] w-full top-0"></div>
+            Консультація
+          </NuxtLink>
+
+          <template v-if="!store.getRegistered || !store.getActive">
+            <NuxtLink to="/auth/login" class="auth-secondary">
+              Увійти
             </NuxtLink>
-            <div
-              v-if="show"
-              @mouseenter="show = true"
-              @mouseleave="show = false"
-              class="w-full h-[100px] absolute border border-[var(--border-accent)] bg-[var(--bg-main)] top-full mt-3 z-50 rounded-md"
-            ></div>
-            <NuxtLink
-              class="nav__item"
-              :to="{ path: '/', hash: '#contact' }"
-              active-class="none"
-              exact-active-class=""
-              >Контакти</NuxtLink
-            >
-            <NuxtLink class="nav__item" to="/reviews">Відгуки</NuxtLink>
-          </nav>
+
+            <NuxtLink to="/auth/signup" class="auth-primary">
+              Реєстрація
+            </NuxtLink>
+          </template>
+
+          <NuxtLink v-else to="/account" class="auth-secondary gap-3">
+            <Icon
+              name="material-symbols:person-rounded"
+              class="text-[var(--text-important)] w-6 h-6"
+            />
+            <span>Акаунт</span>
+          </NuxtLink>
         </div>
       </div>
+
+      <nav
+        class="h-[72px] flex items-center justify-end gap-4 no-scrollbar border-t border-[var(--border-main)]"
+      >
+        <NuxtLink to="/services" class="nav-item">
+          <Icon name="material-symbols:build-rounded" class="nav-icon" />
+          <span>Послуги</span>
+        </NuxtLink>
+
+        <NuxtLink
+          class="nav-item"
+          :to="{ path: '/', hash: '#contact' }"
+          active-class="b"
+          exact-active-class="a"
+        >
+          <Icon
+            name="material-symbols:phone-in-talk-watchface-indicator-sharp"
+            class="nav-icon"
+          />
+          <span>Контакти</span>
+        </NuxtLink>
+
+        <NuxtLink class="nav-item" to="/reviews">
+          <Icon name="material-symbols:reviews-rounded" class="nav-icon" />
+          <span>Відгуки</span>
+        </NuxtLink>
+      </nav>
     </div>
-  </div>
+  </header>
 </template>
 
 <style scoped>
-.nav__item.router-link-active {
-  @apply !border-2 !border-[var(--border-accent)] !bg-[var(--bg-accent)] !text-[var(--text-black)] font-bold;
+.info-pill {
+  @apply min-h-[46px]
+    px-4
+    rounded-2xl
+    border
+    border-[var(--border-main)]
+    bg-[var(--bg-secondary)]
+    flex
+    items-center
+    gap-3;
 }
 
-.nav__item {
-  @apply w-full cursor-pointer active:scale-95 bg-[var(--black-20)] px-2.5 py-2 border border-[var(--border-main)] hover:bg-[var(--bg-hover-alpha)] transition-colors transition-transform rounded-2xl;
+.info-icon {
+  @apply w-6 h-6 text-[var(--text-important)] shrink-0;
 }
 
-.rotate > span {
-  transition: 0.5s;
-}
-.rotate:hover > span {
-  transition: 0.5s;
-  transform: rotate(180deg);
-}
-
-.rotated {
-  transform: rotate(180deg);
-}
-
-.isHidden {
-  transform: translateY(-140px);
-  transition: 0.5s;
-  animation: isHidden 0.5s;
-  overflow: hidden;
+.auth-secondary {
+  @apply h-[48px]
+    px-4
+    text-2xl
+    rounded-2xl
+    border
+    border-[var(--border-main)]
+    bg-[var(--bg-secondary)]
+    flex
+    items-center
+    font-bold
+    hover:border-[var(--border-accent)]
+    hover:bg-[var(--bg-hover)]
+    transition-all;
 }
 
-@keyframes isHidden {
-  from {
-    height: 130px;
-  }
-  to {
-    height: 0;
-  }
+.auth-primary {
+  @apply h-[48px]
+    px-5
+    text-2xl
+    rounded-2xl
+    bg-[var(--bg-accent)]
+    border
+    border-[var(--border-accent)]
+    text-black
+    font-black
+    flex
+    items-center
+    hover:scale-[1.03]
+    transition-all;
 }
 
-.isShow {
-  transition: 0.5s;
-  animation: isShow 0.5s;
+.nav-item {
+  @apply py-2
+    px-5
+    rounded-2xl
+    flex
+    items-center
+    gap-3
+    text-3xl
+    font-black
+    border
+    border-[var(--border-main)]
+    bg-[var(--bg-secondary)]
+    hover:border-[var(--border-accent)]
+    hover:bg-[var(--bg-hover)]
+    hover:scale-[1.02]
+    transition-all;
 }
 
-@keyframes isShow {
-  from {
-    height: 0;
-    overflow: hidden;
-  }
-  to {
-    height: 130px;
-    overflow: hidden;
-  }
+.nav-icon {
+  @apply w-8 h-8 text-[var(--text-important)];
+}
+
+.nav-item.router-link-exact-active {
+  @apply bg-[var(--bg-accent)]
+    text-black
+    border-[var(--border-accent)]
+    shadow-[0_0_24px_var(--accent-glow)];
+}
+
+.router-link-exact-active .nav-icon {
+  @apply text-black;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>

@@ -14,6 +14,6 @@ const { name, email, roles, isActive } = defineProps({
     <div>{{ name }}</div>
     <div>{{ email }}</div>
     <div>{{ roles.join(", ") }}</div>
-    <div>{{ isActive }}</div>
+    <div>{{ isActive ? "Активований" : "Неактивований" }}</div>
   </div>
 </template>

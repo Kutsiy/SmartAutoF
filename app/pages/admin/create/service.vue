@@ -44,7 +44,7 @@ const search = async () => {
       params.append("category", searchCategory.value);
     }
 
-    const data = await useMyFetch(`/service/search/?${params.toString()}`);
+    const data = await useMyFetch(`/service/search/?${params}`);
     if (Array.isArray(data)) serviceData.value = data;
   } else {
     getData();
@@ -119,7 +119,7 @@ const deleteData = async () => {
   </Teleport>
 
   <div class="flex flex-col gap-4">
-    <div class="basic-back grid grid-cols-4 gap-4">
+    <div class="basic-back !bg-[var(--bg-main)] !p-4 grid grid-cols-4 gap-4">
       <div class="col-span-2">
         <UiInput placeholder="Пошук..." v-model="searchString" />
       </div>
@@ -127,7 +127,7 @@ const deleteData = async () => {
       <UiButton text-size="text-3xl" @click="search">Пошук</UiButton>
     </div>
 
-    <div class="basic-back h-full">
+    <div class="basic-back !bg-[var(--bg-main)] !p-4 h-full">
       <template v-if="dataLoading">
         <div
           class="w-full h-full flex items-center justify-center text-5xl animate-pulse"
@@ -147,7 +147,7 @@ const deleteData = async () => {
                 updatingService?.id === service.id,
             }"
             v-for="service in serviceData"
-            class="w-full text-3xl rounded-2xl bg-[var(--bg-main)] border border-[var(--border-light)] p-2 flex justify-between"
+            class="w-full text-3xl rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-light)] p-2 flex justify-between"
           >
             <div class="flex flex-col gap-2">
               <div class="text-[var(--text-important)]">

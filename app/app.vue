@@ -14,7 +14,7 @@ onMounted(async () => {
   try {
     const data = await useMyFetch("/auth/refresh");
     userStore.setAuth(
-      { userName: data.name, userEmail: data.email },
+      { userId: data.id, userName: data.name, userEmail: data.email },
       data.isActivate,
     );
   } catch {}
@@ -23,7 +23,12 @@ onMounted(async () => {
 
 <template>
   <Header
-    v-if="!router.path.includes('/account') && !router.path.includes('/admin')"
+    v-if="
+      !router.path.includes('/account') &&
+      !router.path.includes('/admin') &&
+      !router.path.includes('/consultation') &&
+      !router.path.includes('/auth')
+    "
   />
   <NuxtPage></NuxtPage>
 </template>

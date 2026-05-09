@@ -29,7 +29,7 @@ const yFormatter = (tick) => tick.toString();
   >
     <div class="flex items-center justify-between">
       <h3 class="text-lg font-semibold">Виконані замовлення на місяць</h3>
-      <UButton icon="i-lucide-copy" size="sm" variant="soft" color="neutral" />
+      <UiButton icon="i-lucide-copy" size="sm" variant="soft" color="neutral" />
     </div>
     <BarChart
       :data="RevenueData"

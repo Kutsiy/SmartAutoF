@@ -44,6 +44,7 @@ const onSubmit = handleSubmit(async (value) => {
       await navigateTo("/account");
       userStore.setAuth(
         {
+          userId: data.id,
           userName: data.name,
           userEmail: data.email,
           userPhoneNumber: data.phoneNumber,
@@ -64,32 +65,54 @@ const onSubmit = handleSubmit(async (value) => {
 
 <template>
   <NuxtLayout name="register">
-    <form v-if="!loading" class="flex flex-col gap-4" @submit="onSubmit">
-      <div class="flex flex-col gap-1">
-        <UiInputError :text="mainError" />
-        <UiInput
-          placeholder="Email"
-          label="Email:"
-          type="email"
-          v-model:model-value="email"
-        />
-        <UiInputError :text="errors.email" />
-        <UiInput
-          placeholder="Password"
-          label="Password:"
-          type="password"
-          v-model:model-value="password"
-        />
-        <UiInputError :text="errors.password" />
+    <form v-if="!loading" class="flex flex-col gap-5" @submit="onSubmit">
+      <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-1">
+          <UiInputError :text="mainError" />
+
+          <UiInput
+            placeholder="Введіть email"
+            label="Електронна пошта:"
+            type="email"
+            v-model:model-value="email"
+          />
+
+          <UiInputError :text="errors.email" />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <UiInput
+            placeholder="Введіть пароль"
+            label="Пароль:"
+            type="password"
+            v-model:model-value="password"
+          />
+
+          <UiInputError :text="errors.password" />
+        </div>
       </div>
+
       <button
-        class="w-full p-2 font-bold flex items-center justify-center border-2 border-[var(--yellow-90)] rounded-2xl bg-[var(--yellow-500)] hover:bg-[var(--yellow-600)] transition-colors text-[var(--text-black)]"
+        class="w-full min-h-[58px] p-2 font-black text-2xl flex items-center justify-center border-2 border-[var(--yellow-90)] rounded-2xl bg-[var(--yellow-500)] hover:bg-[var(--yellow-600)] hover:scale-[1.01] transition-all text-[var(--text-black)] shadow-[0_0_25px_var(--yellow-20)]"
       >
-        Login
+        Увійти
       </button>
     </form>
-    <div v-else class="flex items-center justify-center w-[650px] h-[550px]">
-      <span class="animate-pulse text-6xl">Завантаження...</span>
+
+    <div
+      v-else
+      class="flex flex-col items-center justify-center gap-6 w-[650px] h-[550px]"
+    >
+      <Icon
+        name="material-symbols:progress-activity-rounded"
+        class="w-20 h-20 animate-spin text-[var(--text-important)]"
+      />
+
+      <span
+        class="animate-pulse text-5xl font-black text-[var(--text-secondary)]"
+      >
+        Завантаження...
+      </span>
     </div>
   </NuxtLayout>
 </template>

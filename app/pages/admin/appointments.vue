@@ -12,7 +12,9 @@
     </div>
 
     <div class="basic-back w-[320px] h-full">
-      <UiCompobox />
+      <div>
+        <UiCompobox />
+      </div>
     </div>
   </div>
 </template>

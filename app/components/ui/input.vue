@@ -51,7 +51,7 @@ const onInput = (payload) => {
 
     <div
       :class="{ '!bg-[var(--bg-main)]': blackBg }"
-      class="min-h-[20px] flex items-center rounded-2xl border border-[var(--border-main)] bg-[var(--bg-secondary)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
+      class="min-h-[20px] flex items-center rounded-2xl border border-[var(--border-main)] bg-[var(--bg-third)] focus-within:border-[var(--border-accent)] focus-within:shadow-[var(--shadow-glow)] transition-all duration-200"
     >
       <span
         v-if="iconName"

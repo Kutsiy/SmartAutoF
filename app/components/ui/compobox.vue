@@ -29,7 +29,7 @@ const {
 <template>
   <ComboboxRoot
     :disabled="disable"
-    class="relative"
+    class="relative w-full h-full"
     :default-value="defaultValue"
     v-model="model"
     :multiple="multiple"

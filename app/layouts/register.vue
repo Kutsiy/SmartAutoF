@@ -1,15 +1,37 @@
 <template>
-  <NuxtLink
-    class="absolute text-2xl m-2 px-2 py-1 cursor-pointer hover:border hover:border-[var(--border-accent)] hover:rounded-2xl hover:scale-105 transition-transform"
-    to="/"
-  >
-    <Icon name="material-symbols:arrow-left-alt" class="relative top-[3px]" />
-    Вийти
-  </NuxtLink>
+  <div class="w-[220px] p-4">
+    <UiButton
+      text-size="text-2xl"
+      class-name="
+        gap-3
+        hover:scale-105
+        transition-all
+        border
+        border-[var(--border-main)]
+        hover:border-[var(--border-accent)]
+        hover:bg-[var(--bg-hover)]
+        px-4
+        py-2
+        hover:text-[var(--text-primary)]
+      "
+      render-as="link"
+      to="/"
+    >
+      <Icon
+        name="material-symbols:arrow-left-alt-rounded"
+        class="relative top-[2px]"
+      />
+
+      <span>Вийти</span>
+    </UiButton>
+  </div>
+
   <div
-    class="h-full container mx-auto px-12 flex items-center justify-center py-6"
+    class="h-full container mx-auto px-6 lg:px-12 flex items-center justify-center py-6"
   >
-    <div class="border-4 border-[var(--yellow-500)] rounded-2xl p-4">
+    <div
+      class="w-full max-w-[720px] border border-[var(--border-main)] bg-[var(--bg-secondary)] rounded-[32px] p-4 lg:p-6 shadow-[0_0_30px_var(--shadow-soft)]"
+    >
       <slot />
     </div>
   </div>

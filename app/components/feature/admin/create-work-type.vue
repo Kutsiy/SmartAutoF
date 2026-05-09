@@ -146,7 +146,9 @@ const onSubmit = handleSubmit(async (value) => {
 </script>
 
 <template>
-  <div class="border border-[var(--border-main)] rounded-2xl p-2">
+  <div
+    class="border border-[var(--border-main)] rounded-2xl p-4 bg-[var(--bg-main)]"
+  >
     <div
       v-if="updatingData"
       class="flex flex-col gap-4 text-[var(--text-important)]"

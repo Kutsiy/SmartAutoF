@@ -135,7 +135,7 @@ onMounted(async () => {
   </Teleport>
 
   <div class="flex flex-col gap-4">
-    <div class="basic-back grid grid-cols-4 gap-4">
+    <div class="basic-back !bg-[var(--bg-main)] !p-4 grid grid-cols-4 gap-4">
       <div class="col-span-2">
         <UiInput placeholder="Знайти тип роботи..." v-model="searchString" />
       </div>
@@ -143,7 +143,7 @@ onMounted(async () => {
       <UiButton text-size="text-3xl" @click="search">Пошук</UiButton>
     </div>
 
-    <div class="basic-back">
+    <div class="basic-back !bg-[var(--bg-main)] !p-4">
       <template v-if="dataIsLoading">
         <div class="text-5xl animate-pulse font-bold text-center">
           Завантаження...
@@ -165,7 +165,7 @@ onMounted(async () => {
               'border-2 border-[var(--border-accent)]':
                 updatingData?.id === workType.id,
             }"
-            class="bg-[var(--bg-main)] rounded-2xl text-3xl p-2 flex justify-between"
+            class="bg-[var(--bg-secondary)] rounded-2xl text-3xl p-2 flex justify-between"
           >
             <div class="flex flex-col gap-2">
               <div class="text-[var(--text-important)]">
