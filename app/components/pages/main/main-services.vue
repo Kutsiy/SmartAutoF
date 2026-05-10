@@ -76,10 +76,6 @@ const changeListItem = (item) => {
       class="relative overflow-hidden rounded-[32px] border border-[var(--border-main)] bg-[var(--bg-secondary)] p-4 lg:p-6 shadow-[0_0_40px_var(--shadow-soft)]"
       v-gsap.whenVisible.from.once="{ opacity: 0, x: -32 }"
     >
-      <div
-        class="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-[var(--yellow-20)] blur-[120px] opacity-20 pointer-events-none"
-      />
-
       <template v-if="service.length !== 0">
         <div
           class="relative grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4"

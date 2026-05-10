@@ -17,18 +17,24 @@ import {
   CalendarRoot,
 } from "reka-ui";
 
-const date = new CalendarDate(2024, 10, 3);
+const realDay = new Date();
 
-const currentDate = ref();
+const date = new CalendarDate(
+  realDay.getFullYear(),
+  realDay.getMonth() + 1,
+  realDay.getDate(),
+);
 
-watch(currentDate, (val) => {
-  console.log(val);
-});
+const currentDate = defineModel<any>();
 
 const isDateUnavailable: CalendarRootProps["isDateUnavailable"] = (
   calendarDate,
 ) => {
-  return calendarDate.day == date.day;
+  return (
+    (calendarDate.day < date.day && !(calendarDate.month > date.month)) ||
+    calendarDate.month < date.month ||
+    calendarDate.year < date.year
+  );
 };
 </script>
 

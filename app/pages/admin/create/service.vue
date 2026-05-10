@@ -79,11 +79,13 @@ const openAlert = (id: string) => {
   });
   deleteServiceId.value = id;
   alertIsOpen.value = true;
+  document.body.classList.add("overflow-hidden");
 };
 
 const closeAlert = () => {
   deleteServiceId.value = "";
   alertIsOpen.value = false;
+  document.body.classList.remove("overflow-hidden");
 };
 
 const deleteData = async () => {
@@ -101,18 +103,56 @@ const deleteData = async () => {
 <template>
   <Teleport to="body">
     <div
-      class="absolute w-full h-full top-0 bg-[var(--black-50)] z-50 flex items-center justify-center"
       v-if="alertIsOpen"
+      class="fixed inset-0 z-[999] bg-black/70 backdrop-blur-sm flex items-center justify-center px-4"
     >
       <div
-        class="w-[500px] h-[350px] bg-[var(--bg-secondary)] border border-[var(--border-accent)] rounded-2xl flex flex-col p-2 gap-6 justify-center"
+        class="relative w-full max-w-[520px] rounded-[32px] border border-[var(--border-main)] bg-[var(--bg-secondary)] p-6 flex flex-col gap-6 shadow-[0_0_50px_var(--shadow-soft)]"
       >
-        <div class="text-3xl font-bold text-center">
-          Ви точно хочите видалити?
+        <div
+          class="mx-auto w-20 h-20 rounded-3xl border border-red-500/40 bg-red-500/10 flex items-center justify-center"
+        >
+          <Icon
+            name="material-symbols:delete-rounded"
+            class="w-12 h-12 text-red-400"
+          />
         </div>
-        <div class="flex flex-col gap-2">
-          <UiButton text-size="text-2xl" @click="deleteData">Так</UiButton>
-          <UiButton text-size="text-2xl" @click="closeAlert">Ні</UiButton>
+
+        <div class="flex flex-col gap-3 text-center">
+          <div class="text-4xl font-black">Видалити запис?</div>
+
+          <div class="text-2xl text-[var(--text-secondary)]">
+            Ви точно хочете видалити? Цю дію неможливо буде скасувати.
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <UiButton
+            text-size="text-2xl"
+            class-name="
+            !bg-red-600
+            hover:!bg-red-500
+            !text-white
+            !font-black
+            min-h-[58px]
+          "
+            @click="deleteData"
+          >
+            Так, видалити
+          </UiButton>
+
+          <UiButton
+            text-size="text-2xl"
+            class-name="
+            min-h-[58px]
+            border
+            border-[var(--border-main)]
+            hover:border-[var(--border-accent)]
+          "
+            @click="closeAlert"
+          >
+            Скасувати
+          </UiButton>
         </div>
       </div>
     </div>

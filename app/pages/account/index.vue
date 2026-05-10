@@ -30,6 +30,7 @@ onMounted(async () => {
   try {
     const data = await useMyFetch("/user/my");
     userStore.updateUser({
+      userId: data.id,
       userName: data.name,
       userEmail: data.email,
       userPhoneNumber: data.phoneNumber,

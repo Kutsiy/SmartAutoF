@@ -10,7 +10,7 @@ import {
   ComboboxViewport,
 } from "reka-ui";
 
-const model = defineModel({ default: "" });
+const model = defineModel<string | any[] | number>({ default: "" });
 
 const {
   defaultValue,
@@ -36,11 +36,13 @@ const {
   >
     <ComboboxAnchor
       :class="textSize"
-      class="w-full h-full border-2 border-[var(--border-light)] px-2 py-1 flex items-center justify-between rounded-2xl leading-none bg-[var(--bg-third)] shadow-sm outline-none"
+      class="w-full h-full border-2 border-[var(--border-light)] px-2 py-1 flex items-center justify-between gap-10 rounded-2xl leading-none bg-[var(--bg-third)] shadow-sm outline-none"
     >
       <div
-        class="flex flex-col"
-        :class="{ 'gap-2': model && model.length !== 0 }"
+        class="flex flex-col flex-1"
+        :class="{
+          'gap-2': model && typeof model !== 'number' && model.length !== 0,
+        }"
       >
         <ComboboxInput
           :class="{ 'text-[var(--text-secondary)]': disable }"
@@ -55,9 +57,11 @@ const {
           <span
             v-for="item in model"
             :key="item"
-            class="px-2 py-1 bg-[var(--bg-hover)] rounded"
+            class="px-4 py-2 bg-[var(--bg-hover)] rounded"
           >
-            {{ item }}
+            <slot name="multiply" :item="item">
+              {{ item }}
+            </slot>
           </span>
         </div>
       </div>
@@ -87,12 +91,14 @@ const {
           v-for="option in options"
           :key="option"
           :value="option"
-          class="text-xl hover:bg-[var(--bg-hover)] cursor-pointer leading-none rounded-[3px] flex items-center h-[25px] pr-[35px] pl-[25px] py-5 relative select-none"
+          class="text-xl hover:bg-[var(--bg-hover)] cursor-pointer leading-none rounded-[3px] flex items-center pr-[35px] pl-[25px] py-5 relative select-none"
         >
-          <span v-if="option">
-            {{ option }}
-          </span>
-          <span v-else> Пусте заначення </span>
+          <slot name="item" :option="option">
+            <span v-if="option">
+              {{ option }}
+            </span>
+            <span v-else> Пусте заначення </span>
+          </slot>
         </ComboboxItem>
       </ComboboxViewport>
     </ComboboxContent>

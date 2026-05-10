@@ -13,9 +13,6 @@ const {
   serviceData: any[];
 }>();
 
-// Data
-const serviceName = ref("");
-
 // Emit
 const emit = defineEmits(["setData", "closeUpdate"]);
 
@@ -29,7 +26,7 @@ const serviceError = ref("");
 watch(
   () => updatingData,
   (value) => {
-    serviceName.value = value?.service.name ? value.service.name : null;
+    compoboxValue.value = value?.service.name ? value.service.name : null;
     workTypeName.value = value?.name ? value.name : null;
     workTypeText.value = value?.text ? value.text : null;
     workTypePrice.value = value?.price ? value.price : null;
@@ -78,6 +75,9 @@ const { errors, defineField, handleSubmit, resetForm } = useForm({
         .refine((val) => !isNaN(val), {
           message: "Повинно бути число",
         }),
+      compoboxValue: z.string({
+        message: "Це поле обов'язкове",
+      }),
     }),
   ),
 });
@@ -86,14 +86,10 @@ const [workTypeName] = defineField("workTypeName");
 const [workTypeText] = defineField("workTypeText");
 const [workTypePrice] = defineField("workTypePrice");
 const [workTypeTime] = defineField("workTypeTime");
+const [compoboxValue] = defineField("compoboxValue");
 
 const onSubmit = handleSubmit(async (value) => {
   dataIsLoading.value = true;
-
-  if (!serviceName.value) {
-    serviceError.value = "Виберіть сервіс";
-    return;
-  }
 
   if (
     updatingData &&
@@ -107,7 +103,7 @@ const onSubmit = handleSubmit(async (value) => {
   }
 
   const serviceId = serviceDataRaw.find((value) => {
-    return value.name === serviceName.value;
+    return value.name === compoboxValue.value;
   }).id;
 
   try {
@@ -192,16 +188,16 @@ const onSubmit = handleSubmit(async (value) => {
       <div
         class="felx flex-col gap-2"
         :class="{
-          'border border-red-500 rounded-2xl p-2': serviceError,
+          'border border-red-500 rounded-2xl p-2': errors.compoboxValue,
         }"
       >
         <UiInputError
-          :text="serviceError ? serviceError : ''"
+          :text="errors.compoboxValue ? errors.compoboxValue : ''"
           text-size="text-3xl"
         />
         <UiCompobox
           :options="serviceData"
-          v-model="serviceName"
+          v-model="compoboxValue"
           :disable="!!updatingData"
         />
       </div>

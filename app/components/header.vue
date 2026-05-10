@@ -28,13 +28,13 @@ onUnmounted(() => {
     class="fixed z-[100000] top-0 left-0 w-full border-b border-[var(--border-main)] backdrop-blur-2xl bg-[rgba(10,10,10,0.82)] transition-transform duration-500"
     :class="{ '-translate-y-full': !isShow }"
   >
-    <div class="container mx-auto px-6 lg:px-12">
+    <div class="container mx-auto px-12">
       <div class="h-[96px] flex items-center justify-between gap-6">
         <NuxtLink
           to="/"
           class="shrink-0 flex items-center justify-center h-full hover:scale-[1.02] transition-transform"
         >
-          <span class="text-6xl text-[var(--text-important)] tracking-wider"
+          <span class="text-6xl text-[var(--text-important)] tracking-wide"
             >SmartAuto</span
           >
         </NuxtLink>

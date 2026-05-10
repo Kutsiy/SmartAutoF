@@ -1,5 +1,86 @@
 <script setup lang="ts">
 import Appointment from "~/components/ui/appointment.vue";
+import { useUserStore } from "~/store/user.store";
+
+type Appointment = {
+  id: string;
+  note: string;
+  user_id: string;
+  work_types: any[];
+  duration: number;
+  cost: number;
+  status: string;
+  startAt: string;
+  appointment_date: string;
+  appointment_time: string;
+  created_at: string;
+};
+
+const statusOptions = [
+  null,
+  "Очікує",
+  "Підтверджено",
+  "В обробці",
+  "Виконано",
+  "Скасовано",
+];
+
+const translationStatus: Record<string, string> = {
+  Очікує: "PENDING",
+  Підтверджено: "CONFIRMED",
+  Вобробці: "IN_PROCESSING",
+  Виконано: "DONE",
+  Скасовано: "CANCELED",
+};
+
+const search = async () => {
+  isLoading.value = true;
+  const queryString = new URLSearchParams();
+
+  if (searchValue.value) queryString.append("search", searchValue.value);
+
+  if (compoboxValue.value) {
+    const status = translationStatus[compoboxValue.value.replace(" ", "")];
+    if (status) queryString.append("status", status);
+  }
+
+  if (!compoboxValue.value && !searchValue.value) isSearch.value = false;
+  else isSearch.value = true;
+
+  const data = await useMyFetch(`/appointment/all?${queryString}`);
+  if (Array.isArray(data)) appointments.value = data;
+  isLoading.value = false;
+};
+
+const userStore = useUserStore();
+
+const searchValue = ref("");
+const compoboxValue = ref("");
+
+const isLoading = ref(true);
+const isSearch = ref(false);
+
+const appointments = ref<Appointment[]>([]);
+
+watch(compoboxValue, async () => {
+  await search();
+});
+
+watch(
+  () => userStore.userInfo.userId,
+  async (val) => {
+    const data = await useMyFetch(`/appointment/user?id=${val}`);
+    if (Array.isArray(data)) appointments.value = data;
+  },
+);
+
+onMounted(async () => {
+  const data = await useMyFetch(
+    `/appointment/user?id=${userStore.userInfo.userId}`,
+  );
+  if (Array.isArray(data)) appointments.value = data;
+  isLoading.value = false;
+});
 </script>
 
 <template>
@@ -48,6 +129,8 @@ import Appointment from "~/components/ui/appointment.vue";
         <div class="mt-6">
           <UiInput
             placeholder="Пошук замовлення..."
+            v-model="searchValue"
+            @input="search"
             icon-name="material-symbols:search-rounded"
             class="shadow-[0_0_25px_var(--shadow-soft)]"
           />
@@ -78,16 +161,59 @@ import Appointment from "~/components/ui/appointment.vue";
         </div>
 
         <div
+          v-if="!appointments.length && isSearch"
+          class="w-full h-full text-6xl flex items-center justify-center gap-4 overflow-hidden text-bold"
+        >
+          <span class="text-center">
+            <Icon
+              name="material-symbols:search-off"
+              class="relative top-1.5 text-[var(--text-important)]"
+            />
+            Замовлення за цим пошуком
+            <span class="text-[var(--text-important)]">не знайдено</span>
+          </span>
+        </div>
+
+        <div
+          v-else-if="!appointments.length"
+          class="w-full h-full text-6xl flex items-center justify-center gap-4 overflow-hidden text-bold"
+        >
+          <span class="text-center">
+            <Icon
+              name="material-symbols:search-off"
+              class="relative top-1.5 text-[var(--text-important)]"
+            />
+            Ви ще не створили
+            <span class="text-[var(--text-important)]">жодного</span>
+            замовлення</span
+          >
+        </div>
+
+        <div
+          v-else-if="isLoading"
+          class="w-full h-full text-6xl flex items-center justify-center gap-4 overflow-hidden text-bold"
+        >
+          <span class="text-center animate-pulse"> Завантаження... </span>
+        </div>
+
+        <div
+          v-else
           class="w-full max-h-[560px] overflow-y-auto flex flex-col gap-4 pr-2 scroll-bar"
         >
-          <Appointment />
-          <Appointment />
-          <Appointment />
-          <Appointment />
-          <Appointment />
-          <Appointment />
-          <Appointment />
-          <Appointment />
+          <Appointment
+            v-for="appointment in appointments"
+            :key="appointment.id"
+            :id="appointment.id"
+            :cost="appointment.cost"
+            :status="appointment.status"
+            :appointment_date="appointment.appointment_date"
+            :appointment_time="appointment.appointment_time"
+            :duration="appointment.duration"
+            :note="appointment.note"
+            :created_at="appointment.created_at"
+            :user_id="appointment.user_id"
+            :work_types="appointment.work_types"
+          />
         </div>
       </div>
     </div>
@@ -120,7 +246,11 @@ import Appointment from "~/components/ui/appointment.vue";
           Статус
         </label>
 
-        <UiCompobox :options="[]" class="min-h-[64px]" />
+        <UiCompobox
+          v-model="compoboxValue"
+          :options="statusOptions"
+          class="min-h-[64px]"
+        />
       </div>
     </aside>
   </div>

@@ -11,8 +11,7 @@ onMounted(async () => {
 
 <template>
   <section class="relative overflow-hidden py-14">
-    <div class="container mx-auto px-6 lg:px-12 flex flex-col gap-10">
-      <!-- TITLE -->
+    <div class="container mx-auto px-12 flex flex-col gap-10">
       <div
         class="relative w-fit min-h-[72px] pr-8 pl-6 rounded-r-[28px] bg-[var(--accent-primary)] text-black text-4xl lg:text-5xl font-black flex items-center gap-3 shadow-[0_0_35px_var(--accent-glow)] before:content-[''] before:absolute before:right-full before:top-0 before:h-full before:w-[100vw] before:bg-[var(--accent-primary)]"
       >
@@ -25,10 +24,6 @@ onMounted(async () => {
         v-gsap.whenVisible.once.from="{ opacity: 0, x: 62 }"
       >
         <div
-          class="absolute top-0 right-0 w-[360px] h-[360px] rounded-full bg-[var(--yellow-20)] blur-[120px] opacity-25 pointer-events-none"
-        />
-
-        <div
           class="relative h-[58px] px-5 border-b border-[var(--border-main)] bg-[rgba(255,255,255,0.04)] flex items-center justify-between"
         >
           <div class="flex items-center gap-3">
@@ -38,7 +33,7 @@ onMounted(async () => {
           </div>
 
           <div
-            class="hidden md:flex items-center gap-2 text-xl font-bold text-[var(--text-secondary)]"
+            class="flex items-center gap-2 text-xl font-bold text-[var(--text-secondary)]"
           >
             <Icon
               name="material-symbols:receipt-long-rounded"
@@ -51,7 +46,7 @@ onMounted(async () => {
         </div>
 
         <div
-          class="relative p-4 lg:p-6 min-h-[430px] max-h-[520px] overflow-y-auto scroll-bar grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+          class="relative p-6 min-h-[430px] max-h-[520px] overflow-y-auto scroll-bar grid grid-cols-3 gap-5"
         >
           <template v-if="dataIsLoading">
             <div

@@ -119,7 +119,6 @@ const getTotalWorkTypes = (category: any) => {
             <div
               class="relative flex flex-col gap-8 p-8 xl:flex-row xl:items-center xl:justify-between"
             >
-              <!-- LEFT -->
               <div class="flex items-center gap-8">
                 <div
                   class="flex h-32 w-32 items-center justify-center overflow-hidden rounded-[2rem] border border-[var(--border-light)] bg-[var(--bg-secondary)]"
@@ -189,6 +188,7 @@ const getTotalWorkTypes = (category: any) => {
               v-if="isCategoryOpen(category.id)"
               class="border-t border-[var(--border-main)] p-8"
             >
+              <div class="text-4xl mb-4">Сервіси:</div>
               <div class="space-y-6">
                 <div
                   v-for="service in category.services"
@@ -199,7 +199,7 @@ const getTotalWorkTypes = (category: any) => {
                     class="flex cursor-pointer items-center justify-between gap-6 p-6 transition-all duration-300 hover:bg-[var(--bg-hover)]"
                     @click="toggleService(service.id)"
                   >
-                    <div>
+                    <NuxtLink :to="`/service/${service.link_name}`">
                       <h3 class="text-4xl font-bold">
                         {{ service.name }}
                       </h3>
@@ -208,7 +208,7 @@ const getTotalWorkTypes = (category: any) => {
                         {{ service.work_types?.length || 0 }}
                         типів робіт
                       </p>
-                    </div>
+                    </NuxtLink>
 
                     <div
                       class="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--yellow-10)] text-4xl text-[var(--text-important)] transition-transform duration-300"
@@ -240,7 +240,8 @@ const getTotalWorkTypes = (category: any) => {
                           :key="workType.id"
                           class="rounded-[1.5rem] border border-[var(--border-main)] bg-[var(--bg-card)] p-6 transition-all duration-300 hover:border-[var(--border-accent)]"
                         >
-                          <div
+                          <NuxtLink
+                            :to="`/work/${workType.link_name}`"
                             class="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between"
                           >
                             <div>
@@ -286,7 +287,7 @@ const getTotalWorkTypes = (category: any) => {
                                 </span>
                               </div>
                             </div>
-                          </div>
+                          </NuxtLink>
                         </div>
                       </div>
                     </div>

@@ -8,7 +8,7 @@ import UiMap from "~/components/ui/map.vue";
       class="container mx-auto px-6 lg:px-12 py-16"
       v-gsap.whenVisible.once.from="{ opacity: 0, y: 32 }"
     >
-      <div class="grid grid-cols-1 xl:grid-cols-[0.9fr_1.1fr] gap-8">
+      <div class="grid grid-cols-2 gap-8">
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-3">
             <div class="text-5xl font-black leading-none">Контакти</div>

@@ -17,6 +17,9 @@ const { errors, defineField, handleSubmit } = useForm({
         })
         .min(8, "Повинно бути більше 8 символів")
         .max(300, "Повинно бути меньше 300 символів"),
+      compoboxValue: z.string({
+        message: "Це поле обов'язкове",
+      }),
     }),
   ),
 });
@@ -34,7 +37,7 @@ watch(
     preview.value = value?.image_link
       ? `${link.value}/${value?.image_link}`
       : "";
-    categoryName.value = value?.category?.name;
+    compoboxValue.value = value?.category?.name;
   },
 );
 
@@ -46,7 +49,7 @@ const preview = ref();
 
 const [serviceName] = defineField("serviceName");
 const [serviceText] = defineField("serviceText");
-const categoryName = ref();
+const [compoboxValue] = defineField("compoboxValue");
 const imageFile = ref();
 
 const categoryError = ref(false);
@@ -67,11 +70,6 @@ onMounted(async () => {
 });
 
 const onSubmit = handleSubmit(async (values) => {
-  if (!categoryName.value) {
-    console.log("value");
-    categoryError.value = true;
-    return;
-  }
   if (!imageFile.value && !updatingService) {
     console.log("value");
     imageError.value = true;
@@ -81,7 +79,7 @@ const onSubmit = handleSubmit(async (values) => {
   imageError.value = false;
 
   const categoryId = rawData?.value?.find(
-    (val) => val.name === categoryName.value,
+    (val) => val.name === compoboxValue.value,
   ).id;
   if (!categoryId) return;
 
@@ -172,13 +170,13 @@ const onSubmit = handleSubmit(async (values) => {
       <div class="flex flex-col gap-2 text-3xl">
         <div>Виберіть категорію, з яким свяжеться сервіс</div>
         <UiInputError
-          :text="categoryError ? 'Ви повинні вибрати категорію' : ''"
+          :text="errors.compoboxValue ? errors.compoboxValue : ''"
           text-size="text-3xl"
         />
         <UiCompobox
           :disable="!!updatingService"
           :options="options"
-          v-model="categoryName"
+          v-model="compoboxValue"
         />
       </div>
       <UiInputError

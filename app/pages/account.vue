@@ -80,12 +80,11 @@ const userStore = useUserStore();
       </div>
     </div>
 
-    <!-- PAGE -->
-    <div class="container mx-auto px-6 lg:px-12 pb-8 flex-1">
+    <div class="container mx-auto px-12 pb-8 flex-1 h-full">
       <div
-        class="h-full basic-back border border-[var(--border-main)] rounded-[32px] shadow-[0_0_40px_var(--shadow-soft)] overflow-hidden"
+        class="h-full basic-back border border-[var(--border-main)] rounded-[32px] shadow-[0_0_40px_var(--shadow-soft)]"
       >
-        <div class="p-4 lg:p-6 h-full">
+        <div class="p-6 h-full">
           <NuxtPage />
         </div>
       </div>

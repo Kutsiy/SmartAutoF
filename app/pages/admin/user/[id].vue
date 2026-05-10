@@ -39,7 +39,7 @@ const copyToClipboard = async () => {
   <div class="flex flex-col gap-6">
     <div
       v-if="loading"
-      class="basic-back min-h-[260px] flex flex-col items-center justify-center gap-4 text-3xl font-bold text-[var(--text-secondary)]"
+      class="basic-back !bg-[var(--bg-main)] !px-4 min-h-[260px] flex flex-col items-center justify-center gap-4 text-3xl font-bold text-[var(--text-secondary)]"
     >
       <Icon
         name="material-symbols:progress-activity-rounded"
@@ -64,8 +64,7 @@ const copyToClipboard = async () => {
     </div>
 
     <template v-else>
-      <!-- HEADER -->
-      <div class="basic-back border border-[var(--border-main)]">
+      <div class="basic-back !bg-[var(--bg-main)] !px-4">
         <div class="flex items-center justify-between gap-4">
           <div class="flex items-center gap-5 min-w-0">
             <div
@@ -103,7 +102,9 @@ const copyToClipboard = async () => {
       </div>
 
       <div class="grid grid-cols-1 xl:grid-cols-[1fr_420px] gap-6">
-        <div class="basic-back !p-4 border border-[var(--border-main)]">
+        <div
+          class="basic-back !bg-[var(--bg-main)] !p-4 border border-[var(--border-main)]"
+        >
           <div class="flex flex-col gap-6">
             <div class="flex items-center justify-between gap-4">
               <div>
@@ -208,9 +209,10 @@ const copyToClipboard = async () => {
           </div>
         </div>
 
-        <!-- RIGHT -->
         <aside class="flex flex-col gap-6">
-          <div class="basic-back !p-4 border border-[var(--border-main)]">
+          <div
+            class="basic-back !bg-[var(--bg-main)] !px-4 border border-[var(--border-main)]"
+          >
             <div class="flex flex-col gap-5">
               <div>
                 <div class="text-4xl font-black">Статуси</div>
