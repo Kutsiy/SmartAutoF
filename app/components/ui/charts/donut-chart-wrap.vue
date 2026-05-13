@@ -1,16 +1,28 @@
 <script setup lang="ts">
-const donutData = ref([35, 25]);
+const {
+  donutData = [],
+  labelA = "",
+  labelB = "",
+  label = "",
+} = defineProps<{
+  donutData?: any[];
+  labelA?: string;
+  labelB?: string;
+  label?: string;
+}>();
 
 const marketShareLabels = {
-  "Product A": {
-    name: "Product A",
+  [`${labelA}`]: {
+    name: labelA,
     color: "var(--yellow-500)",
   },
-  "Product B": {
-    name: "Product B",
+  [`${labelB}`]: {
+    name: labelB,
     color: "var(--black-500)",
   },
 };
+
+const dataRef = toRef(() => donutData);
 </script>
 
 <template>
@@ -18,17 +30,16 @@ const marketShareLabels = {
     class="w-full bg-[var(--bg-secondary)] rounded-2xl p-2 shadow-md shadow-[var(--shadow-glow)]"
   >
     <DonutChart
-      :data="donutData"
+      :data="dataRef"
       :categories="marketShareLabels"
       :height="190"
       :radius="100"
       :pad-angle="0.05"
       :arc-width="25"
     >
-      <div class="text-center">
-        <div class="font-semibold">Label</div>
-        <div class="text-muted">2 seconds ago</div>
-      </div>
     </DonutChart>
+    <div class="text-center">
+      <div class="font-semibold">{{ label }}</div>
+    </div>
   </div>
 </template>

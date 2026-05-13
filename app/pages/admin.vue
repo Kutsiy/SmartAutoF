@@ -1,12 +1,15 @@
 <script setup>
 import { NavCol, NavColTitle } from "~/components/ui/nav-col";
+// definePageMeta({
+//   middleware: ["admin"],
+// });
 </script>
 
 <template>
-  <div class="min-h-screen container mx-auto p-4">
+  <div class="min-h-screen container mx-auto p-2">
     <div class="grid grid-cols-[260px_1fr] gap-6 min-h-[calc(100vh-32px)]">
       <aside
-        class="sticky top-4 h-[calc(100vh-32px)] overflow-y-auto scroll-bar basic-back border border-[var(--border-main)] rounded-[28px] p-4 flex flex-col gap-5 shadow-[0_0_30px_var(--shadow-soft)]"
+        class="sticky top-2 h-[calc(100vh-22px)] overflow-y-auto scroll-bar basic-back border border-[var(--border-main)] rounded-[28px] p-2 flex flex-col gap-5 shadow-[0_0_30px_var(--shadow-soft)]"
       >
         <div
           class="rounded-2xl border border-[var(--border-accent)] bg-[var(--yellow-10)] p-4 flex items-center gap-3"

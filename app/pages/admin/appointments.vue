@@ -298,7 +298,7 @@ onMounted(async () => {
           <div
             v-for="appointment in appointments"
             :key="appointment.id"
-            class="rounded-[28px] border border-[var(--border-main)] bg-[var(--bg-secondary)] p-5 flex flex-col gap-4 hover:border-[var(--border-accent)] hover:shadow-[0_0_30px_var(--yellow-20)] transition-all"
+            class="rounded-[28px] border border-[var(--border-main)] bg-[var(--bg-secondary)] p-5 flex flex-col gap-4 hover:border-[var(--border-accent)] transition-all"
           >
             <div
               class="flex flex-col lg:flex-row lg:items-start justify-between gap-4"
@@ -321,7 +321,7 @@ onMounted(async () => {
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <div class="info-card">
                 <div class="info-label">Клієнт</div>
 
@@ -361,7 +361,7 @@ onMounted(async () => {
               </div>
 
               <div
-                class="rounded-2xl border border-[var(--border-main)] bg-[var(--bg-main)] p-4 col-span-1 md:col-span-2 xl:col-span-3"
+                class="rounded-2xl border border-[var(--border-main)] bg-[var(--bg-main)] p-4 col-span-1 xl:col-span-2"
               >
                 <div class="info-label mb-4">Типи робіт</div>
 

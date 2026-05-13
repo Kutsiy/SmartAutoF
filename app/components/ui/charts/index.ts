@@ -1,2 +1,2 @@
-export { default as BarChart } from "./bar-chart.vue";
-export { default as DonutChart } from "./donut-chart.vue";
+export { default as BarChartWrap } from "./bar-chart-wrap.vue";
+export { default as DonutChartWrap } from "./donut-chart-wrap.vue";
