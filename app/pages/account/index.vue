@@ -45,7 +45,7 @@ onMounted(async () => {
   <div class="flex flex-col gap-6">
     <div
       v-if="loading"
-      class="basic-back min-h-[240px] flex flex-col justify-center items-center gap-4 text-4xl font-bold text-[var(--text-secondary)]"
+      class="basic-back !bg-[var(--bg-main)] !p-4 min-h-[240px] flex flex-col justify-center items-center gap-4 text-4xl font-bold text-[var(--text-secondary)]"
     >
       <Icon
         name="material-symbols:progress-activity-rounded"
@@ -56,7 +56,7 @@ onMounted(async () => {
 
     <div v-else class="grid grid-cols-1 xl:grid-cols-[1fr_420px] gap-6">
       <div
-        class="basic-back border border-[var(--border-main)] flex flex-col gap-6"
+        class="basic-back !bg-[var(--bg-main)] !p-4 border border-[var(--border-main)] flex flex-col gap-6"
       >
         <div class="flex items-center justify-between gap-4">
           <div class="flex items-center gap-4">
@@ -163,7 +163,7 @@ onMounted(async () => {
       </div>
 
       <div
-        class="basic-back border border-[var(--border-main)] flex flex-col justify-between gap-6"
+        class="basic-back !bg-[var(--bg-main)] !p-4 border border-[var(--border-main)] flex flex-col justify-between gap-6"
       >
         <div class="flex flex-col gap-4">
           <div

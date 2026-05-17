@@ -103,7 +103,9 @@ watch(
 
 <template>
   <div class="flex flex-col gap-6">
-    <div class="basic-back border border-[var(--border-main)]">
+    <div
+      class="basic-back !bg-[var(--bg-main)] !p-4 border border-[var(--border-main)]"
+    >
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div class="flex flex-col gap-2">
           <div class="text-5xl font-black leading-none">
@@ -152,13 +154,13 @@ watch(
 
     <div
       v-if="serverError"
-      class="basic-back border border-red-500/40 text-3xl font-bold text-red-400"
+      class="basic-back !bg-[var(--bg-main)] !p-4 border border-red-500/40 text-3xl font-bold text-red-400"
     >
       {{ serverError }}
     </div>
 
     <div
-      class="basic-back border border-[var(--border-main)] flex flex-col gap-4"
+      class="basic-back !bg-[var(--bg-main)] !p-4 border border-[var(--border-main)] flex flex-col gap-4"
     >
       <div class="flex items-center gap-4">
         <div

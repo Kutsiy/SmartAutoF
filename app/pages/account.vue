@@ -12,7 +12,7 @@ onMounted(async () => {
     });
     userIsAdmin.value = true;
   } catch (e) {
-    userIsAdmin.value = true;
+    userIsAdmin.value = false;
   }
 });
 </script>

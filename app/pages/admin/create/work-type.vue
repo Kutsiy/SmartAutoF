@@ -235,7 +235,7 @@ onMounted(async () => {
                     >Час виконання типу роботи:</span
                   >
                   {{ workType?.duration }}
-                  <span class="text-[var(--text-important)]">хвилини</span>
+                  <span class="text-[var(--text-important)]">хвилин</span>
                 </div>
               </div>
             </div>

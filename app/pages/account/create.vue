@@ -13,7 +13,7 @@ const { defineField, handleSubmit, errors } = useForm({
         .max(300, { message: "Це поле не може мати більше 300 символів" })
         .optional(),
       date: z.record(z.any(), { message: "Це поле обов'язкове" }),
-      time: z.number({ message: "Це поле обов'язкове" }),
+      time: z.string({ message: "Це поле обов'язкове" }),
     }),
   ),
 });
